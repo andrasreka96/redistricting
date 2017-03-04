@@ -1,0 +1,39 @@
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Automated Redistricting
+qgisMinimumVersion=2.0
+description=Creates electoral districts by algorithm
+version=0.1
+author=Andras Reka
+email=andrasreka96@gmail.com
+
+about=This plugin uses a MOSA algorithm to come up with fair electoral districts
+
+tracker=https://github.com/andrasreka96/redistricting.git
+repository=https://github.com/andrasreka96/redistricting.git
+# End of mandatory metadata
+
+# Recommended items:
+
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=redistricting
+
+homepage=https://github.com/andrasreka96/redistricting.git
+category=Plugins
+icon=icon.png
+# experimental flag
+experimental=True
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
