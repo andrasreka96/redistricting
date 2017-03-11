@@ -21,18 +21,20 @@
  ***************************************************************************/
 """
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
-from PyQt4.QtGui import QAction, QIcon
+from PyQt4.QtGui import QAction, QIcon,QColor
 # Initialize Qt resources from file resources.py
 import resources
 # Import the code for the dialog
 from automated_redistricting_dialog import AutomatedRedistrictingDialog
 import os.path
 
+from qgis.gui import QgsHighlight
 from qgis.core import QgsExpression
 from util import *
 from model import Unit
 import neighbours
-from layer_manipulation import FieldControl
+from layer_manipulation import *
+from algorithm import *
 
 class AutomatedRedistricting:
     """QGIS Plugin Implementation."""
@@ -53,6 +55,8 @@ class AutomatedRedistricting:
         # Save reference to the QGIS interface
         self.iface = iface
         self.layer = iface.activeLayer()
+        self.layers = iface.legendInterface().layers()
+
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
@@ -194,12 +198,10 @@ class AutomatedRedistricting:
 
     def run(self):
         "Run method that performs all the real work"""
-        print '\n'
 
-        DistrictBilder().getPerimiter(UnitBilder().getUnits(self.layer.selectedFeatures(),self.ATTRIBUTE_ID,
-        self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS))
-        #for unit in UnitBilder().getUnits(self.layer,self.ATTRIBUTE_ID,self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS):
-            #unit.show()
+        #units = Util().getUnits(self.layer.getFeatures(),self.ATTRIBUTE_ID,self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS)
+        #solution=InitialSolution().CreateInitialSolution(20,units)
+        InitialSolution().CreateInitialSolution(20,self.layer)
 
         # show the dialog
         #self.dlg.show()
