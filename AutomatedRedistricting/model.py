@@ -11,7 +11,6 @@ class Unit:
         #save some geographical info
         self.geoinf=geoinf
 
-
     def show(self):
         print 'id:%s\nname:%s\npop:%s\nneighbours:%s' %(self.id,self.name,self.population,self.neighbours)
 

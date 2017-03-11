@@ -201,7 +201,7 @@ class AutomatedRedistricting:
 
         #units = Util().getUnits(self.layer.getFeatures(),self.ATTRIBUTE_ID,self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS)
         #solution=InitialSolution().CreateInitialSolution(20,units)
-        InitialSolution().CreateInitialSolution(20,self.layer)
+        InitialSolution().CreateInitialSolution(30,self.layer)
 
         # show the dialog
         #self.dlg.show()

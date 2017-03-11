@@ -9,23 +9,8 @@ class QgsRandomColorScheme(QgsColorScheme):
     def __init__(self, parent=None):
         QgsColorScheme.__init__(self)
 
-    def fetchColors(self, noColors,basecolor=QColor() ):
-        minVal = 130;
-        maxVal = 255;
-        colorList = []
-        for i in range(noColors):
-            if basecolor.isValid():
-                h = basecolor.hue()
-            else:
-                #generate random hue
-                h = random.randrange(360);
-
-            s = random.randrange(100,255)
-            v = random.randrange(100,255)
-
-            colorList.append(QColor.fromHsv( h, s, v).name())
-
-        return colorList
+    def fetchColors(self, noColors):
+        return [QColor.fromRgb(random.randrange(100,255),random.randrange(100,255),random.randrange(100,255)).name() for _ in range(noColors) ]
 
 class Util:
 
@@ -54,17 +39,15 @@ class Util:
 
         #create district formed by units in unitlist
         # Create a dictionary of all features
-        Logger.logr.info("Hello")
         feature_dict = {f['natcode']: f for f in self.layer.getFeatures()}
         perimiter=0;
         area=0;
         population=0;
-        #self.layer.startEditing()
-        #for unit in unitlist:
-        #        f=feature_dict[unit.getID()]
-        #        f['color']=color
-        #        self.layer.updateFeature(f)
+        self.layer.startEditing()
+        for unit in unitlist:
+                f=feature_dict[unit.getID()]
+                f['color']=color
+                self.layer.updateFeature(f)
 
-        #logging.info("Changes has beens saved in district %s",id)
-        #self.layer.commitChanges()
+        self.layer.commitChanges()
         return District(id,color,unitlist,perimiter,area,population)
