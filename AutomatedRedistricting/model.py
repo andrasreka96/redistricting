@@ -10,6 +10,7 @@ class Unit:
         self.neighbours=neighbours.split(',')
         #save some geographical info
         self.geoinf=geoinf
+        self.color=''
 
     def show(self):
         print 'id:%s\nname:%s\npop:%s\nneighbours:%s' %(self.id,self.name,self.population,self.neighbours)
@@ -31,6 +32,12 @@ class Unit:
 
     def getPopulation(self):
         return self.getPopulation()
+
+    def setColor(self,color):
+        self.color=color
+
+    def getColor(self):
+        return self.color
 
 class District:
     def __init__(self,id,color,units,area,perimiter,population):

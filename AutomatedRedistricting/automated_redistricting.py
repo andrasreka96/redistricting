@@ -27,6 +27,7 @@ import resources
 # Import the code for the dialog
 from automated_redistricting_dialog import AutomatedRedistrictingDialog
 import os.path
+import sys
 
 from qgis.gui import QgsHighlight
 from qgis.core import QgsExpression
@@ -35,6 +36,8 @@ from model import Unit
 import neighbours
 from layer_manipulation import *
 from algorithm import *
+from logging.config import fileConfig
+
 
 class AutomatedRedistricting:
     """QGIS Plugin Implementation."""
@@ -52,13 +55,18 @@ class AutomatedRedistricting:
             application at run time.
         :type iface: QgsInterface
         """
-        # Save reference to the QGIS interface
+        # Save reference to the QGIS    interface
         self.iface = iface
-        self.layer = iface.activeLayer()
         self.layers = iface.legendInterface().layers()
+
 
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
+
+        #config logs
+        logging_file = self.plugin_dir + "/logging_config.ini"
+        fileConfig(logging_file)
+
         # initialize locale
         locale = QSettings().value('locale/userLocale')[0:2]
         locale_path = os.path.join(
@@ -198,11 +206,10 @@ class AutomatedRedistricting:
 
     def run(self):
         "Run method that performs all the real work"""
+        solution = InitialSolution().CreateInitialSolution(30,self.iface.activeLayer())
+        #LayerManipulation(self.iface.activeLayer()).ColorDistricts(solution)
 
-        #units = Util().getUnits(self.layer.getFeatures(),self.ATTRIBUTE_ID,self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS)
-        #solution=InitialSolution().CreateInitialSolution(20,units)
-        InitialSolution().CreateInitialSolution(30,self.layer)
-
+        #LayerManipulation(self.iface.activeLayer()).ColorFeature(self.iface.activeLayer().getFeatures().next(),34)
         # show the dialog
         #self.dlg.show()
         # Run the dialog event loop

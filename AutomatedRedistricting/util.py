@@ -3,7 +3,8 @@ from model import Unit,District
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import random
-from log_conf import Logger
+import logging
+from layer_manipulation import LayerManipulation
 
 class QgsRandomColorScheme(QgsColorScheme):
     def __init__(self, parent=None):
@@ -35,19 +36,10 @@ class Util:
 
 #DistrictBilder
     def BuildDistrictFromUnits(self,id,unitlist,color):
-
-
         #create district formed by units in unitlist
-        # Create a dictionary of all features
-        feature_dict = {f['natcode']: f for f in self.layer.getFeatures()}
         perimiter=0;
         area=0;
         population=0;
-        self.layer.startEditing()
         for unit in unitlist:
-                f=feature_dict[unit.getID()]
-                f['color']=color
-                self.layer.updateFeature(f)
-
-        self.layer.commitChanges()
+            unit.setColor(color)
         return District(id,color,unitlist,perimiter,area,population)

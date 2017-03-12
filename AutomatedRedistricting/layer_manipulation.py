@@ -4,11 +4,9 @@ import logging
 
 class LayerManipulation:
 
-    logging.basicConfig(format='%(asctime)s %(message)s',
-                datefmt='%m/%d/%Y %I:%M:%S %p',
-                filename='/home/reka/Documents/redistricting/AutomatedRedistricting/log/LayerManipulation.log',
-                filemode='w',
-                level=logging.INFO)
+    def __init__(self,layer):
+        self.layer = layer
+        self.feature_dict = {f['natcode']: f for f in layer.getFeatures()}
 
     def AddStringField(self,layer,fieldname):
         #add field to layer
@@ -21,9 +19,6 @@ class LayerManipulation:
         # Create new column for storing borderlines
         self.AddStringField(poligon,'lines')
 
-        # Create a dictionary of all polygons
-        feature_dict = {f['natcode']: f for f in poligon.getFeatures()}
-
         poligon.startEditing()
         #pair all lines with two poligon
         for line in poliline.getFeatures():
@@ -32,7 +27,7 @@ class LayerManipulation:
             leftid = line['leftID']
 
             if leftid:
-                f = feature_dict[leftid]
+                f = self.feature_dict[leftid]
                 if f['lines']:
                     str_ = str(f['lines']) + "," + line_id
                 else:
@@ -43,7 +38,7 @@ class LayerManipulation:
 
             rightid = line['rightID']
             if rightid:
-                f = feature_dict[rightid]
+                f = self.feature_dict[rightid]
                 if f['lines']:
                     str_ = str(f['lines']) + "," + line_id
                 else:
@@ -52,3 +47,32 @@ class LayerManipulation:
                 poligon.updateFeature(f)
 
         poligon.commitChanges()
+
+    def ColorUnits(self,unitlist,color):
+        logging.info("Coloring started")
+        self.layer.startEditing()
+
+        for unit in unitlist:
+                f=self.feature_dict[unit.getID()]
+                f['color']=color
+                self.layer.updateFeature(f)
+
+        self.layer.commitChanges()
+        logging.info("Changes commited")
+
+    def ColorFeature(self,feature,color):
+        self.layer.startEditing()
+        feature['color']=color
+        self.layer.updateFeature(feature)
+        self.layer.commitChanges()
+
+    def ColorDistricts(self,districts):
+        logging.info("Coloring started")
+        self.layer.startEditing()
+        for district in districts:
+            for unit in district.units:
+                f=self.feature_dict[unit.getID()]
+                f['color']=unit.getColor()
+                self.layer.updateFeature(f)
+        self.layer.commitChanges()
+        logging.info("Changes commited")
