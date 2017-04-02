@@ -35,7 +35,7 @@ from util import *
 from model import Unit
 import neighbours
 from layer_manipulation import *
-from algorithm import *
+from algorithm import MOSA
 from logging.config import fileConfig
 
 
@@ -57,8 +57,13 @@ class AutomatedRedistricting:
         """
         # Save reference to the QGIS    interface
         self.iface = iface
-        self.layers = iface.legendInterface().layers()
 
+        # The plugin uses two kind of layers
+        for layer in QgsMapLayerRegistry.instance().mapLayers().values():
+            if (layer.name().find("poliline")!=-1):
+                self.layer_poliline=layer
+            if (layer.name().find("poligon")!=-1):
+                self.layer_poligon=layer
 
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
@@ -206,8 +211,8 @@ class AutomatedRedistricting:
 
     def run(self):
         "Run method that performs all the real work"""
-        solution = InitialSolution().CreateInitialSolution(30,self.iface.activeLayer())
-        #LayerManipulation(self.iface.activeLayer()).ColorDistricts(solution)
+        solution = MOSA(self.layer_poligon,self.layer_poliline).CreateInitialSolution(30)
+        LayerManipulation(self.iface.activeLayer()).ColorDistricts(solution)
 
         #LayerManipulation(self.iface.activeLayer()).ColorFeature(self.iface.activeLayer().getFeatures().next(),34)
         # show the dialog

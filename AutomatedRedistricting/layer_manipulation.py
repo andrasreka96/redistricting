@@ -1,5 +1,6 @@
 from qgis.core import *
-from PyQt4.QtCore import QVariant
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 import logging
 
 class LayerManipulation:
@@ -53,7 +54,7 @@ class LayerManipulation:
         self.layer.startEditing()
 
         for unit in unitlist:
-                f=self.feature_dict[unit.getID()]
+                f=self.feature_dict[unit.id]
                 f['color']=color
                 self.layer.updateFeature(f)
 
@@ -67,12 +68,20 @@ class LayerManipulation:
         self.layer.commitChanges()
 
     def ColorDistricts(self,districts):
-        logging.info("Coloring started")
         self.layer.startEditing()
         for district in districts:
+            logging.info("Coloring district:%d",district.id)
             for unit in district.units:
-                f=self.feature_dict[unit.getID()]
-                f['color']=unit.getColor()
+                f=self.feature_dict[unit.id]
+                f['color']=district.color
                 self.layer.updateFeature(f)
         self.layer.commitChanges()
         logging.info("Changes commited")
+
+    def ChangeColor(self):
+        renderer = QgsCategorizedSymbolRendererV2("natcode")
+        self.layer.setRendererV2(renderer)
+        symbol = QgsSymbolV2.defaultSymbol(self.layer.geometryType())
+        symbol.setColor(QColor(Qt.red))
+        cat = QgsRendererCategoryV2(1, symbol, "1")
+        renderer.addCategory(cat)

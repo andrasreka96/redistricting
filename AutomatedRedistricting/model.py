@@ -1,5 +1,5 @@
 class Unit:
-    def __init__(self,feature,id,name,population,neighbours,geoinf):
+    def __init__(self,feature,id,name,population,neighbours,lines,geoinf):
         #save the unit's name,
         self.feature=feature
         self.id=id
@@ -7,40 +7,18 @@ class Unit:
         #save the unit's population
         self.population=population
         #save the unit's neighbours
-        self.neighbours=neighbours.split(',')
+        self.neighbours=set(neighbours.split(','))
+        self.lines=set(lines.split(','))
         #save some geographical info
+        self.area=geoinf.area()
         self.geoinf=geoinf
-        self.color=''
+        self.district_id=None
 
     def show(self):
         print 'id:%s\nname:%s\npop:%s\nneighbours:%s' %(self.id,self.name,self.population,self.neighbours)
 
-    def getID(self):
-        return self.id
-
-    def getFeature(self):
-        return self.feature
-
-    def getNeighbours(self):
-        return self.neighbours
-
-    def getNumberOfNeighbours(self):
-        return len(self.neighbours)
-
-    def getArea(self):
-        return self.geoinf.area()
-
-    def getPopulation(self):
-        return self.getPopulation()
-
-    def setColor(self,color):
-        self.color=color
-
-    def getColor(self):
-        return self.color
-
 class District:
-    def __init__(self,id,color,units,area,perimiter,population):
+    def __init__(self,id,units,color,area=0,perimiter=0,population=0):
         self.id=id
         self.color=color
         self.units=units
@@ -49,5 +27,8 @@ class District:
         self.population=population
 
     def show(self):
-        for unit in units:
+        for unit in self.units:
             unit.show()
+
+    def extand(self,units):
+        self.units=set(self.units)|units

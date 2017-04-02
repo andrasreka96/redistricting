@@ -5,6 +5,7 @@ from PyQt4.QtGui import *
 import random
 import logging
 from layer_manipulation import LayerManipulation
+import ast
 
 class QgsRandomColorScheme(QgsColorScheme):
     def __init__(self, parent=None):
@@ -15,31 +16,75 @@ class QgsRandomColorScheme(QgsColorScheme):
 
 class Util:
 
-    def __init__(self,layer):
-        self.layer=layer
+    ATTRIBUTE_NAME='name'
+    ATTRIBUTE_POPULATION='pop2015'
+    ATTRIBUTE_ID='natcode'
+    ATTRIBUTE_ID_POLILINE='id'
+    ATTRIBUTE_NEIGHBOURS='neighbours'
+    ATTRIBUTE_LINES='lines'
+
+    def __init__(self,layer,layer2=None):
+        #save layers and dictionaries for them
+        self.layer_poligon=layer
+        self.feature_dict_poligon = {f[self.ATTRIBUTE_ID]: f for f in layer.getFeatures()}
+
+        self.layer_poliline=layer2
+        self.feature_dict_poliline = {f[self.ATTRIBUTE_ID_POLILINE]: f for f in layer2.getFeatures()}
+
+        #list of Units
+        self.units = self.getUnits(layer.getFeatures(),self.ATTRIBUTE_ID,self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS,self.ATTRIBUTE_LINES)
+
 
     def where(self,exp):
         exp=QgsExpression(exp)
         if exp.hasParserError()==0:
-            exp.prepare(self.layer.pendingFields())
-            for feature in self.layer.getFeatures():
+            exp.prepare(self.layer_poligon.pendingFields())
+            for feature in self.layer_poligon.getFeatures():
                 value = exp.evaluate(feature)
                 if bool(value):
                     yield feature
 #UnitBilder
-    def getUnits(self,features,attribute_id,attribute_name,attribute_population,attribute_neighbours):
-        return  [Unit(feature,feature[attribute_id],feature[attribute_name],feature[attribute_population],feature[attribute_neighbours],feature.geometry()) for feature in features]
+    def getUnits(self,features,attribute_id,attribute_name,attribute_population,attribute_neighbours,attribute_lines):
+        return  [Unit(feature,feature[attribute_id],feature[attribute_name],feature[attribute_population],feature[attribute_neighbours],feature[attribute_lines],feature.geometry()) for feature in features]
 
-    def getUnitsById(self,id_list,units):
+    def getUnitsById(self,id_list):
         #look for units with ids corresponding to id_list
-        return [unit for unit in units if unit.getID() in id_list]
+        return [unit for unit in self.units if unit.id in id_list]
 
-#DistrictBilder
-    def BuildDistrictFromUnits(self,id,unitlist,color):
+
+    def Perimeter(self,units):
+    #looks up which units are on the border of the district
+
+        units=set(units)
+        borders=set()
+
+        for unit in units:
+            borders=borders| (unit.lines-borders)
+        perimeter=0
+        for border in borders:
+            perimeter+=self.feature_dict_poliline[int(border)].geometry().length()
+
+        return perimeter
+
+    def BuildDistrict(self,district):
         #create district formed by units in unitlist
-        perimiter=0;
         area=0;
         population=0;
+        perimeter=0;
+
+        for unit in district.units:
+            area+=unit.area
+            population+=unit.population
+        perimeter = self.Perimeter(district.units)
+
+        logging.info("\nDistrict %d\narea:%d\nperimiter:%d\npopulation:%d",district.id,area,perimeter,population)
+
+        district.area=area
+        district.perimeter=perimeter
+        district.population=population
+
+    def BuildDistrictFromUnits(self,id,unitlist,color):
         for unit in unitlist:
-            unit.setColor(color)
-        return District(id,color,unitlist,perimiter,area,population)
+            unit.district_id=id
+
+        return District(id,list(unitlist),color)

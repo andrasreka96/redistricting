@@ -3,20 +3,29 @@ from util import *
 import logging
 
 
-class InitialSolution:
-
-    ATTRIBUTE_NAME='name'
-    ATTRIBUTE_POPULATION='pop2015'
-    ATTRIBUTE_ID='natcode'
-    ATTRIBUTE_NEIGHBOURS='neighbours'
+class MOSA:
 
     TRY_FOR_FREE_NEIGHBOUR=30
 
-    def CreateInitialSolution(self,nr_of_districts,layer):
-        util = Util(layer)
+    def __init__(self,layer_poligon,layer_poliline):
+        #create util object with used layers
+        self.util=Util(layer_poligon,layer_poliline)
+
+    def FindNewStartPoint(self,neighbour_units,selectable_units):
+        for unit in neighbour_units:
+            #get neighbours of unit
+            neighbours=set(self.util.getUnitsById(unit.neighbours))
+            neighbours&=selectable_units
+            #the new starting unit has been founded
+            if neighbours:
+                return neighbours.pop(),unit.district_id,1
+        return None,None,-1
+
+    def CreateInitialSolution(self,nr_of_districts):
 
         #get all units in the layer
-        units = util.getUnits(layer.getFeatures(),self.ATTRIBUTE_ID,self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS)
+        units = set(self.util.units)
+
         unit_in_district=len(units)/nr_of_districts
         solution=[]
 
@@ -24,13 +33,25 @@ class InitialSolution:
         randomScheme = QgsRandomColorScheme()
         colors=randomScheme.fetchColors(nr_of_districts)
 
-        for i in range(nr_of_districts):
-            logging.info('Bilding distirict %d has started,color:%s',i+1,colors[i])
+        potential_start_point=set()
+        lastdistrict=None
+
+
+        i=0;#number of created districts
+        while units:
+            logging.info('Bilding distirict %d has started',i+1)
 
             #start with a random unit from the set of unchosen units
-            random_unit = random.choice(units)
+            if solution:
+                random_unit,lastdistrict,error = self.FindNewStartPoint(potential_start_point,units)
+                if error == -1:
+                    logging.info('Couldn\'t choose from border units')
+                    random_unit=random.sample(units,1)[0]
+            else:
+                #choose a totally random unit
+                random_unit=random.sample(units,1)[0]
+
             units.remove(random_unit)
-            selectable_units=set(units)
 
             #the district is divided into two set
             district=set()
@@ -40,31 +61,32 @@ class InitialSolution:
 
             j=0
             noneighbourfound=0
+            neighbour_units=set()
             #stop when enough units were found or there are no more neighbour unit
             while j<=unit_in_district and noneighbourfound<self.TRY_FOR_FREE_NEIGHBOUR:
 
-                #get a random unit from district it's not empty
+                #get a random unit from district
                 if selectable_district:
                     random_unit=random.sample(selectable_district,1)[0]
 
                     district.add(random_unit)
                     selectable_district.remove(random_unit)
+                    #potential_start_point.remove(random_unit)
 
-                    logging.info('Distirict %d:unit %s was added',i+1,random_unit.getID())
+                    logging.info('Distirict %d:unit %s was added',i+1,random_unit.id)
 
-
-                    neighbours_list=random_unit.getNeighbours()
+                    neighbours_list=random_unit.neighbours
 
                     #find out which neighbour unit is free
-                    neighbour_units=set(util.getUnitsById(neighbours_list,units))
-                    neighbour_units&=selectable_units
+                    neighbour_units=set(self.util.getUnitsById(neighbours_list))
+                    neighbour_units&=units
 
                     new_neighbours_number=len(neighbour_units)
                     if new_neighbours_number:
                         #union
                         selectable_district |= neighbour_units
 
-                        selectable_units -= neighbour_units
+                        units -= neighbour_units
 
                         j+=new_neighbours_number
                         noneighbourfound=0;
@@ -76,19 +98,61 @@ class InitialSolution:
                     noneighbourfound=self.TRY_FOR_FREE_NEIGHBOUR
 
 
-            #add the new district to the solution
+            #units in new district
             new_district=district | selectable_district
-            solution.append(util.BuildDistrictFromUnits(i,new_district,colors[i]))
-            logging.info('district %d has been added to the solution with %d units',i+1,len(new_district))
 
-            #brrrrrrr
-            units=list(selectable_units)
+            #extend the set of start points
+            potential_start_point|=selectable_district
+
+            #don't create new district if there are enough of it or it is too small
+            if i>=nr_of_districts or len(new_district)<unit_in_district/4:
+                #add units to an allready created district
+                solution[lastdistrict].extand(new_district)
+                logging.info('District %d:expanded by %d new units',lastdistrict,len(new_district))
+            else:
+                #create district and add to the solution
+
+                solution.append(self.util.BuildDistrictFromUnits(i,new_district,colors[i]))
+                logging.info('District %d has been added to the solution with %d units',i+1,len(new_district))
+                #take the next district
+                i+=1
+
+        #make the final calculations for every district
+        for s in solution:
+            self.util.BuildDistrict(s)
+        logging.info("Solution has been constructed")
 
         return solution
 
-class SA:
-    def __init__ (temperature,f,alpha,initial_plan):
-        self.temperature=temperature
-        self.f=f
-        self.alpha=alpha
-        self.initial_plan=initial_plan
+
+def updatePareto(U):
+    if not dominate(U) and not dominated(U):
+        addToPareto(U)
+        assignWeight(U)
+    else :
+        if dominates(U):
+            D = dominatedBy(U)
+            C = random(D)
+            C = U
+
+def MOSA_(self):
+
+    lambda_ = GenerateWeightVectors()
+    U = CreateInitialSolution()
+    U.f = evaluate(U)
+    U.w = updatePareto(U)
+    U.deltaf = dot(U.w,U.f)
+
+    while not frozen(T):
+        V = randomPerturbation(U)
+        V.f = evaluate(V) #C1,C2
+        V.deltaf = dot(U.w,V.f)
+        if ParetoUpdated:
+            U=V
+            w=updatePareto(V)
+
+        else:
+            if random.uniform(0, 1)<=probability(deltaf,T):
+                U=V
+
+        reduceTemperature(T)
