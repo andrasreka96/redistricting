@@ -60,13 +60,11 @@ class MOSA:
             selectable_district=set([random_unit])
 
             j=0
-            noneighbourfound=0
             neighbour_units=set()
-            #stop when enough units were found or there are no more neighbour unit
-            while j<=unit_in_district and noneighbourfound<self.TRY_FOR_FREE_NEIGHBOUR:
+            #stop when enough units were found or there are no more free neighbour
+            while j<=unit_in_district and selectable_district:
 
                 #get a random unit from district
-                if selectable_district:
                     random_unit=random.sample(selectable_district,1)[0]
 
                     district.add(random_unit)
@@ -89,13 +87,7 @@ class MOSA:
                         units -= neighbour_units
 
                         j+=new_neighbours_number
-                        noneighbourfound=0;
                         logging.info('%d unit has been added to district %d',new_neighbours_number,i+1)
-                    else:
-                        logging.info('District %d:No neighbour found %d',i+1,noneighbourfound)
-                        noneighbourfound+=1
-                else:
-                    noneighbourfound=self.TRY_FOR_FREE_NEIGHBOUR
 
 
             #units in new district
@@ -136,23 +128,25 @@ def updatePareto(U):
             C = U
 
 def MOSA_(self):
-
-    lambda_ = GenerateWeightVectors()
+#1,2
+    weight_vectors = GenerateWeightVectors(number_of_nondominated_solutions)
     U = CreateInitialSolution()
-    U.f = evaluate(U)
+    U.f = evaluate(U) # [C1(U),C2(U),..,Cn(U)]
     U.w = updatePareto(U)
     U.deltaf = dot(U.w,U.f)
-
+#3-8
     while not frozen(T):
         V = randomPerturbation(U)
-        V.f = evaluate(V) #C1,C2
+        V.f = evaluate(V)
         V.deltaf = dot(U.w,V.f)
         if ParetoUpdated:
             U=V
             w=updatePareto(V)
+            #9??
+            if added and len(pareto_set)>MAX:
+                U=random.sample(pareto_set)
 
         else:
-            if random.uniform(0, 1)<=probability(deltaf,T):
+            if random.uniform(0, 1)<=probability(V.deltaf,T):
                 U=V
-
         reduceTemperature(T)
