@@ -67,16 +67,25 @@ class LayerManipulation:
         self.layer.updateFeature(feature)
         self.layer.commitChanges()
 
-    def ColorDistricts(self,districts):
-        self.layer.startEditing()
-        for district in districts:
-            logging.info("Coloring district:%d",district.id)
-            for unit in district.units:
-                f=self.feature_dict[unit.id]
-                f['color']=district.color
-                self.layer.updateFeature(f)
-        self.layer.commitChanges()
-        logging.info("Changes commited")
+
+    def ColorDistricts(self,counties):
+        logging.info("Coloring has been started")
+        provider=self.layer.dataProvider()
+        updateMap={}
+        fieldIdx = provider.fields().indexFromName( 'color' )
+        features = provider.getFeatures()
+
+        color_dict = {}
+        for countie in counties:
+            for district in countie.districts:
+                for unit in district.units:
+                    color_dict[unit.id]=unit.color
+
+        for feature in features:
+            if feature['natcode'] in color_dict:
+                updateMap[feature.id()] = { fieldIdx:color_dict[feature['natcode']] }
+
+        provider.changeAttributeValues( updateMap )
 
     def ChangeColor(self):
         renderer = QgsCategorizedSymbolRendererV2("natcode")

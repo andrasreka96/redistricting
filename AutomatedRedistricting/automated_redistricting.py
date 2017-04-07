@@ -58,12 +58,16 @@ class AutomatedRedistricting:
         # Save reference to the QGIS    interface
         self.iface = iface
 
+
         # The plugin uses two kind of layers
         for layer in QgsMapLayerRegistry.instance().mapLayers().values():
             if (layer.name().find("poliline")!=-1):
                 self.layer_poliline=layer
-            if (layer.name().find("poligon")!=-1):
+            if (layer.name().find("uat")!=-1):
                 self.layer_poligon=layer
+            if(layer.name().find("judete")!=-1):
+                self.layer_county=layer
+
 
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
@@ -211,8 +215,8 @@ class AutomatedRedistricting:
 
     def run(self):
         "Run method that performs all the real work"""
-        solution = MOSA(self.layer_poligon,self.layer_poliline).CreateInitialSolution(30)
-        LayerManipulation(self.iface.activeLayer()).ColorDistricts(solution)
+        counties = MOSA(self.layer_poligon,self.layer_poliline,self.layer_county).CreateInitialDistricts(5)
+        LayerManipulation(self.layer_poligon).ColorDistricts(counties)
 
         #LayerManipulation(self.iface.activeLayer()).ColorFeature(self.iface.activeLayer().getFeatures().next(),34)
         # show the dialog

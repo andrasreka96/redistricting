@@ -23,7 +23,7 @@ class Util:
     ATTRIBUTE_NEIGHBOURS='neighbours'
     ATTRIBUTE_LINES='lines'
 
-    def __init__(self,layer,layer2=None):
+    def __init__(self,features=None,layer=None,layer2=None):
         #save layers and dictionaries for them
         self.layer_poligon=layer
         self.feature_dict_poligon = {f[self.ATTRIBUTE_ID]: f for f in layer.getFeatures()}
@@ -32,7 +32,10 @@ class Util:
         self.feature_dict_poliline = {f[self.ATTRIBUTE_ID_POLILINE]: f for f in layer2.getFeatures()}
 
         #list of Units
-        self.units = self.getUnits(layer.getFeatures(),self.ATTRIBUTE_ID,self.ATTRIBUTE_NAME,self.ATTRIBUTE_POPULATION,self.ATTRIBUTE_NEIGHBOURS,self.ATTRIBUTE_LINES)
+        if features:
+            self.units = self.getUnits(features)
+        else:
+            self.units = self.getUnits(layer.getFeatures())
 
 
     def where(self,exp):
@@ -44,8 +47,8 @@ class Util:
                 if bool(value):
                     yield feature
 #UnitBilder
-    def getUnits(self,features,attribute_id,attribute_name,attribute_population,attribute_neighbours,attribute_lines):
-        return  [Unit(feature,feature[attribute_id],feature[attribute_name],feature[attribute_population],feature[attribute_neighbours],feature[attribute_lines],feature.geometry()) for feature in features]
+    def getUnits(self,features):
+        return  [Unit(feature,feature[self.ATTRIBUTE_ID],feature[self.ATTRIBUTE_NAME],feature[self.ATTRIBUTE_POPULATION],feature[self.ATTRIBUTE_NEIGHBOURS],feature[self.ATTRIBUTE_LINES],feature.geometry()) for feature in features]
 
     def getUnitsById(self,id_list):
         #look for units with ids corresponding to id_list
@@ -53,13 +56,12 @@ class Util:
 
 
     def Perimeter(self,units):
-    #looks up which units are on the border of the district
-
+        #looks up for border lines
         units=set(units)
         borders=set()
 
         for unit in units:
-            borders=borders| (unit.lines-borders)
+            borders^=unit.lines
         perimeter=0
         for border in borders:
             perimeter+=self.feature_dict_poliline[int(border)].geometry().length()
@@ -73,18 +75,20 @@ class Util:
         perimeter=0;
 
         for unit in district.units:
+        #unit related settings
+            unit.district_id=district.id
+            unit.color=district.color
+        #distirict calculations
             area+=unit.area
             population+=unit.population
+
         perimeter = self.Perimeter(district.units)
 
-        logging.info("\nDistrict %d\narea:%d\nperimiter:%d\npopulation:%d",district.id,area,perimeter,population)
+        logging.info("\nDistrict %d\ncolor:%s\narea:%d\nperimiter:%d\npopulation:%d",district.id,district.color,area,perimeter,population)
 
         district.area=area
         district.perimeter=perimeter
         district.population=population
 
     def BuildDistrictFromUnits(self,id,unitlist,color):
-        for unit in unitlist:
-            unit.district_id=id
-
-        return District(id,list(unitlist),color)
+        return District(id,unitlist,color)
