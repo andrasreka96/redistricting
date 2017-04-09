@@ -31,12 +31,12 @@ import sys
 
 from qgis.gui import QgsHighlight
 from qgis.core import QgsExpression
-from util import *
-from model import Unit
-import neighbours
-from layer_manipulation import *
-from algorithm import MOSA
+from qgis.core import QgsMapLayerRegistry
+
+from layer_manipulation.layer import LayerManipulation
+from MOSA.algorithm import MOSA
 from logging.config import fileConfig
+from model import *
 
 
 class AutomatedRedistricting:
@@ -215,16 +215,5 @@ class AutomatedRedistricting:
 
     def run(self):
         "Run method that performs all the real work"""
-        counties = MOSA(self.layer_poligon,self.layer_poliline,self.layer_county).CreateInitialDistricts(5)
+        counties = MOSA(self.layer_poligon,self.layer_poliline,self.layer_county).CreateInitialDistricts()
         LayerManipulation(self.layer_poligon).ColorDistricts(counties)
-
-        #LayerManipulation(self.iface.activeLayer()).ColorFeature(self.iface.activeLayer().getFeatures().next(),34)
-        # show the dialog
-        #self.dlg.show()
-        # Run the dialog event loop
-        #result = self.dlg.exec_()
-        # See if OK was pressed
-        #if result:
-            # Do something useful here - delete the line containing pass and
-            # substitute with your code.
-            #pass

@@ -1,0 +1,13 @@
+attributes:
+  county_id: 'countyId'
+  county_name: 'name'
+  attribute_name: 'name'
+  attribute_population: 'pop2015'
+  attribute_id: 'natcode'
+  attribute_id_poliline: 'id'
+  attribute_neighbours: 'neighbours'
+  attribute_lines: 'lines'
+
+parameters:
+  num_of_counties: 42
+  nr_of_districts: 5
