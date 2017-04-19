@@ -9,5 +9,15 @@ attributes:
   attribute_lines: 'lines'
 
 parameters:
-  num_of_counties: 42
-  nr_of_districts: 5
+  nr_of_counties: 42
+  nr_of_districts_in_county: 5
+  nr_of_districts : 210
+  cooling_schedule: 0.99
+  initial_temperature: 5
+  final_temperature: 0.001
+  iterations: 1500
+  small_partition: 5
+  upper_limit: 5
+  neighbourhood: [1,1,1,1,1]
+  deviation: 0.2
+  population_country : 22279183

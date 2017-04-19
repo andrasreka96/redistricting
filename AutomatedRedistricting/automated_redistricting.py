@@ -34,9 +34,12 @@ from qgis.core import QgsExpression
 from qgis.core import QgsMapLayerRegistry
 
 from layer_manipulation.layer import LayerManipulation
-from MOSA.algorithm import MOSA
+from layer_manipulation.neighbours import findNeighbours
+from mosa.algorithm import MOSA
+from util.util import Log
 from logging.config import fileConfig
 from model import *
+import logging
 
 
 class AutomatedRedistricting:
@@ -215,5 +218,13 @@ class AutomatedRedistricting:
 
     def run(self):
         "Run method that performs all the real work"""
-        counties = MOSA(self.layer_poligon,self.layer_poliline,self.layer_county).CreateInitialDistricts()
-        LayerManipulation(self.layer_poligon).ColorDistricts(counties)
+        mosa = MOSA(self.layer_poligon,self.layer_poliline,self.layer_county)
+        log = Log()
+
+        counties = mosa.CreateInitialDistricts()
+        LayerManipulation(self.layer_poligon).ColorDistricts(counties,'color')
+        log.LogSolution(counties,mosa)
+
+        mosa.NeighbourSolution(counties)
+        log.LogSolution(counties,mosa)
+        LayerManipulation(self.layer_poligon).ColorDistricts(counties,'color2')

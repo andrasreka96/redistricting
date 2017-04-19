@@ -48,6 +48,7 @@ def findNeighbours(layer,_NAME_FIELD,_NEW_NEIGHBOURS_FIELD):
         intersecting_ids = index.intersects(geom.boundingBox())
         # Initalize neighbors list and sum
         neighbours = []
+        layer.startEditing()
         for intersecting_id in intersecting_ids:
             # Look up the feature from the dictionary
             intersecting_f = feature_dict[intersecting_id]
@@ -57,10 +58,11 @@ def findNeighbours(layer,_NAME_FIELD,_NEW_NEIGHBOURS_FIELD):
             # these conditions. So if a feature is not disjoint, it is a neighbor.
             if (f != intersecting_f and
                 not intersecting_f.geometry().disjoint(geom)):
-                neighbours.append(intersecting_f[_NAME_FIELD])
-        f[_NEW_NEIGHBOURS_FIELD] = ','.join(neighbours)
-        # Update the layer with new attribute values.
-        layer.updateFeature(f)
+                    neighbours.append(str(intersecting_f[_NAME_FIELD]))
 
-    layer.commitChanges()
-    print 'Processing complete.'
+            f[_NEW_NEIGHBOURS_FIELD] = ','.join(neighbours)
+            # Update the layer with new attribute values.
+            layer.updateFeature(f)
+
+        layer.commitChanges()
+        print 'Processing complete.'

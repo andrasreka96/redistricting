@@ -68,11 +68,11 @@ class LayerManipulation:
         self.layer.commitChanges()
 
 
-    def ColorDistricts(self,counties):
-        logging.info("Coloring has been started")
+    def ColorDistricts(self,counties,attribute):
+        logging.debug   ("Coloring has been started")
         provider=self.layer.dataProvider()
         updateMap={}
-        fieldIdx = provider.fields().indexFromName( 'color' )
+        fieldIdx = provider.fields().indexFromName(attribute)
         features = provider.getFeatures()
 
         color_dict = {}

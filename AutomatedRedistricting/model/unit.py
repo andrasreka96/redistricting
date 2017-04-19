@@ -1,4 +1,7 @@
+
+import logging
 class Unit:
+
     def __init__(self,feature,id,name,population,neighbours,lines,geoinf):
         #save the unit's name,
         self.feature=feature
@@ -16,5 +19,5 @@ class Unit:
         self.district_id=None
         self.color=None
 
-    def show(self):
-        print 'id:%s\nname:%s\npop:%s\nneighbours:%s' %(self.id,self.name,self.population,self.neighbours)
+    def toString(self):
+        return 'id:%s\nname:%s\npop:%s\nneighbours:%s' % (self.id,self.name,self.population,self.neighbours)
