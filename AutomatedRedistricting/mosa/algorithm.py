@@ -6,11 +6,17 @@ from collections import defaultdict
 import yaml
 import os.path
 import math
+from copy import deepcopy
+
 
 from AutomatedRedistricting.model.county import County
+from AutomatedRedistricting.model.solution import Solution
 from AutomatedRedistricting.model.district import District
 from AutomatedRedistricting.model.dis_build import DistrictBuilder
 from AutomatedRedistricting.model.unit_build import UnitBuilder
+from AutomatedRedistricting.layer_manipulation.layer import LayerManipulation
+from AutomatedRedistricting.util.util import Log
+import objectives
 
 from PyQt4.QtGui import QColor
 
@@ -43,51 +49,14 @@ class MOSA:
         self.final_temperature = parameters['final_temperature']
         self.iterations = parameters['iterations']
         self.nr_of_counties = parameters['nr_of_counties']
-        self.nr_of_districts_in_county = parameters['nr_of_districts_in_county']
         self.small_partition = parameters['small_partition']
         self.upper_limit = parameters['upper_limit']
         self.neighbourhood = parameters['neighbourhood']
-        self.nr_of_districts = parameters['nr_of_districts']
-        self.deviation = parameters['deviation']
-        self.population_country =parameters.['population_country']
+        self.nr_of_districts_in_county = parameters['nr_of_districts_in_county']
+        self.weight_vectors = parameters['weight_vectors']
 
         self.district_builder = DistrictBuilder(layer_poliline)
-        self.district_dict = {}
-
-
-    def c1(self,counties):
-        sum=0
-        logging.debug("C1")
-        for county in counties:
-            fp_product = 100*county.population/(self.deviation*(self.population_country/self.nr_of_districts))
-            csum=0
-            for district in county.districts:
-                    sp_product = district.population/county.population - 1/self.nr_of_districts_in_county
-                    csum+=fp_product*fp_product*sp_product*sp_product
-                    logging.debug("district %s:%.2f",district.unique_id,csum)
-            sum+=csum
-        return sum
-
-    def c2(self,counties):
-        sum=0
-        logging.debug("C2")
-        for county in counties:
-            csum=0
-            for district in county.districts:
-                csum+=(district.perimeter/(4*math.sqrt(district.area))-1)
-                logging.debug("district %s:%.2f",district.unique_id,csum)
-            sum+=csum
-        return sum
-
-    def f(self,counties,objective_f,weights):
-        fs = [f(counties) for f in objective_f]
-        #returns the scalar product of the objective functions and their weights
-        return self.dot(fs,weights)
-
-    def prob(self,counties):
-        objective_f = [self.c1,self.c2]
-        w=[0.5,0.5]
-        return self.f(counties,objective_f,w)
+        self.objf = objectives.ObjFunc()
 
     def DistrictNear(self,units,util,solution):
         for i in units:
@@ -96,7 +65,7 @@ class MOSA:
                 if unit & district.borders:
                     return district.id
 
-    def CreateInitialSolution(self,nr_of_districts,features,county):
+    def CreateInitialCounty(self,nr_of_districts,features,county):
         #convert features into unit objects
         util = UnitBuilder(features)
         units = set(util.units)
@@ -166,55 +135,30 @@ class MOSA:
 
         for s in solution:
             self.district_builder.BuildDistrict(s)
-            self.district_dict[s.unique_id]=s
 
         return solution
 
-    def CreateInitialDistricts(self):
+    def CreateInitialSolution(self):
         #create districts for every county
         counties = []
         for countyid in range(1,self.nr_of_counties + 1):
             #get units in county
             units = self.dictionarie[countyid]
             logging.debug("Working on county %d(%d units)",countyid,len(units))
-            districts = self.CreateInitialSolution(self.nr_of_districts_in_county,units,countyid)
-            logging.debug("County %d has been divided into %d districts",countyid,len(districts))
-            counties.append(County(countyid,self.counties_dict[countyid],districts))
+            district = self.CreateInitialCounty(self.nr_of_districts_in_county,units,countyid)
+            logging.debug("County %d has been divided into %d districts",countyid,len(district))
+            counties.append(County(countyid,self.counties_dict[countyid],district))
 
-        return counties
+        return Solution(counties,self.objf.EvaluateObjectives(counties))
 
     def NeighbourUnit(self,u1,u2):
         if u1.id in u2.neighbours:
             return True
         return False
 
-    def UpdateAdjacencyList(self,border_pairs,units):
-        new_border = [pair for unit in units for pair in border_pairs if unit.id!=pair[0].id or unit.id!=pair[1].id]
-        for unit in units:
-            neighbours = self.util.getUnitsById(unit.neighbours)
-            for n in neighbours:
-                new_border.append(unit)
+    def NeighboursInDepth(self,district,unit,depth):
+        #returns unit neighbours in a given depth
 
-        return new_border
-
-    def AdjacencyList (self,counties):
-        #for county in solution[0]:
-        #get the list of districts
-        logging.debug("Building adjacency list")
-        border_pairs = []
-        for county in counties:
-            borderunits = [unit for district in county.districts for unit in district.borders]
-            for u1 in borderunits:
-                for u2 in borderunits:
-                    if u2.district_id!=u1.district_id and u2.id in u1.neighbours and (u2,u1) not in border_pairs:
-                        border_pairs.append((u1,u2))
-        logging.debug("Adjacency list was constructed")
-        return border_pairs
-
-    def NeighboursInDepth(self,unit,depth):
-    #returns unit neighbours in a given depth
-
-        district = self.district_dict[unit.district_id]
         units = district.unitids
         u = unit
         neighbours = set([unit.id])
@@ -222,46 +166,46 @@ class MOSA:
             neighbourhood=u.neighbours&units
             neighbours|=neighbourhood
             depth-=depth
-            u = self.util.getUnitsById(random.sample(neighbourhood,1))[0]
+            if neighbourhood:
+                u = self.util.getUnitsById(random.sample(neighbourhood,1))[0]
 
-        units-=neighbours
-
-        #list of units that will be moved
-        neighbour_units = self.util.getUnitsById(neighbours)
-        for unit in self.util.getUnitsById(units):
-            if not unit.neighbours & units:
-                neighbour_units.append(unit)
         return self.util.getUnitsById(neighbours)
 
-    def MoveUnits(self,depth,border_pairs):
+    def FindConnectedUnit(self,unit_to_move,county,district1):
+        for district in county.districts:
+            if district1.id != district.id:
+                for unit in district.borders:
+                    if self.NeighbourUnit(unit_to_move,unit):
+                        return unit
 
-        #chose randomly two district for make change
-        units = random.sample(border_pairs,1)[0]
-        fromindex = random.randint(0,1)
-        u_from = units[fromindex]
-        u_to = units[abs(fromindex-1)]
+    def MoveUnits(self,solution,depth):
 
-        unitstomove = self.NeighboursInDepth(u_from,depth)
-        self.district_dict[u_to.district_id].extand(set(unitstomove))
-        self.district_dict[u_from.district_id].remove(set(unitstomove))
+        district1=random.choice(solution.district_dict.values())
+        county  = solution.counties[district1.county-1]
+        unit_to_move = random.sample(district1.borders,1)[0]
+        unit_to_append = self.FindConnectedUnit(unit_to_move,county,district1)
 
-        d1 = self.district_dict[u_from.district_id]
-        d2 = self.district_dict[u_to.district_id]
-        self.district_builder.BuildDistrict(d1)
-        self.district_builder.BuildDistrict(d2)
+        if unit_to_append:
+            district2=solution.district_dict[unit_to_append.district_id]
+            unitstomove = set(self.NeighboursInDepth(district1,unit_to_move,depth))
 
-        #adjacency list has to be changed
-        border_pairs = self.UpdateAdjacencyList(border_pairs,unitstomove)
+            district2.extand(unitstomove)
+            district1.remove(unitstomove)
 
-    def NeighbourSolution(self,counties):
-        border_pairs = self.AdjacencyList(counties)
+            self.district_builder.BuildDistrict(district1)
+            self.district_builder.BuildDistrict(district2)
+            solution.changeDistrict(district1)
+            solution.changeDistrict(district2)
 
-        for change in self.neighbourhood:
-            self.MoveUnits(change,border_pairs)
-
+    def NeighbourSolution(self,solution):
+        new_solution = deepcopy(solution)
+        for depth in self.neighbourhood:
+            self.MoveUnits(new_solution,depth)
+        return new_solution
 
     def dot(self,x,y):
-        return sum([a*b for a,b in zip(x,y)])
+        d= sum([a*b for a,b in zip(x,y)])
+        return d
 
     def frozen(self,t):
         return t<=self.final_temperature
@@ -269,44 +213,97 @@ class MOSA:
     def reduceTemperature(self,t):
         return t*self.cooling_schedule
 
-    def updatePareto(U):
-        if not dominate(U) and not dominated(U):
-            addToPareto(U)
-            assignWeight(U)
-        else :
-            if dominates(U):
-                D = dominatedBy(U)
-                C = random(D)
-                C = U
-    def anneal(self):
+    def ObjectivesSum(self,counties,weights):
+        #returns the scalar product of the objective functions and their weights
+        return self.dot(self.objf.EvaluateObjectives(counties),weights)
+
+    def Dominations(self,new_solution,pareto):
+        dominated = False
+        dominate = []
+        for solution in pareto:
+            dominatedbys = True
+            dominatess = True
+            for new,old in zip(new_solution.objective_values, solution.objective_values):
+                dominatedbys = dominatedbys and old<new
+                dominatess = dominatess and new<old
+            dominated = dominated or dominatedbys
+            if dominatess:
+                dominate.append(solution)
+
+        return (dominated,dominate)
+
+    def UpdatePareto(self,solution,pareto):
+        (dominated,dominates) = self.Dominations(solution,pareto)
+
+        if not dominated and not dominates:
+
+            pareto.add(solution)
+            solution.weight_vectors = random.sample(self.weight_vectors,1)[0]
+
+            #weighted objective function
+            solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
+            logging.info("Solution with  values %f,%f,%f was added to pareto set",solution.objective_values[0],solution.objective_values[1],solution.weighted_obj)
+            return True
+
+        if dominates:
+            removable_solution = random.sample(dominates,1)[0]
+            solution.weight_vectors = removable_solution.weight_vectors
+            solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
+            pareto.remove(removable_solution)
+            pareto.add(solution)
+            logging.info("Solution with objective values %f,%f was replaced",solution.objective_values[0],solution.objective_values[1])
+            return True
+
+        logging.info("Solution with objective values %f,%f wasn't added",solution.objective_values[0],solution.objective_values[1])
+        return False
+
+    def probability(self,obj1,obj2,t):
+        try:
+            ans = math.exp((obj1-obj2)/t)
+        except OverflowError:
+            ans = 0
+
+        return ans
+
+    def Anneal(self):
     #1,2
-
-        #weight_vectors = GenerateWeightVectors(number_of_nondominated_solutions)
-        #U.s = CreateInitialSolution()
-        #U.f = evaluate(U) # [C1(U),C2(U),..,Cn(U)]
-        #U.w = updatePareto(U)
-        #U.deltaf = dot(U.w,U.f)
-
+        pareto = set()
+        U = self.CreateInitialSolution()
+        LayerManipulation(self.layer_poligon).ColorDistricts(U.counties,'color')
+        self.UpdatePareto(U,pareto)
         t = self.initial_temperature
-        logging.info("Iterations has been started")
     #3-8
+
         while not self.frozen(t):
-            logging.info("Iterations has been started")
+            logging.info("Temperature:%f",t)
             for i in xrange(self.iterations):
-                if False:
-                    V.s = randomPerturbation(U)
-                    V.f = evaluate(V)
-                    V.deltaf = dot(U.w,V.f)
-                    if ParetoUpdated:
+                    logging.info("Iteration:%d",i)
+                    #neighbour solution of u
+                    V = self.NeighbourSolution(U)
+                    #logging.info("Neighbour solution with objective values:%s",','.join(str(x) for x in V.objective_values))
+                    if self.UpdatePareto(V,pareto):
                         U=V
-                        w=updatePareto(V)
-                        #9??
-                        if added and len(pareto_set)>MAX:
-                            U=random.sample(pareto_set)
+                        #if len(pareto_set)>MAX:
+                            #U=random.sample(pareto_set)
                     else:
-                        if random.uniform(0, 1)<=probability(V.deltaf,t):
+                        V.weighted_obj = self.dot(U.weight_vectors,V.objective_values)
+                        #logging.info("weighted_obj:%f",V.weighted_obj)
+                        probability = self.probability(U.weighted_obj,V.weighted_obj,t)
+                        #logging.info("probability:%f",probability)
+                        if random.uniform(0, 1)<= probability:
+                        #in this case weight_vector for the solution wasn't assigned
+                            logging.info("Current solution was changed according to probability %f",probability)
+                            V.weight_vectors = U.weight_vectors
                             U=V
 
             t=self.reduceTemperature(t)
 
         logging.info('Temperature is frozen')
+        minims = random.sample(pareto,1)[0]
+        for s in pareto:
+            logging.info("fit:%f",s.weighted_obj)
+            if minims.weighted_obj>s.weighted_obj:
+                minims = s
+
+        logging.info('fit:%f',minims.weighted_obj)
+        LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color2')

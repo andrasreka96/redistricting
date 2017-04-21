@@ -219,12 +219,14 @@ class AutomatedRedistricting:
     def run(self):
         "Run method that performs all the real work"""
         mosa = MOSA(self.layer_poligon,self.layer_poliline,self.layer_county)
-        log = Log()
+        #log = Log()
+        #lm = LayerManipulation(self.layer_poligon)
 
-        counties = mosa.CreateInitialDistricts()
-        LayerManipulation(self.layer_poligon).ColorDistricts(counties,'color')
-        log.LogSolution(counties,mosa)
+        #solution = mosa.CreateInitialSolution()
+        #log.LogSolution(solution)
+        #lm.ColorDistricts(solution.counties,'color')
+        #solution2 = mosa.NeighbourSolution(solution)
+        #log.LogSolution(solution2)
+        #lm.ColorDistricts(solution2.counties,'color2')
 
-        mosa.NeighbourSolution(counties)
-        log.LogSolution(counties,mosa)
-        LayerManipulation(self.layer_poligon).ColorDistricts(counties,'color2')
+        mosa.Anneal()

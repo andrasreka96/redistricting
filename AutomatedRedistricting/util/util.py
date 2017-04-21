@@ -9,9 +9,9 @@ class QgsRandomColorScheme(QgsColorScheme):
         return [QColor.fromRgb(random.randrange(100,255),random.randrange(100,255),random.randrange(100,255)).name() for _ in range(noColors) ]
 
 class Log():
-    def LogSolution(self,counties,mosa):
-        for county in counties:
+    def LogSolution(self,solution):
+        logging.info("Solution objective values:%s",','.join(str(x) for x in solution.objective_values))
+        for county in solution.counties:
             logging.info(county.toString())
             for district in county.districts:
                 logging.info(district.toString())
-        logging.info("Objective function of solution:%d",mosa.prob(counties))
