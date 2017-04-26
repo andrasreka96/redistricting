@@ -79,7 +79,7 @@ class LayerManipulation:
         for countie in counties:
             for district in countie.districts:
                 for unit in district.units:
-                    color_dict[unit.id]=unit.color
+                    color_dict[unit.id]=district.color
 
         for feature in features:
             if feature['natcode'] in color_dict:

@@ -34,9 +34,6 @@ class DistrictBuilder:
         perimeter=0;
 
         for unit in district.units:
-        #unit related settings
-            #unit.district_id=district.unique_id
-            #unit.color=district.color
         #distirict calculations
             area+=unit.area
             population+=unit.population
@@ -48,4 +45,4 @@ class DistrictBuilder:
         district.population=population
 
     def BuildDistrictFromUnits(self,id,unitlist,color,county):
-        return District(id,unitlist,color,county)
+        return District(id,unitlist,color)

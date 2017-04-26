@@ -228,5 +228,4 @@ class AutomatedRedistricting:
         #solution2 = mosa.NeighbourSolution(solution)
         #log.LogSolution(solution2)
         #lm.ColorDistricts(solution2.counties,'color2')
-
         mosa.Anneal()

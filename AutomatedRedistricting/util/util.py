@@ -15,3 +15,6 @@ class Log():
             logging.info(county.toString())
             for district in county.districts:
                 logging.info(district.toString())
+
+    def LogObjectives(self,solution):
+        logging.info("Solution objective values:%s",','.join(str(x) for x in solution.objective_values))
