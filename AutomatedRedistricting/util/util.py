@@ -1,5 +1,6 @@
 from qgis.core import *
-import logging
+from PyQt4.QtGui import QColor
+import logging,random
 
 class QgsRandomColorScheme(QgsColorScheme):
     def __init__(self, parent=None):

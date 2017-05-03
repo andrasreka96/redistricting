@@ -34,11 +34,9 @@ from qgis.core import QgsExpression
 from qgis.core import QgsMapLayerRegistry
 
 from layer_manipulation.layer import LayerManipulation
-from layer_manipulation.neighbours import findNeighbours
 from mosa.algorithm import MOSA
 from util.util import Log
 from logging.config import fileConfig
-from model import *
 import logging
 
 
