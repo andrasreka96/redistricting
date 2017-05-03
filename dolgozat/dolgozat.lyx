@@ -96,8 +96,43 @@ András Réka
 Bevezetés
 \end_layout
 
+\begin_layout Standard
+A redistricting kifejezés a választói körzetek határainak újra rajzolását
+ jelenti.
+ Egy terület lakosságának a száma nagy mértékben változhat, ezért szükség
+ van a választók újra csoportosítására.
+ Így biztosítható, hogy a populáció körzetenként egyenletesen oszlik el,
+ tehát mindenki szavazata ugyan annyit ér.
+ A szavazókörzetek újraosztása mégsem az igazságos választásokkal fonódott
+ össze, hanem a gerrymandering fogalmával.
+ A gerrymandering Elbridge Gerry szenátorról kapta a nevét, aki jóváhagyott
+ egy olyan körzet felosztási tervet,amely jelentős előnyhöz jutatta a demokraták
+at.
+ A különös alakú választókerület egy szalamandrához hasonlított.
+ A Gerry névhez illesztve az angol 'salamander' szót megkapjuk a gerrymandering
+ kifejezést.
+ A gerrymandering vagy választókerület-manipuláció a választói körzeteknek
+ egy olyan felosztásat jelenti, amely kedvező/kedvezőtlen helyzetbe hozhat
+ valamely pártot,etnikai,nyelvi,vallási csoportot,stb..
+\end_layout
+
 \begin_layout Chapter
 GIS, QGIS, Python
+\end_layout
+
+\begin_layout Standard
+A GIS(geographic information system) lehetővé teszi környezetünk digitális
+ reprezentációját.
+ A rendelkezésünkre álló adatok gyakran kötődnek koordinátákhoz, de ezen
+ attribútumok megjelenítése egy táblázatban nem elég látványos.
+ A földrajzi helyhez kapcsolódó adatok térképen való megjelenítését a földrajzi
+ információs rendszerek teszik lehetővé.
+ Továbbá lehetőséget nyújtanak az adatok tárolására,manipulálására és elemzésére.
+ A GIS bármilyen adatot feltud dolgozni, amely magába foglal valamilyen
+ földrajzi hellyel kapcsolatos informaciót.
+ Lehet az szélességi és hosszúsági koordináta,cím vagy irányítószám.
+ Képes különböző vetítést használó térképeket megjeleníteni egy közös vetítést
+ használva.
 \end_layout
 
 \begin_layout Chapter
