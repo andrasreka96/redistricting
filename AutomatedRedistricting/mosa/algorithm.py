@@ -14,6 +14,7 @@ from AutomatedRedistricting.model.county import County
 from AutomatedRedistricting.model.solution import Solution
 from AutomatedRedistricting.model.district import District
 from AutomatedRedistricting.model.dis_build import DistrictBuilder
+from AutomatedRedistricting.model.sol_build import SolutionBuilder
 from AutomatedRedistricting.model.unit_build import UnitBuilder
 from AutomatedRedistricting.layer_manipulation.layer import LayerManipulation
 from AutomatedRedistricting.util.util import *
@@ -31,19 +32,19 @@ class MOSA:
 
         attributes = data.get('attributes')
         parameters = data.get('parameters')
-        #create util object with used layers
-        self.layer_poligon=layer_poligon
-        self.util = UnitBuilder(layer_poligon.getFeatures())
 
-        #create dictionarie where
+        #save used layers
+        self.layer_poligon=layer_poligon
+        self.layer_county=layer_county
+
+
+        #create dictionary where
         #key - countyid
         #values - lists of features
-        dictionarie = defaultdict(list)
+        self.dict_units = defaultdict(list)
         for feature in layer_poligon.getFeatures():
-            dictionarie[feature[attributes['county_id']]].append(feature)
-        self.dictionarie=dictionarie
+            self.dict_units[feature[attributes['county_id']]].append(feature)
 
-        self.layer_county=layer_county
         self.counties_dict = {}
         self.counties_pop = {}
         for f in layer_county.getFeatures():
@@ -67,6 +68,7 @@ class MOSA:
 
         self.district_builder = DistrictBuilder(layer_poliline)
         self.objf = objectives.ObjFunc()
+        self.log = Log()
 
     def DistrictNear(self,units,solution):
         for unit in units:
@@ -89,42 +91,47 @@ class MOSA:
         solution=[]
 
         #get color for every district
-        randomScheme = QgsRandomColorScheme()
-        colors=randomScheme.fetchColors(int(nr_of_districts))
-        #colors = [QColor("green").name(), QColor("magenta").name(), QColor("red").name(), QColor("orange").name(),
-                     # QColor("blue").name()]
+        #randomScheme = QgsRandomColorScheme()
+        #colors=randomScheme.fetchColors(int(nr_of_districts))
+        colors = [QColor(255,0,0).name(), QColor(0,255,0).name(), QColor(0,0,255).name(), QColor(128,0,0).name(),QColor(0,128,0).name(), QColor(0,0,128).name(), QColor(128,128,128).name()]
 
-        i=0;#number of created districts
+        i=0
         while units:
-            logging.debug('Bilding distirict %d has started',i+1)
+
             #the district is divided into two set
             district=set()
+
             #this set stores the units which hasn't been chosen before
-            #random_unit will be chosen firstly
             selectable_district=set()
 
+            #select the first unit randomly
             self.RandomChoise(units,selectable_district)
 
             j=0
-            #stop when enough units were found or there are no more free neighbour
-            while j<=unit_in_district-self.upper_limit and selectable_district:
-                #get a random unit
-                    random_unit = self.RandomChoise(selectable_district,district)
-                #find out which neighbour unit is free
-                    neighbour_units=random_unit.neighbours&units
 
-                    new_neighbours_number=len(neighbour_units)
-                    if new_neighbours_number:
-                        selectable_district |= neighbour_units
-                        units -= neighbour_units
-                        j += new_neighbours_number
-                        logging.debug('%d units has been added to district %d',new_neighbours_number+1,i+1)
+            #search until enough units were found or there are no more free neighbour
+            while j<=unit_in_district-self.upper_limit and selectable_district:
+
+            	#start with a random unit from district
+                random_unit = self.RandomChoise(selectable_district,district)
+
+                #find out which neighbour units are free
+                neighbour_units=random_unit.neighbours&units
+
+                new_neighbours_number=len(neighbour_units)
+                if new_neighbours_number:
+                    selectable_district |= neighbour_units
+                    units -= neighbour_units
+                    j += new_neighbours_number
+                    logging.debug('%d units has been added to district %d',new_neighbours_number+1,i+1)
 
             #units in new district
             new_district=district | selectable_district
-            #don't create new district if there are enough of it or it is too small
+
+            #don't create new district if there are enough of it or it wwould be too small
             if i>=nr_of_districts or len(new_district)<unit_in_district/self.small_partition:
-                #add units to an allready created district
+            #add units to an already existing district
+
                 ind=self.DistrictNear(new_district,solution)
                 if ind is not None:
                     solution[ind].extand(new_district)
@@ -135,13 +142,14 @@ class MOSA:
                     units|=new_district
             else:
             #create district and add to the solution
+
                 solution.append(District(i,str(county)+'_'+str(i),new_district,colors[i]))
                 logging.debug('District %d has been added to the solution with %d units',i+1,len(new_district))
+
                 #take the next district
                 i+=1
 
-        #make the final calculations for every istrict
-
+        #make the final calculations for every district
         for s in solution:
             self.district_builder.BuildDistrict(s)
         return solution
@@ -150,33 +158,43 @@ class MOSA:
         national_mean = self.population_country/self.nr_of_districts
         remainder = map(lambda x: 2 if x<=1 else x,[self.counties_pop[countyid]//national_mean for countyid in range(1,self.nr_of_counties + 1)])
         slice_ = self.nr_of_districts-sum(remainder)
+
+        #romania specific
+        slice_ += (remainder[self.nr_of_counties-3]-6)
+        remainder[self.nr_of_counties-3]=6
+
         if slice_:
-            for i in [j[0] for j in sorted(enumerate(remainder),key=lambda i:i[1])][:slice_]:
+            for i in [j[0] for j in sorted(enumerate(remainder),key=lambda i:i[1],reverse=True)][:int(slice_)]:
+                print(i)
                 remainder[i]+=1
 
-
+        logging.info(remainder)
         return remainder
 
     def CreateInitialSolution(self):
-        #create districts for every county
+    #create districts for every county
+
         counties = []
         district_in_counties = self.NumberOfDistricts()
         for countyid in range(1,self.nr_of_counties + 1):
             #get units in county
-            units = self.dictionarie[countyid]
-            logging.debug("Working on county %d(%d units)",countyid,len(units))
+            units = self.dict_units[countyid]
+
             district = self.CreateInitialCounty(district_in_counties[countyid-1],units,countyid)
-            logging.debug("County %d has been divided into %d districts",countyid,len(district))
             county = County(countyid,self.counties_dict[countyid],district)
             counties.append(county)
 
         objectives = self.objf.EvaluateObjectives(counties)
         LayerManipulation(self.layer_poligon).ColorDistricts(counties,'color')
-        #Log().LogSolution(Solution(counties,objectives))
-        return Solution(counties,objectives)
+
+        solution = Solution(counties,objectives)
+        self.log.LogSolution(solution,"Initial Solution")
+        self.log.LogObj(solution)
+        return solution
 
     def BFS(self,district):
-        #Decides whether a given district is connected
+    #Decide if the given district is connected
+
         units = district.borders
         visited = set()
         q = deque()
@@ -195,43 +213,49 @@ class MOSA:
             return False
         return True
 
+    def randomChaine(self,units,length):
+        unit = random.sample(units,1)[0]
+        units.remove(unit)
+        chaine = set([unit])
+
+        iteration = 0
+
+
+        while (len(chaine)<length  or length==-1) and units and iteration<self.max_iter:
+
+            neighbours = set()
+            for unit in units:
+                if unit.neighbours & chaine:
+                    neighbours.add(unit)
+            chaine|=neighbours
+            units-=neighbours
+            iteration+=1
+
+        return chaine
 
     def MoveUnits2(self,solution,change):
+
         #random county where the changes will be made
         county  = random.choice(solution.counties)
-        units_to_move=set()
 
-        #random district
-        stop = False
+    	units_to_move=set()
+
         iteration = 0
-        while not stop and iteration<=self.max_iter:
-            #move units from d1 to d2
+        while not units_to_move and iteration<=self.max_iter:
+        #move units from d1 to d2
+
             (d1,d2) = random.sample(county.districts,2)
+
             for unit in d2.borders:
                 units_to_move |= unit.neighbours & d1.borders
-
-            if units_to_move:
-                stop = True
-
             iteration +=1
 
-        #don't move more than is required
-        if len(units_to_move)>change:
-             units_to_move = set(random.sample(units_to_move,change))
+        #don't move more units than it's necessary
+        if len(units_to_move)-change>0:
+            units_to_move = self.randomChaine(units_to_move,change)
 
         #can't leave a district empty
         if len(d1.units-units_to_move) > self.minnr_of_unit:
-
-            #move = set()
-            #for unit in units_to_move:
-                #exceptu = d1.units-set([unit])
-                #for neighbour in unit.neighbours:
-                    #if not neighbour.neighbours & exceptu:
-                        #break
-                #else:
-                    #move.add(unit)
-
-
             if self.BFS(District(1,'',d1.units-units_to_move,'')):
 
                 d2.extand(units_to_move)
@@ -242,10 +266,10 @@ class MOSA:
 
 
     def NeighbourSolution(self,solution):
-        new_solution = deepcopy(solution)
-        log = Log()
+        new_solution = SolutionBuilder().CopySolution(solution)
         for depth in self.neighbourhood:
             self.MoveUnits2(new_solution,depth)
+
         #update objective values according to new solution
         new_solution.objective_values = self.objf.EvaluateObjectives(new_solution.counties)
         return new_solution
@@ -279,30 +303,42 @@ class MOSA:
 
         return (dominated,dominate)
 
+    def ChoiceBetweenDominated(self,solution,dominates):
+        best = dominates.pop()
+
+        #how much better is the solution than the dominated one
+        distance = best.weighted_obj - self.dot(solution.objective_values,best.weight_vectors)
+
+        for s in dominates:
+            hip_distance =  s.weighted_obj - self.dot(solution.objective_values,s.weight_vectors)
+            if hip_distance>distance:
+                distance = hip_distance
+                best = s
+        return best
+
     def UpdatePareto(self,solution,pareto):
         (dominated,dominates) = self.Dominations(solution,pareto)
 
         if not dominated and not dominates:
-
+        	#set weights
             solution.weight_vectors = random.sample(self.weight_vectors,1)[0]
-            #weighted objective function
+
+            #set weighted objective function
             solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
             return 1
 
         if dominates:
-            removable_solution = random.sample(dominates,1)[0]
+
+            removable_solution = self.ChoiceBetweenDominated(solution,dominates)
             solution.weight_vectors = removable_solution.weight_vectors
             solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
-            pareto.remove(removable_solution)
-            pareto.add(solution)
-            logging.info("Solution with objective values %f,%f was replaced",removable_solution.objective_values[0],removable_solution.objective_values[1])
+            removable_solution = solution
+            self.log.LogSolution(removable_solution,"New solution")
             return 2
 
         return 0
 
     def probability(self,obj1,obj2,t):
-        logging.info(obj1)
-        logging.info(obj2)
         diff=obj1-obj2
         if diff>=0:
             return 1
@@ -314,21 +350,33 @@ class MOSA:
         return ans
 
     def Anneal(self):
+	#U-current solution
+	#V-neighbour solution
+
     #1,2
         pareto = set()
         U = self.CreateInitialSolution()
         LayerManipulation(self.layer_poligon).ColorDistricts(U.counties,'color')
+
+        #save the initial solution into the archive
         self.UpdatePareto(U,pareto)
+        pareto.add(U)
+        self.log.LogSolution(U,"Added to Pareto")
+
         t = self.initial_temperature
+        t_num=0
+
     #3-8
 
         while not self.frozen(t):
-            logging.info("Temperature:%f",t)
+            t_num+=1
+            logging.info("Temperature:%f(%d)",t,t_num)
             for i in xrange(self.iterations):
-                logging.info("Iteration:%d",i)
+
                 #neighbour solution of U
                 V = self.NeighbourSolution(U)
-                logging.info("Neighbour Solution:%f %f",V.objective_values[0],V.objective_values[1])
+
+                self.log.LogSolution(V,"Neighbour Solution")
                 update = self.UpdatePareto(V,pareto)
                 if update==1:
 
@@ -337,7 +385,8 @@ class MOSA:
                             logging.info("Random choice from pareto")
                     else:
                     #the recently saved solution becomes the current solution
-                        logging.info("Solution with weighted obj value %f(%f,%f) was added to pareto set",V.weighted_obj,V.weight_vectors[0],V.weight_vectors[1])
+
+                        self.log.LogSolution(V,"Added to Pareto")
                         pareto.add(V)
                         U=V
                 else:
@@ -347,9 +396,10 @@ class MOSA:
                         probability = self.probability(U.weighted_obj,V.weighted_obj,t)
                         logging.info("probability:%f",probability)
                         if random.uniform(0, 1)<= probability:
-                        #in this case weight_vector for the solution wasn't assigned
-                            logging.info("Current solution was changed to new solution")
+                        #in this case weight vectors for the solution weren't assigned
+
                             V.weight_vectors = U.weight_vectors
+                            self.log.LogSolution(V,"Changed to current solution")
                             U=V
                     else:
                         U=V
@@ -361,14 +411,16 @@ class MOSA:
         minimff = None
         min_weighted_obj = 10000000
         for s in pareto:
-            logging.info("fit:%f",s.weighted_obj)
+            self.log.LogSolution(s)
             if minims.weighted_obj>s.weighted_obj:
                 minims = s
             if s.weight_vectors[0] == s.weight_vectors[1] and min_weighted_obj>s.weighted_obj:
                 minimff = s
                 min_weighted_obj = s.weighted_obj
 
-        logging.info('best solution:%f(%f-%f)',minims.weighted_obj,minims.weight_vectors[0],minims.weight_vectors[1])
+        self.log.LogSolution(minims,"Best Solution")
         LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color2')
-        logging.info('best solution:%f(%f-%f)',minimff.weighted_obj,minimff.weight_vectors[0],minimff.weight_vectors[1])
-        LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color3')
+        self.log.LogObj(minims)
+        self.log.LogSolution(minimff,"Best Solution(5-5)")
+        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
+        self.log.LogObj(minimff)

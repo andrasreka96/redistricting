@@ -9,7 +9,7 @@ class Unit:
         #save the unit's neighbours
         self.neighbours=neighbours
         self.lines=set(lines.split(','))
-        #save some geographical info
+        #save area
         self.area=area
 
     def toString(self):

@@ -1,14 +1,18 @@
 import logging
 class District:
-    def __init__(self,id,unique_id,units,color,area=0,peremiter=0,population=0):
+    def __init__(self,id,unique_id,units,color,area=None,perimeter=None,population=None,borders=None):
         self.id=id
         self.unique_id=unique_id
         self.color=color
         self.units=units
         self.area=area
-        self.perimeter=peremiter
+        self.perimeter=perimeter
         self.population=population
-        self.setBorders()
+
+        if borders:
+            self.borders=borders
+        else:
+            self.setBorders()
 
     def toString(self):
         return "District %s:\ncolor:%s\narea:%d\nperimeter:%d\npopulation:%d\n%s\n%s" % (self.unique_id,self.color,self.area,self.perimeter,self.population,[u.toString() for u in self.units],[u.toString() for u in self.borders])
@@ -24,7 +28,6 @@ class District:
     def setBorders(self):
         self.borders = set()
         for unit in self.units:
-            # set of neighbourhood units
             neighbours = unit.neighbours
             #find units which have neighbours out of district
             if neighbours - self.units:
