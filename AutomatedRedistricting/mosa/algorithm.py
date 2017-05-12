@@ -219,9 +219,7 @@ class MOSA:
         chaine = set([unit])
 
         iteration = 0
-
-
-        while (len(chaine)<length  or length==-1) and units and iteration<self.max_iter:
+        while len(chaine)<length and units and iteration<self.max_iter:
 
             neighbours = set()
             for unit in units:
@@ -233,25 +231,21 @@ class MOSA:
 
         return chaine
 
-    def MoveUnits2(self,solution,change):
+    def MoveUnits(self,solution,change):
 
         #random county where the changes will be made
         county  = random.choice(solution.counties)
 
     	units_to_move=set()
 
-        iteration = 0
-        while not units_to_move and iteration<=self.max_iter:
+        while not units_to_move:
         #move units from d1 to d2
-
             (d1,d2) = random.sample(county.districts,2)
-
             for unit in d2.borders:
                 units_to_move |= unit.neighbours & d1.borders
-            iteration +=1
 
         #don't move more units than it's necessary
-        if len(units_to_move)-change>0:
+        if change!=-1 and len(units_to_move)-change>0:
             units_to_move = self.randomChaine(units_to_move,change)
 
         #can't leave a district empty
@@ -268,7 +262,7 @@ class MOSA:
     def NeighbourSolution(self,solution):
         new_solution = SolutionBuilder().CopySolution(solution)
         for depth in self.neighbourhood:
-            self.MoveUnits2(new_solution,depth)
+            self.MoveUnits(new_solution,depth)
 
         #update objective values according to new solution
         new_solution.objective_values = self.objf.EvaluateObjectives(new_solution.counties)

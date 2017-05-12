@@ -24,7 +24,7 @@ class ObjFunc:
             nr_of_districts = len(county.districts)
             for district in county.districts:
                     sp_product = district.population/county.population - 1/nr_of_districts
-                    sum+=(fp_product*fp_product*sp_product*sp_product*100)
+                    sum+=(fp_product*fp_product*sp_product*sp_product)*1000
         return sum
 
     def c2_(self,counties):
@@ -34,7 +34,7 @@ class ObjFunc:
             for district in county.districts:
                 val = (district.perimeter/(4*math.sqrt(district.area))-1)
                 sum+=val
-        return sum/10
+        return sum
 
     def c1(self,counties):
         sum=0
@@ -45,7 +45,7 @@ class ObjFunc:
             for district in county.districts:
                     sp_product = district.population/county.population - 1/nr_of_districts
                     logging.info("district %s fp:%f",district.unique_id,sp_product)
-                    sum+=(fp_product*fp_product*sp_product*sp_product*100)
+                    sum+=(fp_product*fp_product*sp_product*sp_product)*1000
                     logging.info("product:%f",fp_product*fp_product*sp_product*sp_product)
         return sum
 
@@ -58,7 +58,7 @@ class ObjFunc:
                 val = (district.perimeter/(4*math.sqrt(district.area))-1)
                 logging.info("district %s:%f",district.unique_id,val)
                 sum+=val
-        return sum/10
+        return sum
 
     def EvaluateObjectives(self,counties,log=None):
         #[C1(s),C2(s),..]
