@@ -7,7 +7,6 @@ from collections import defaultdict
 import yaml
 import os.path
 import math
-from copy import deepcopy
 
 
 from AutomatedRedistricting.model.county import County
@@ -66,9 +65,11 @@ class MOSA:
         self.population_country = parameters['population_country']
         self.nr_of_districts = parameters['nr_of_districts']
 
-        self.district_builder = DistrictBuilder(layer_poliline)
+        self.district_builder = DistrictBuilder(layer_poliline,attributes['attribute_id_poliline'])
         self.objf = objectives.ObjFunc()
         self.log = Log()
+
+        self.attributes=attributes
 
     def DistrictNear(self,units,solution):
         for unit in units:
@@ -84,7 +85,7 @@ class MOSA:
 
     def CreateInitialCounty(self,nr_of_districts,features,county):
         #convert features into unit objects
-        util = UnitBuilder(features)
+        util = UnitBuilder(features,self.attributes)
         units = set(util.units)
 
         unit_in_district=len(units)/nr_of_districts
@@ -164,8 +165,7 @@ class MOSA:
         remainder[self.nr_of_counties-3]=6
 
         if slice_:
-            for i in [j[0] for j in sorted(enumerate(remainder),key=lambda i:i[1],reverse=True)][:int(slice_)]:
-                print(i)
+            for i in [j[0] for j in sorted(enumerate(remainder),key=lambda i:i[1],reverse=True)][:int(slice_)]:                             
                 remainder[i]+=1
 
         logging.info(remainder)

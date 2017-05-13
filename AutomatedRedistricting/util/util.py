@@ -1,15 +1,5 @@
-from qgis.core import *
-from PyQt4.QtGui import QColor
-import logging,random
+import logging
 from AutomatedRedistricting.mosa.objectives import ObjFunc
-
-
-class QgsRandomColorScheme(QgsColorScheme):
-    def __init__(self, parent=None):
-        QgsColorScheme.__init__(self)
-
-    def fetchColors(self, noColors):
-        return [QColor.fromRgb(random.randrange(100,255),random.randrange(100,255),random.randrange(100,255)).name() for _ in range(noColors) ]
 
 class Log():
     def __init__(self):

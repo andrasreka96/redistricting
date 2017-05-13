@@ -4,11 +4,8 @@ from AutomatedRedistricting.model.unit import Unit
 import logging
 
 class UnitBuilder:
-    def __init__(self,features):
-        with open(os.path.join(os.path.dirname(__file__), os.pardir, 'config.yaml'),'r') as file_descriptor:
-            data = yaml.load(file_descriptor)
-        self.attributes = data.get('attributes')
-
+    def __init__(self,features,attributes):
+        self.attributes = attributes
         self.units = self.getUnits(features)
         self.dict_units = {u.id: u for u in self.units}
         self.setNeighbours()

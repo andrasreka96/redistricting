@@ -20,11 +20,11 @@ class ObjFunc:
     def c1_(self,counties):
         sum=0
         for county in counties:
-            fp_product = county.population/(self.deviation*(self.population_country/self.nr_of_districts))
+            fp_product = county.population/(self.deviation/100*(self.population_country/self.nr_of_districts))
             nr_of_districts = len(county.districts)
             for district in county.districts:
                     sp_product = district.population/county.population - 1/nr_of_districts
-                    sum+=(fp_product*fp_product*sp_product*sp_product)*1000
+                    sum+=(fp_product*fp_product*sp_product*sp_product)
         return sum
 
     def c2_(self,counties):
@@ -39,13 +39,13 @@ class ObjFunc:
     def c1(self,counties):
         sum=0
         for county in counties:
-            fp_product = county.population/(self.deviation*(self.population_country/self.nr_of_districts))
+            fp_product = county.population/(self.deviation/100*(self.population_country/self.nr_of_districts))
             logging.info("county %d fp:%f",county.id,fp_product)
             nr_of_districts = len(county.districts)
             for district in county.districts:
                     sp_product = district.population/county.population - 1/nr_of_districts
                     logging.info("district %s fp:%f",district.unique_id,sp_product)
-                    sum+=(fp_product*fp_product*sp_product*sp_product)*1000
+                    sum+=(fp_product*fp_product*sp_product*sp_product)
                     logging.info("product:%f",fp_product*fp_product*sp_product*sp_product)
         return sum
 
