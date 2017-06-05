@@ -5,6 +5,9 @@
 \save_transient_properties true
 \origin unavailable
 \textclass report
+\begin_preamble
+\usepackage{algorithm,algpseudocode}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language magyar
@@ -118,8 +121,9 @@ at.
  valamely pártot,etnikai,nyelvi,vallási csoportot,stb..
  A választási eredmények ilyen manipulációjá kiváltképp a többségi elven
  müködő demokratikus rendszerekben fordulhat elő.
- Ezek a rendszerek nem arányosan választják meg képviselőiket, tehát egy
- körzetből egy győztes kerül ki, így mindig lesznek kárba veszett szavazatok.
+ Ezek a rendszerek nem arányosan választják meg képviselőiket, az a képviselő
+ nyer aki a szavazatok többségét kapta, így mindig lesznek kárba veszett
+ szavazatok.
  Tegyük fel, hogy egy 100 szavazóból álló körzetben, A párt 90 szavazatot
  kap, B párt 10-et.
  Ebben az esetben B párt vesztesége 10, A párté 39 (90 minusz a győzelemhez
@@ -129,14 +133,131 @@ at.
  a veszteséget.
  Annak érdekében, hogy az újraosztás folyamata igazságos legyen, az érintett
  országok különböző törvényeket hoztak egy felosztás elfogadására vonatkozólag.
- Ha a kritériumok betartását szem előtt tartva, egy emberi tényezőktől független
- program segítségével generáljuk a körzeteket biztosak lehetünk benne, hogy
- a választópolgárok jogai nem sérülnek.
+ Legtöbb államban független megbízottak végzik az újraosztást, de ha automatizál
+ni lehetne az egész folyamatot, biztosabb lenne, hogy a választópolgárok
+ jogai nem sérülnek.
  
 \end_layout
 
 \begin_layout Chapter
 GIS, QGIS, Python
+\end_layout
+
+\begin_layout Standard
+A GIS(Geographic Information System) egy számítógépes rendszer, amelyet
+ földrajzi helyhez kapcsolódó adatok megjelenítésére, elemzésére és tárolására
+ dolgoztak ki.
+ Az elképzelés a következő:
+\end_layout
+
+\begin_layout Enumerate
+földrajzi koordinátákkal rendelkező adatok gyűjtése 
+\end_layout
+
+\begin_layout Enumerate
+adatok modellezése
+\end_layout
+
+\begin_layout Enumerate
+adatok elemzése 
+\end_layout
+
+\begin_layout Enumerate
+eredmények megjelenítése térképen
+\end_layout
+
+\begin_layout Standard
+Adatgyűjtés
+\end_layout
+
+\begin_layout Standard
+A GPS-el felszerelt telefonok, autók folyamatosan képesek térbeli adatokat
+ szolgáltatni,és a szatelitek már mindenki számára elérhető felvételeket
+ készítenek a Föld felszínéről.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Adatmodellezés
+\end_layout
+
+\begin_layout Standard
+A GIS kétféle modellt használ a térbeli adatok tárolására.
+ Az egyik a raszteres(grid) adatmodell.
+ Ez egy pixelekből felépülő adatmodell, ahol minden pixelhez azonos méretü
+ területi egységet rendelünk.
+ A pixelek sorokban és oszlopokban helyezkednek el, ez adja az adatok geometria
+ jellemzőit, ugyanakkor minden mezőhöz értékek sorát rendelhetjük, mindegyiket
+ megfeleltetve egy-egy tulajdonságnak.
+ Gyakori raszter adat fájlformátumok: JPEG2000, IMG, GeoTIFF.
+ A második adatmodell a vektoros adatmodell, ami pontokat (x,y koordináták)
+ tartalmaz, és arra vonatkozó szabályokat, hogy a pontok miként alkotnak
+ vonalakat és poligonokat (zárt vonalak).
+ Ezen adatok tárolása gyakran shapefájlokban történik.
+ Ez igazábol legkevesebb három másik különböző formátumú fájlt foglal magába.
+ A DBF (dBase file) egy adatbázis tábla, ez tartalmazza az adataink attribútumai
+t.
+ Az shp kiterjesztésű fájl tartalmazza a földrajzi adatokat és ehhez még
+ tartozik egy index fájl.
+ Mivel a Föld térképen való megjelenítésének több módja is van, a vetítésre
+ vonatkozó információk tárolása is szükséges, amennyiben a térképeket egymásra
+ akarjuk illeszteni.
+ A használt vetítés tárolása a projection (.prj) fájlokban történik.
+ A vetítés a következőképpen néz ki:
+\end_layout
+
+\begin_layout Enumerate
+Elkészítjük a Föld szabályos modelljét (szferoid,ellipszoid,gömb...) 
+\end_layout
+
+\begin_layout Enumerate
+A 3D modellt levetítjük egy 2D-s koordináta-rendszerbe 
+\end_layout
+
+\begin_layout Standard
+Adatelemzés
+\end_layout
+
+\begin_layout Standard
+A QGIS számos előre beépített statisztikai és geometria eszközt nyújt az
+ adatok elemzésére.
+ Például: interpolálás, heatmappek generálása, GPS adatok betöltése, SQL
+ lekérdezések végrehajtása (számolhatunk átlagokat, előfordulásokat, összegzések
+et) , convex hurkok meghatározása, osztályozás, kontúrok meghúzása.
+ Mindezek mellett lehetőséget nyújt az adatok elemzésére általunk írt python
+ vagy c++ kóddal.
+ Amikor betöltünk egy layert a QGIS felépíti az annak megfelelő objektumot,
+ amely a QgsInterface osztály iface nevű instanciáján keresztűl érhetünk
+ el.
+ Az így kapott layer objektumtól kérthetünk egy iterátort a featurekhez.
+ A featurek tartalmazzák a geometria információkat (koordináták,terület,stb..)
+ és az adatbázishoz tartozó attribútumok értékeit.
+ Ha a scriptet külső forrásból futtatjuk, importolnunk kell a qgis.core nevű
+ könyvtárat, ez tartalmazza az alap GIS funkcionalitásokat.
+ Pythonban írhatunk pluginokat a QGIS-hez, vagy készíthetünk egy különálló
+ applikációt.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Felhasználás 
+\end_layout
+
+\begin_layout Standard
+Az adatok reprezentálásának és elemzésének a GIS által biztosított módját
+ sok területen használják: az epidemiológusok a vírusok globális terjedését
+ vizsgálják, a kriminológusok bűnözési mintákat keresnek, a geológusok a
+ Föld fizikai elváltozásait megfigyelve előre jelzik a földmozgásokat,vagy
+ lehetséges fosszilis erőforrásokat keresnek, a globális felmelegedéssel
+ kapcsolatos kutatásokban is használnak földrajzi információs rendszereket.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -147,8 +268,166 @@ Algoritmus
 A szimulált hűtés módszere
 \end_layout
 
+\begin_layout Standard
+A szimulálát hűtés módszere egy metaheurisztikus algoritmus, amelyet kombinatori
+kus optimalizációs problémák megoldására használnak.
+ A kombinatorikus optimalizálás, olyan optimalizációs problémákat old meg,
+ ahol a megoldástér véges.
+ A szimulált hűtésnek több változata is van: Párhuzamos Szimulált Hűtés,
+ Gyors Szimulált Hűtés, Adaptív Szimulált Hűtés.
+ A továbbiakban a Klasszikus Szimulált Hűtés módszerét tárgyaljuk, amelyet
+ Kirkpatrick, Gelatt, és Vecchi vezetett be 1983-ban [2] , optimalizációs
+ problémák megoldására.
+ A cikkben leírják a termodinamikai rendszerek viselkedését, majd megmutatják
+ hogyan használható az, mint optimalizációs technika.
+ Egy termodinamikai rendszert különböző változók összessége ír le (hőmérséklet,e
+nergia,nyomás,entrópia,stb..), míg egy metaheurisztikus algoritmusnak csupán
+ két eszközre van szüksége (költség függvény, szomszédos megoldást generáló
+ függvény).
+ A megfeleltetés a következő: az optimalizációhoz használt költség függvény
+ a rendszer energiájának felel meg.
+ Amikor a rendszer eléri az egyensúlyi állapotát az energia minimális, az
+ optimalizáció célja pedig a költség függvény minimumának a megtalálása.
+ Egy szomszédos állapot pedig egy atom mozgásnak felel meg.
+ Bevezetünk egy hőmérséklet változót a termodinamikai rendszerek mintájára,
+ amely szabályozza a keresésünk viselkedését.
+ Nagy hőmérsékleten a molekulák kaotikus mozgást végeznek, ennek megfelelően
+ az algoritmus is nagy ugrásokat tesz a megoldás térben, így elkerülhető
+ az, hogy lokális minimumba ragadunk.
+ Alacsony hőmérsékleten a molekulák mozgása lassúl, az optimalizáló algoritmusun
+k pedig kis valószínűséggel fogad el gyengébb megoldásokat, gyakorlatilag
+ lokális optimalizálást végez.
+ A fémek hőkezelése során az anyagot magas hőmérsékletig melegítik, ott
+ hőntartják, majd lassan hűteni kezdik, így változtatva az anyag bizonyos
+ tulajdonságait.
+ Minnél lassabban hűtjük az anyagot annál több idejük lesz az atomoknak
+ elhelyezkedni, vagyis stabilabb kristályok alakulnak ki, így lágyabb fémet
+ kapunk.
+ A keresésünk is hasonlóképpen viselkedik.
+ Akkor kapunk optimum közeli megoldást, ha a hűtés lassú, azaz minden hőmérsékle
+ten nagy számú iterációt engedünk.
+ Az iterációk során akkor fogadunk el egy új megoldást, ha az jobbnak bizonyúl,
+ mint az aktuális megoldás.
+ Amennyiben nem alacsonyabb az új megoldásunk költség függvényének az értéke,
+ akkor a jelenlegi megoldást a Metropolis kritérium alapján, 
+\begin_inset Formula $\exp((E-E_{0})/T)$
+\end_inset
+
+ valószínűséggel cseréljük le.
+ Ahol E az aktuális megoldás objektív értéké, E
+\begin_inset Formula $_{0}$
+\end_inset
+
+ a szomszédos megoldás objektív értéke, T a rendszer hőmérséklete.
+ 
+\end_layout
+
 \begin_layout Section
-Multiobjective algorithm for redisctricting
+Több-célfüggvényű algoritmus újraosztáshoz
+\end_layout
+
+\begin_layout Standard
+A több-célfüggvényű algoritmus különböző kritériumokat figyelembe véve optimaliz
+ál.
+ A mi célunk olyan (K,U) párosításokat találni, amelyek legnagyobb mértékben
+ megfelelnek az általunk definiált objektív függvényeknek.
+ K a körzeteket jelöli, U a unitokat.
+ A unitok a létező legkisebb közigazgatási egységei a felosztandó országnak.
+ Az ország egy lehetséges felosztása, vagyis egy megoldás, olyan (K,U) párok
+ összessége, ahol minden körzet előre meghatározott számú unitot foglal
+ magába , és egy unit csak egy körzethet tartozhat.
+ Amikor összehasonlítunk két megoldást, ahol V az aktuális megoldás, V'
+ a szomszédos megoldás, három lehetséges eset van:
+\end_layout
+
+\begin_layout Enumerate
+V' minden objektív függvény szerint jobb megoldásnak bizonyúl
+\end_layout
+
+\begin_layout Enumerate
+V' csak bizonyos objektív függvényekre mutat jobb eredményt
+\end_layout
+
+\begin_layout Enumerate
+V' minden objektív függvény szerint rosszabb megoldásnak bizonyúl
+\end_layout
+
+\begin_layout Standard
+A megoldásainkat egy olyan halmazba gyűjtjük, amely a fenti eseteknek megfelelő
+ szabályok szerint bövűl.
+ Ha V' dominál más megoldásokat (1 eset), átveszi a leggyengébb dominált
+ megoldás helyét.
+ Ha az új megoldás nem dominál (nem igaz az 1.
+ eset) és nem dominált (nem igaz a 3.
+ eset), akkor a halmazhoz adódik.
+ Ha V' dominált valamely megoldás által nem kerül a halmazba, viszont a
+ szimulált hűtésnél leírt valószínűség szerint felválthatja a jelenlegi
+ megoldást.
+ Amikor egy új megoldás kerül a halmazba, mindig hozza rendelődik egy random
+ választott súlyvektor az előre meghatározott súlyok listájából.
+ Az algoritmus végére minden súlyvektorhoz fog legalább egy nem dominált
+ megoldás tartozni.
+\begin_inset Newline newline
+\end_inset
+
+A fent leírt algoritmus pszeudokódban , úgy hogy k darab objektív függvénnyel
+ dolgozunk.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Szimulált hűtés több célfüggvénnyel 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Require{$k 
+\backslash
+geq 1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -169,6 +448,25 @@ E.
  Guiterrez-Andrade et al., A Multiobjective Algorithm for Redistricting,
  Journal of Applied Research and Technology Volume 11, Issue 3, June 2013,
  Pages 324–330.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Kirk"
+
+\end_inset
+
+S.
+ Kirkpatrick; C.
+ D.
+ Gelatt; M.
+ P.
+ Vecchi , Optimization by Simulated Annealing , Science, New Series, Vol.
+ 220, No.
+ 4598.
+ (May 13, 1983), pp.
+ 671-680.
 \end_layout
 
 \end_body

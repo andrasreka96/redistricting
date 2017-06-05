@@ -19,13 +19,6 @@
 from qgis.utils import iface
 from qgis.core import *
 
-# Replace the values below with values from your layer.
-# For example, if your identifier field is called 'XYZ', then change the line
-# below to _NAME_FIELD = 'XYZ'
-# Replace the value below with the field name that you want to sum up.
-# For example, if the # field that you want to sum up is called 'VALUES', then
-# change the line below to _SUM_FIELD = 'VALUES'
-# Names of the new fields to be added to the layer
 
 def findNeighbours(layer,_NAME_FIELD,_NEW_NEIGHBOURS_FIELD):
 

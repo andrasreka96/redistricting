@@ -16,52 +16,37 @@ class ObjFunc:
             self.deviation = parameters['deviation']
             self.population_country =parameters['population_country']
             self.quota = self.population_country/self.nr_of_districts
-
-    def c1_(self,counties):
-        sum=0
-        for county in counties:
-            fp_product = county.population/(self.deviation/100*(self.population_country/self.nr_of_districts))
-            nr_of_districts = len(county.districts)
-            for district in county.districts:
-                    sp_product = district.population/county.population - 1/nr_of_districts
-                    sum+=(fp_product*fp_product*sp_product*sp_product)
-        return sum
-
-    def c2_(self,counties):
-
-        sum=0
-        for county in counties:
-            for district in county.districts:
-                val = (district.perimeter/(4*math.sqrt(district.area))-1)
-                sum+=val
-        return sum
+            self.logger = logging.getLogger()
 
     def c1(self,counties):
         sum=0
         for county in counties:
             fp_product = county.population/(self.deviation/100*(self.population_country/self.nr_of_districts))
-            logging.info("county %d fp:%f",county.id,fp_product)
+            self.logger.debug("county %d fp:%f",county.id,fp_product)
             nr_of_districts = len(county.districts)
             for district in county.districts:
                     sp_product = district.population/county.population - 1/nr_of_districts
-                    logging.info("district %s fp:%f",district.unique_id,sp_product)
+                    self.logger.debug("district %s fp:%f",district.unique_id,sp_product)
                     sum+=(fp_product*fp_product*sp_product*sp_product)
-                    logging.info("product:%f",fp_product*fp_product*sp_product*sp_product)
+                    self.logger.debug("product:%f",fp_product*fp_product*sp_product*sp_product)
         return sum
 
     def c2(self,counties):
 
         sum=0
         for county in counties:
-            logging.info("county %d",county.id)
+            self.logger.debug("county %d",county.id)
             for district in county.districts:
                 val = (district.perimeter/(4*math.sqrt(district.area))-1)
-                logging.info("district %s:%f",district.unique_id,val)
+                self.logger.debug("district %s:%f",district.unique_id,val)
                 sum+=val
         return sum
 
     def EvaluateObjectives(self,counties,log=None):
-        #[C1(s),C2(s),..]
         if log:
-            return [f(counties) for f in [self.c1,self.c2]]
-        return [f(counties) for f in [self.c1_,self.c2_]]
+            self.logger.setLevel(logging.DEBUG)
+            l = [f(counties) for f in [self.c1,self.c2]]
+            self.logger.setLevel(logging.INFO)
+            return l
+
+        return [f(counties) for f in [self.c1,self.c2]]

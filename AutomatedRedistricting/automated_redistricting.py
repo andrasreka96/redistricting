@@ -60,7 +60,7 @@ class AutomatedRedistricting:
         self.iface = iface
 
 
-        # The plugin uses two kind of layers
+        # The plugin uses three different layers
         for layer in QgsMapLayerRegistry.instance().mapLayers().values():
             if (layer.name().find("poliline")!=-1):
                 self.layer_poliline=layer
