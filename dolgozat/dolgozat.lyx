@@ -284,26 +284,27 @@ nergia,nyomás,entrópia,stb..), míg egy metaheurisztikus algoritmusnak csupán
  A megfeleltetés a következő: az optimalizációhoz használt költségfüggvény
  a rendszer energiaszintjének felel meg.
  Amikor a rendszer eléri az egyensúlyi állapotát az energia minimális.
- célunk a rendszer egyensúlyi állapotának az elérése, vagyis a költségfüggvény
+ A cél a rendszer egyensúlyi állapotának az elérése, vagyis a költségfüggvény
  minimumának a megtalálása.
- Egy szomszédos állapot pedig a rendszeren belüli atommozgásnak felel meg.
+ Egy szomszédos állapotot a jelenlegi állapoton eszközölt random perturbációk
+ által kapunk meg, ez a rendszeren belüli atommozgásoknak feleltethető meg.
  Bevezetünk egy hőmérséklet változót a termodinamikai rendszerek mintájára,
  amely szabályozza a keresésünk viselkedését.
  Ahhoz, hogy megtaláljuk egy anyag egyensúlyi állapotát nem elégendő ha
  lehűtjük.
- Az analógiát követve a keresés alacsony hőmersékleten azt jelenti, hogy
+ Az analógiát követve, a keresés alacsony hőmersékleten azt jelenti, hogy
  mindig csak a jobb megoldásokat fogadjuk el, gyakorlatilag lokális minimumot
  keresünk.
- Ha stabil kristályokat akarunk kapni, először forrás pont fölé kell melegíteni
+ Ha stabil kristályokat akarunk kapni, először forráspont fölé kell melegíteni
  az anyagot, majd lassan hűteni, elegendő időt hagyva a molekuláknak, hogy
  kristályokat formáljanka.
  Nagy hőmérsékleten a molekulák kaotikus mozgást végeznek, ennek megfelelően
  az algoritmus is nagy ugrásokat tesz a megoldás térben, így elkerülhető
  az, hogy lokális minimumba ragadunk.
  Azt hogy a keresés mekkora valószínűséggel lép a jelenleginél rosszabb
- állapotba a rendszer jelenlegi hőmérséklete befolyásolja.
+ állapotba a rendszer aktuális hőmérséklete befolyásolja.
  Az iterációk során akkor fogadunk el egy új megoldást, ha az jobbnak bizonyúl,
- mint az aktuális megoldás.
+ mint a jelenlegi megoldás.
  Amennyiben nem alacsonyabb az új megoldásunk költségfüggvényének az értéke,
  akkor a jelenlegi megoldást a Metropolis kritérium alapján,
 \begin_inset Formula $\exp((E-E_{0})/T)$
