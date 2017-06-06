@@ -136,7 +136,6 @@ at.
  Legtöbb államban független megbízottak végzik az újraosztást, de ha automatizál
 ni lehetne az egész folyamatot, biztosabb lenne, hogy a választópolgárok
  jogai nem sérülnek.
- 
 \end_layout
 
 \begin_layout Chapter
@@ -151,7 +150,7 @@ A GIS(Geographic Information System) egy számítógépes rendszer, amelyet
 \end_layout
 
 \begin_layout Enumerate
-földrajzi koordinátákkal rendelkező adatok gyűjtése 
+földrajzi koordinátákkal rendelkező adatok gyűjtése
 \end_layout
 
 \begin_layout Enumerate
@@ -159,7 +158,7 @@ adatok modellezése
 \end_layout
 
 \begin_layout Enumerate
-adatok elemzése 
+adatok elemzése
 \end_layout
 
 \begin_layout Enumerate
@@ -174,7 +173,6 @@ Adatgyűjtés
 A GPS-el felszerelt telefonok, autók folyamatosan képesek térbeli adatokat
  szolgáltatni,és a szatelitek már mindenki számára elérhető felvételeket
  készítenek a Föld felszínéről.
- 
 \begin_inset Newline newline
 \end_inset
 
@@ -211,11 +209,11 @@ t.
 \end_layout
 
 \begin_layout Enumerate
-Elkészítjük a Föld szabályos modelljét (szferoid,ellipszoid,gömb...) 
+Elkészítjük a Föld szabályos modelljét (szferoid,ellipszoid,gömb...)
 \end_layout
 
 \begin_layout Enumerate
-A 3D modellt levetítjük egy 2D-s koordináta-rendszerbe 
+A 3D modellt levetítjük egy 2D-s koordináta-rendszerbe
 \end_layout
 
 \begin_layout Standard
@@ -247,7 +245,7 @@ et) , convex hurkok meghatározása, osztályozás, kontúrok meghúzása.
 \begin_inset Newline newline
 \end_inset
 
-Felhasználás 
+Felhasználás
 \end_layout
 
 \begin_layout Standard
@@ -257,7 +255,6 @@ Az adatok reprezentálásának és elemzésének a GIS által biztosított módj
  Föld fizikai elváltozásait megfigyelve előre jelzik a földmozgásokat,vagy
  lehetséges fosszilis erőforrásokat keresnek, a globális felmelegedéssel
  kapcsolatos kutatásokban is használnak földrajzi információs rendszereket.
- 
 \end_layout
 
 \begin_layout Chapter
@@ -309,7 +306,7 @@ ten nagy számú iterációt engedünk.
  Az iterációk során akkor fogadunk el egy új megoldást, ha az jobbnak bizonyúl,
  mint az aktuális megoldás.
  Amennyiben nem alacsonyabb az új megoldásunk költség függvényének az értéke,
- akkor a jelenlegi megoldást a Metropolis kritérium alapján, 
+ akkor a jelenlegi megoldást a Metropolis kritérium alapján,
 \begin_inset Formula $\exp((E-E_{0})/T)$
 \end_inset
 
@@ -319,7 +316,6 @@ ten nagy számú iterációt engedünk.
 \end_inset
 
  a szomszédos megoldás objektív értéke, T a rendszer hőmérséklete.
- 
 \end_layout
 
 \begin_layout Section
@@ -385,7 +381,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Szimulált hűtés több célfüggvénnyel 
+Szimulált hűtés több célfüggvénnyel
 \end_layout
 
 \end_inset
@@ -408,7 +404,7 @@ begin{algorithmic}[1]
 
 
 \backslash
-Require{$k 
+Require{$k
 \backslash
 geq 1$}
 \end_layout
@@ -428,6 +424,59 @@ end{algorithmic}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+Redistricting
+\end_layout
+
+\begin_layout Section
+Általánosan
+\end_layout
+
+\begin_layout Standard
+A megírt program a szimulált hűtés módszerével generálja egy ország megyéinek/ál
+lamainak/tartományainak lehetséges körzetekre való felosztását.
+ A célfüggvények és a hozzájuk tartozó súlyok tetszőlegesen megadhatóak.
+ A pythonban írt plug-in a QGIS-ből futtatható.
+ A programnak szüksége van egy shapefájlra, amely tartalmazza a felosztandó
+ megyéket, és egy másik fájlra amely a felosztandó ország közigazgatási
+ egységeit (unit) tartalmazza.
+ Ehhez a két fájlhoz tartozó adatbázis tábláknak összekapcsolhatóknak kell
+ lenniük a megye azonosítók szerint, tehát tudnunk kell, hogy egy közigazgatási
+ egység melyik megyéhez tartozik.
+ A későbbiekben egy unit szomszédainak a bejárására gyakran kerűl sor, ezért
+ a shapefájlok első használata alkalmával egy scriptet is kell futtatni,
+ amely bővíti egy attribútummal a unitokat tartalmazó adatbázis táblát.
+ Az új attribútum az adott unit szomszédos unitjainak az azonosítóját tárolja.
+ Ez később rengeteg futási időt nyer majd a körzetek változtatásához szükséges
+ műveletek során.
+ A plug-in könyvtár-struktúrája tartalmaz egy cinfig.yaml elnevezésű fájlt,
+ ezt változtatva állíthatjuk be a paramétereinket.
+ Elsősorban megkell adni a shapefájlainkban szereplő attribútumok elnevezéseit,
+ ezek helyes ismerete nélkül a program nem lesz futtatható.
+ Megkell mondanunk összesen hány körzetet akarunk látni a végső felosztásban.
+ A további paraméterek az optimalizáló algoritmus viselkedését befolyásolják,
+ ezek változtatása nélkűl is használható a program.
+ A szimulált hűtés módszerének olyan paramétereit változtathatjuk, mint
+ a kezdeti és végső hőmérséklet, a hűtés mértéke és a hőmérsékletenkénti
+ iteráció.
+ Beállítható a megoldás halmaz maximális mérete és a költségfüggvényekhez
+ rendelhető lehetséges súlyok listája.
+ Az is megmondható, hogy egy körzethez minimum hány unitnak kell tartoznia.
+ A használt költségfüggvényeket az objectives.py fájl tartalmazza, ezek bővítése
+ értelemszerűen nem adható meg a konfigurációs fájlban.
+ Amennyiben újabb függvényt szeretnénk egy megoldás kiértékeléséhez adni
+ azt implementálnunk kell az objectives.py fájlban.
+ A program indítás után iterációnként loggolni fogja a megoldáshalmaz viselkedés
+ét.
+ A hőmérséklet lehűlése után a legjobb megoldás megjelenik a QGIS grafikus
+ felületén, úgy hogy az ugyanazon körzetekhez tartozó unitok azonos színűek
+ lesznek.
+\end_layout
+
+\begin_layout Section
+Románia
 \end_layout
 
 \begin_layout Chapter
