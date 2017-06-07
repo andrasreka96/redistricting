@@ -165,7 +165,7 @@ adatok elemzése
 eredmények megjelenítése térképen
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
 Adatgyűjtés
 \end_layout
 
@@ -173,13 +173,9 @@ Adatgyűjtés
 A GPS-el felszerelt telefonok, autók folyamatosan képesek térbeli adatokat
  szolgáltatni,és a szatelitek már mindenki számára elérhető felvételeket
  készítenek a Föld felszínéről.
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Section
 Adatmodellezés
 \end_layout
 
@@ -201,22 +197,33 @@ A GIS kétféle modellt használ a térbeli adatok tárolására.
 t.
  Az shp kiterjesztésű fájl tartalmazza a földrajzi adatokat és ehhez még
  tartozik egy index fájl.
- Mivel a Föld térképen való megjelenítésének több módja is van, a vetítésre
- vonatkozó információk tárolása is szükséges, amennyiben a térképeket egymásra
- akarjuk illeszteni.
- A használt vetítés tárolása a projection (.prj) fájlokban történik.
- A vetítés a következőképpen néz ki:
 \end_layout
 
-\begin_layout Enumerate
-Elkészítjük a Föld szabályos modelljét (szferoid,ellipszoid,gömb...)
-\end_layout
-
-\begin_layout Enumerate
-A 3D modellt levetítjük egy 2D-s koordináta-rendszerbe
+\begin_layout Section
+Vetítés
 \end_layout
 
 \begin_layout Standard
+Mivel a Föld pontjainak térképre való vetítésének több módja is van, a vetítésre
+ vonatkozó információk tárolása is szükséges, amennyiben a térképeket egymásra
+ akarjuk illeszteni.
+ A használt vetítés tárolása a projection (.prj) fájlokban történik.
+ A térképvetítés matematikai transzformációk sorozata, amely során egy szferikus
+ felület felszínén található pontok síkba vetitődnek.
+ Először a Föld szabálytalan felszínét egy szabályos geometria alakzatként
+ kell kezelnünk, mint a gömb vagy szferoid, aztán az így kapott felületet
+ vetíthetjük síkba.
+ Ez a folyamat mindig valamilyen torzúlást eredményez, ezért van olyan sok
+ féle vetítés.
+ Van amelyik a pontok közti távolságot őrzi meg, mások a levetített rész
+ területét, formáját tartják meg.
+ Nem létezik egy egységes vetítési eljárás.
+ Vannak elterjedtebbek,mint például a Google Maps és a Mango Map által használt
+ Web Mercator vetítés.
+ Ez egy hengervetítés
+\end_layout
+
+\begin_layout Section
 Adatelemzés
 \end_layout
 
@@ -237,14 +244,10 @@ et) , convex hurkok meghatározása, osztályozás, kontúrok meghúzása.
  Ha a scriptet külső forrásból futtatjuk, importolnunk kell a qgis.core nevű
  könyvtárat, ez tartalmazza az alap GIS funkcionalitásokat.
  Pythonban írhatunk pluginokat a QGIS-hez, vagy készíthetünk egy különálló
- applikációt.
-\begin_inset Newline newline
-\end_inset
+ applikációt
+\end_layout
 
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Section
 Felhasználás
 \end_layout
 
@@ -442,16 +445,16 @@ lamainak/tartományainak lehetséges körzetekre való felosztását.
  A programnak szüksége van egy shapefájlra, amely tartalmazza a felosztandó
  megyéket, és egy másik fájlra amely a felosztandó ország közigazgatási
  egységeit (unit) tartalmazza.
- Ehhez a két fájlhoz tartozó adatbázis tábláknak összekapcsolhatóknak kell
- lenniük a megye azonosítók szerint, tehát tudnunk kell, hogy egy közigazgatási
+ A két fájlhoz tartozó adatbázis tábláknak összekapcsolhatóknak kell lenniük
+ a megye azonosítók szerint, tehát tudnunk kell, hogy egy közigazgatási
  egység melyik megyéhez tartozik.
  A későbbiekben egy unit szomszédainak a bejárására gyakran kerűl sor, ezért
- a shapefájlok első használata alkalmával egy scriptet is kell futtatni,
+ a shapefájlok első használata alkalmával egy scriptet is le kell futtatni,
  amely bővíti egy attribútummal a unitokat tartalmazó adatbázis táblát.
  Az új attribútum az adott unit szomszédos unitjainak az azonosítóját tárolja.
  Ez később rengeteg futási időt nyer majd a körzetek változtatásához szükséges
  műveletek során.
- A plug-in könyvtár-struktúrája tartalmaz egy cinfig.yaml elnevezésű fájlt,
+ A plug-in könyvtár-struktúrája tartalmaz egy config.yaml elnevezésű fájlt,
  ezt változtatva állíthatjuk be a paramétereinket.
  Elsősorban megkell adni a shapefájlainkban szereplő attribútumok elnevezéseit,
  ezek helyes ismerete nélkül a program nem lesz futtatható.
@@ -473,6 +476,83 @@ lamainak/tartományainak lehetséges körzetekre való felosztását.
  A hőmérséklet lehűlése után a legjobb megoldás megjelenik a QGIS grafikus
  felületén, úgy hogy az ugyanazon körzetekhez tartozó unitok azonos színűek
  lesznek.
+\end_layout
+
+\begin_layout Section
+Objektív Függvények
+\end_layout
+
+\begin_layout Standard
+A program alapértelmezetten két függvényt használ a megoldások kiértékelésénél.
+ Ezek a függvények a gerrymandering és a malapportionment elkerülését szolgálják.
+ A 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ függvény azt méri, hogy a populáció mennyire oszlik el egyenletesen a körzetek
+ között.
+ Minnél alacsonyabb a függvény értéke, annál egyenletesebb az eloszlás.
+ A használt függvényt az IFE (Instituto Federal Electoral) határozta meg,
+ és használta a 2006-os mexicói újra osztások során:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{1}(P)=\sum_{s\epsilon S}(\frac{P_{E}}{d(P_{N}/300)})^{2}(\frac{P_{S}}{P_{E}}-\frac{1}{n})^{2}
+\]
+
+\end_inset
+
+Ahol
+\begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
+\end_inset
+
+ egy felosztása az országnak, úgy hogy
+\begin_inset Formula $Z_{s}=\{U_{1},U_{2},...,U_{s_{k}}\}$
+\end_inset
+
+.
+\begin_inset Formula $Z_{s}$
+\end_inset
+
+ az s körzet unitjainak a halmaza.
+\begin_inset Formula $P_{N}$
+\end_inset
+
+ az ország ,
+\begin_inset Formula $P_{E}$
+\end_inset
+
+ a megye lakosságának a száma, d a megengedett szórás a megyén belül, n
+ a megyéhez tartozó körzetek száma.
+ A másik objektív függvény a körzetek formájának a kompaktságát méri.
+ Abból kiindulva, hogy a legkompaktabb forma a kör, mérjük a körzet kompaktságát.
+ Legyen a körzethez tartozó unitok által formált alakzat kerülete 
+\begin_inset Formula $P_{s}$
+\end_inset
+
+ , területe 
+\begin_inset Formula $A_{s}$
+\end_inset
+
+.
+ Minnél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy 
+\begin_inset Formula $A_{s}$
+\end_inset
+
+ területű kör kerületével:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}(\frac{P_{s}}{4\sqrt{A_{s}}}-1)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
