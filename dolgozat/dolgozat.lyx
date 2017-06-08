@@ -7,6 +7,7 @@
 \textclass report
 \begin_preamble
 \usepackage{algorithm,algpseudocode}
+\usepackage{lmodern}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -220,7 +221,6 @@ Mivel a Föld pontjainak térképre való vetítésének több módja is van, a 
  Nem létezik egy egységes vetítési eljárás.
  Vannak elterjedtebbek,mint például a Google Maps és a Mango Map által használt
  Web Mercator vetítés.
- Ez egy hengervetítés
 \end_layout
 
 \begin_layout Section
@@ -384,7 +384,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Szimulált hűtés több célfüggvénnyel
+Szimulát hűtés több célfüggvénnyel
 \end_layout
 
 \end_inset
@@ -407,9 +407,210 @@ begin{algorithmic}[1]
 
 
 \backslash
-Require{$k
+Require{$k 
 \backslash
 geq 1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State legyen U a kezdeti megoldas
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State legyen T a kezdeti kezdeti homerseklet
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State $pareto 
+\backslash
+gets 
+\backslash
+emptyset$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State $pareto 
+\backslash
+gets pareto 
+\backslash
+cup 
+\backslash
+left
+\backslash
+{U
+\backslash
+right
+\backslash
+}$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+While{$T 
+\backslash
+neq fagyaspont$ }        
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{$i=1,..,maxiteracio$}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State $V 
+\backslash
+gets szomszed(U)$
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{V dominans}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State pareto.update(V)
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+State $U 
+\backslash
+gets $V
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+Else
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+If{V nem dominalt}
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State $pareto 
+\backslash
+gets pareto 
+\backslash
+cup 
+\backslash
+left
+\backslash
+{V
+\backslash
+right
+\backslash
+}$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+State $U 
+\backslash
+gets $V
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+Else
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+If{random(0,1) <= exp(obj(U)-obj(V)/T)}
+\end_layout
+
+\begin_layout Plain Layout
+
+					
+\backslash
+State $U 
+\backslash
+gets $V
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+EndIf		
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State $T 
+\backslash
+gets T * hutes$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndWhile
 \end_layout
 
 \begin_layout Plain Layout
