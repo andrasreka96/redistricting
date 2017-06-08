@@ -7,7 +7,10 @@
 \textclass report
 \begin_preamble
 \usepackage{algorithm,algpseudocode}
-\usepackage{lmodern}
+\usepackage{amsmath}
+
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -366,15 +369,195 @@ A megoldásainkat egy olyan halmazba gyűjtjük, amely a fenti eseteknek megfele
  választott súlyvektor az előre meghatározott súlyok listájából.
  Az algoritmus végére minden súlyvektorhoz fog legalább egy nem dominált
  megoldás tartozni.
+ Egy lehetséges algoritmus annak eldöntésére, hogy egy megoldás dominált-e
+ más megoldások által, illetve dominál-e más megoldásokat, k darab célfüggvény
+ esetén:
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Dominálás
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Require{$k 
+\backslash
+geq 1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State dominalt 
+\backslash
+gets false
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State dominaltak 
+\backslash
+gets 
+\backslash
+emptyset
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{$s 
+\backslash
+in 
+\backslash
+mathcal Pareto $}  
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State UdominaltSaltal 
+\backslash
+gets true
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State SdominaltUaltal 
+\backslash
+gets true
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+For{$i=1,..,k$}  
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State UdominaltSaltal 
+\backslash
+gets UdominaltSaltal and s.objektiv(i)<u.objektiv(i)
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State SdominaltUaltal 
+\backslash
+gets SdominaltUaltal and u.objektiv(i)<s.objektiv(i)
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndFor
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State dominalt 
+\backslash
+gets dominalt or UdominaltSaltal
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{SdominaltUaltal}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State $dominaltak 
+\backslash
+gets dominaltak 
+\backslash
+cup 
+\backslash
+left
+\backslash
+{s
+\backslash
+right
+\backslash
+}$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
-A fent leírt algoritmus pszeudokódban , úgy hogy k darab objektív függvénnyel
- dolgozunk.
-\begin_inset Newline newline
-\end_inset
-
-
+A szimulált hűtés több célfüggvény esetén:
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -401,15 +584,6 @@ status open
 
 \backslash
 begin{algorithmic}[1]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-Require{$k 
-\backslash
-geq 1$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -499,9 +673,9 @@ State pareto.update(V)
 
 			
 \backslash
-State $U 
+State U 
 \backslash
-gets $V
+gets V
 \end_layout
 
 \begin_layout Plain Layout
@@ -541,9 +715,9 @@ right
 
 				
 \backslash
-State $U 
+State U 
 \backslash
-gets $V
+gets V
 \end_layout
 
 \begin_layout Plain Layout
@@ -564,9 +738,9 @@ If{random(0,1) <= exp(obj(U)-obj(V)/T)}
 
 					
 \backslash
-State $U 
+State U 
 \backslash
-gets $V
+gets V
 \end_layout
 
 \begin_layout Plain Layout
