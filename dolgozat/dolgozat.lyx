@@ -104,6 +104,42 @@ Bevezetés
 \end_layout
 
 \begin_layout Standard
+A modern demokráciák fő célja a politikai rendszer átláthatóvá tétele kellene
+ hogy legyen.
+ Így nyerhető vissza az emberek bizalma a demokratikus rendszerekbe, mielőtt
+ véglegesen valamilyen szélsőséges megoldáshoz fordulnának.
+ Ezt a célt szolgálják a politikai ülések, perek élő közvetítései.
+ Azonban még mindig vannak olyan folyamatok, amelyek azt az érzetet ébresztik
+ a szavazóban, hogy a döntések tőle függetlenül, zárt ajtók mögött történnek.
+ Ezen folyamatok közé tartozik a szavazókörzetek újra osztása.
+ Legjobb esetben az újraosztási tervet egy függetlennek nevezett bizottság
+ készíti el, amelyet majd valamely törvényhozó szerv elfogad.
+ Az emberek jogosan sejtenek, a gyakran földrajzi szempontból irracionálisnak
+ tetsző határvonalak mögé, rejtett szándékokat.
+ A dolgozatban bemutandó applikáció célja az újraosztási folyamat mindenki
+ számára követhetővé tétele és teljes automatizálása.
+ Az által, hogy eltűnik a folyamatból az emberi tényező elkerülhetővé válnak
+ az olyan felosztások, amelyek valamely pártnak vagy etnikai csoportnak
+ szándékosan kedveznek.
+ Ugyanakkor az, hogy a program milyen kritériumok alapján végzi a felosztást,
+ mindenki számára áttekinthető, így az újraosztás körüli gyakori bizalmatlanság
+ is megszűnne.
+ A következő fejezetben megmagyarázásra kerül néhány, a probléma átlátásához
+ szükséges, politikai fogalom.
+ Majd az ezt követő részekben bemutatásra kerülnek az alkalmazás által használt
+ technológiák, a felosztást végző algoritmus, és végül megvizsgáljuk a program
+ által meghatározott lehetséges felosztásait Románia megyéinek.
+\end_layout
+
+\begin_layout Chapter
+Politika
+\end_layout
+
+\begin_layout Section
+Redistricting
+\end_layout
+
+\begin_layout Standard
 A redistricting kifejezés a választói körzetek határainak újra rajzolását
  jelenti.
  Erre a folyamatra időnként szükség van, mert egy terület lakosságának a
@@ -112,7 +148,19 @@ A redistricting kifejezés a választói körzetek határainak újra rajzolásá
  polgárainak szavazata kevesebbet ér, mint a ritkábban lakott kerületekben
  élő polgároké.
  Ez ellentmond a demokrácia 'egy ember egy szavat' elvével.
- A szavazókörzetek újraosztása mégsem az igazságos választásokkal fonódott
+ 
+\end_layout
+
+\begin_layout Section
+Mallaize
+\end_layout
+
+\begin_layout Section
+Gerrymandering
+\end_layout
+
+\begin_layout Standard
+A szavazókörzetek újraosztása mégsem az igazságos választásokkal fonódott
  össze, hanem a gerrymandering fogalmával.
  A gerrymandering Elbridge Gerry szenátorról kapta a nevét, aki jóváhagyott
  egy olyan körzet felosztási tervet,amely jelentős előnyhöz jutatta a demokraták
@@ -135,11 +183,6 @@ at.
  A választókerület-manipulációt végző párt arra törekszik, hogy az ellenfél
  kárba veszett szavazatait maximalizálja, míg az ő esetében minimalizálja
  a veszteséget.
- Annak érdekében, hogy az újraosztás folyamata igazságos legyen, az érintett
- országok különböző törvényeket hoztak egy felosztás elfogadására vonatkozólag.
- Legtöbb államban független megbízottak végzik az újraosztást, de ha automatizál
-ni lehetne az egész folyamatot, biztosabb lenne, hogy a választópolgárok
- jogai nem sérülnek.
 \end_layout
 
 \begin_layout Chapter
@@ -404,7 +447,7 @@ begin{algorithmic}[1]
 
 
 \backslash
-Require{$k 
+Require{$k
 \backslash
 geq 1$}
 \end_layout
@@ -413,7 +456,7 @@ geq 1$}
 
 
 \backslash
-State dominalt 
+State dominalt
 \backslash
 gets false
 \end_layout
@@ -422,9 +465,9 @@ gets false
 
 
 \backslash
-State dominaltak 
+State dominaltak
 \backslash
-gets 
+gets
 \backslash
 emptyset
 \end_layout
@@ -433,88 +476,88 @@ emptyset
 
 
 \backslash
-For{$s 
+For{$s
 \backslash
-in 
+in
 \backslash
-mathcal Pareto $}  
+mathcal Pareto $}
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-State UdominaltSaltal 
+State UdominaltSaltal
 \backslash
 gets true
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-State SdominaltUaltal 
+State SdominaltUaltal
 \backslash
 gets true
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-For{$i=1,..,k$}  
+For{$i=1,..,k$}
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
-State UdominaltSaltal 
+State UdominaltSaltal
 \backslash
 gets UdominaltSaltal and s.objektiv(i)<u.objektiv(i)
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
-State SdominaltUaltal 
+State SdominaltUaltal
 \backslash
 gets SdominaltUaltal and u.objektiv(i)<s.objektiv(i)
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 EndFor
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-State dominalt 
+State dominalt
 \backslash
 gets dominalt or UdominaltSaltal
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 If{SdominaltUaltal}
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
-State $dominaltak 
+State $dominaltak
 \backslash
-gets dominaltak 
+gets dominaltak
 \backslash
-cup 
+cup
 \backslash
 left
 \backslash
@@ -522,12 +565,12 @@ left
 \backslash
 right
 \backslash
-}$ 
+}$
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 EndIf
 \end_layout
@@ -604,9 +647,9 @@ State legyen T a kezdeti kezdeti homerseklet
 
 
 \backslash
-State $pareto 
+State $pareto
 \backslash
-gets 
+gets
 \backslash
 emptyset$
 \end_layout
@@ -615,11 +658,11 @@ emptyset$
 
 
 \backslash
-State $pareto 
+State $pareto
 \backslash
-gets pareto 
+gets pareto
 \backslash
-cup 
+cup
 \backslash
 left
 \backslash
@@ -627,80 +670,80 @@ left
 \backslash
 right
 \backslash
-}$ 
+}$
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-While{$T 
+While{$T
 \backslash
-neq fagyaspont$ }        
+neq fagyaspont$ }
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$i=1,..,maxiteracio$}
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
-State $V 
+State $V
 \backslash
 gets szomszed(U)$
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{V dominans}
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 State pareto.update(V)
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
-State U 
+State U
 \backslash
 gets V
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 Else
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 If{V nem dominalt}
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
-State $pareto 
+State $pareto
 \backslash
-gets pareto 
+gets pareto
 \backslash
-cup 
+cup
 \backslash
 left
 \backslash
@@ -708,74 +751,74 @@ left
 \backslash
 right
 \backslash
-}$ 
+}$
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
-State U 
+State U
 \backslash
 gets V
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 Else
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 If{random(0,1) <= exp(obj(U)-obj(V)/T)}
 \end_layout
 
 \begin_layout Plain Layout
 
-					
+
 \backslash
-State U 
+State U
 \backslash
 gets V
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 EndIf
 \end_layout
 
 \begin_layout Plain Layout
 
-			
-\backslash
-EndIf		
-\end_layout
 
-\begin_layout Plain Layout
-
-		
 \backslash
 EndIf
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 EndFor
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-State $T 
+State $T
 \backslash
 gets T * hutes$
 \end_layout
@@ -860,7 +903,7 @@ Objektív Függvények
 \begin_layout Standard
 A program alapértelmezetten két függvényt használ a megoldások kiértékelésénél.
  Ezek a függvények a gerrymandering és a malapportionment elkerülését szolgálják.
- A 
+ A
 \begin_inset Formula $C_{1}$
 \end_inset
 
@@ -903,16 +946,16 @@ Ahol
  a megyéhez tartozó körzetek száma.
  A másik objektív függvény a körzetek formájának a kompaktságát méri.
  Abból kiindulva, hogy a legkompaktabb forma a kör, mérjük a körzet kompaktságát.
- Legyen a körzethez tartozó unitok által formált alakzat kerülete 
+ Legyen a körzethez tartozó unitok által formált alakzat kerülete
 \begin_inset Formula $P_{s}$
 \end_inset
 
- , területe 
+ , területe
 \begin_inset Formula $A_{s}$
 \end_inset
 
 .
- Minnél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy 
+ Minnél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy
 \begin_inset Formula $A_{s}$
 \end_inset
 
