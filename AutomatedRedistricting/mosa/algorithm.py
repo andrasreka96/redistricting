@@ -64,6 +64,7 @@ class MOSA:
         self.max_size_pareto = parameters['max_size_pareto']
         self.population_country = parameters['population_country']
         self.nr_of_districts = parameters['nr_of_districts']
+        self.national_mean = self.population_country/self.nr_of_districts
 
         self.district_builder = DistrictBuilder(layer_poliline,attributes['attribute_id_poliline'])
         self.objf = objectives.ObjFunc()
@@ -156,8 +157,8 @@ class MOSA:
         return solution
 
     def NumberOfDistricts(self):
-        national_mean = self.population_country/self.nr_of_districts
-        remainder = map(lambda x: 2 if x<=1 else x,[self.counties_pop[countyid]//national_mean for countyid in range(1,self.nr_of_counties + 1)])
+
+        remainder = map(lambda x: 2 if x<=1 else x,[self.counties_pop[countyid]//self.national_mean for countyid in range(1,self.nr_of_counties + 1)])
         slice_ = self.nr_of_districts-sum(remainder)
 
         #romania specific
@@ -165,7 +166,7 @@ class MOSA:
         remainder[self.nr_of_counties-3]=6
 
         if slice_:
-            for i in [j[0] for j in sorted(enumerate(remainder),key=lambda i:i[1],reverse=True)][:int(slice_)]:                             
+            for i in [j[0] for j in sorted(enumerate(remainder),key=lambda i:i[1],reverse=True)][:int(slice_)]:
                 remainder[i]+=1
 
         logging.info(remainder)
@@ -181,8 +182,25 @@ class MOSA:
             units = self.dict_units[countyid]
 
             district = self.CreateInitialCounty(district_in_counties[countyid-1],units,countyid)
-            county = County(countyid,self.counties_dict[countyid],district)
+
+            #determine the allowed deviations in each county
+
+            #differene between the national and state mean
+            diff = abs(self.counties_pop[countyid]/district_in_counties[countyid-1]-self.national_mean)
+
+            #store deviations in county
+            if diff<self.counties_pop[countyid]*(5/100):
+                deviation = 15
+            else:
+                if diff < self.counties_pop[countyid]/10:
+                    deviation = 10
+                else:
+                    deviation = 5
+
+            county = County(countyid,self.counties_dict[countyid],district,deviation)
             counties.append(county)
+
+
 
         objectives = self.objf.EvaluateObjectives(counties)
         LayerManipulation(self.layer_poligon).ColorDistricts(counties,'color')
@@ -291,13 +309,14 @@ class MOSA:
             for new,old in zip(new_solution.objective_values, solution.objective_values):
                 dominatedbys = dominatedbys and old<new
                 dominatess = dominatess and new<old
+
             dominated = dominated or dominatedbys
             if dominatess:
                 dominate.append(solution)
 
         return (dominated,dominate)
 
-    def ChoiceBetweenDominated(self,solution,dominates):
+    def ChooseBetweenDominated(self,solution,dominates):
         best = dominates.pop()
 
         #how much better is the solution than the dominated one
@@ -323,7 +342,7 @@ class MOSA:
 
         if dominates:
 
-            removable_solution = self.ChoiceBetweenDominated(solution,dominates)
+            removable_solution = self.ChooseBetweenDominated(solution,dominates)
             solution.weight_vectors = removable_solution.weight_vectors
             solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
             removable_solution = solution

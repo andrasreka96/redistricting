@@ -1,8 +1,9 @@
 class County:
-    def __init__(self,id,name,districts,population=None):
-        self.id=id
-        self.name=name
-        self.districts=districts
+    def __init__(self,id,name,districts,deviation,population=None):
+        self.id = id
+        self.name = name
+        self.districts = districts
+        self.deviation = deviation
         self.population = sum([district.population for district in districts])
 
     def toString(self):
