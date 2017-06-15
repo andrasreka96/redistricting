@@ -105,47 +105,66 @@ Bevezetés
 \end_layout
 
 \begin_layout Standard
-A modern demokráciák fő célja a politikai rendszer átláthatóvá tétele kellene
- hogy legyen.
- Így nyerhető vissza az emberek bizalma a demokratikus rendszerekbe, mielőtt
- véglegesen valamilyen szélsőséges megoldáshoz fordulnának.
- Ezt a célt szolgálják a politikai ülések, perek élő közvetítései.
- Azonban még mindig vannak olyan folyamatok, amelyek azt az érzetet ébresztik
+A modern demokráciák működésének elengedhetetlen alapfeltétele (többek között)
+ egy átlátható választási rendszer.
+ Egy pártatlan és átlátható választási folyamat hiánya, kétségbe vonhatja
+ a közigazgatási rendszer (kormány, intézmények, stb.) legitimitását.
+ Sajnos mindig vannak olyan folyamatok, amelyek azt az érzetet ébresztik
  a szavazóban, hogy a döntések tőle függetlenül, zárt ajtók mögött zajlanak.
- Ezen folyamatok közé tartozik a szavazókörzetek újra osztása.
+ Ezen folyamatok közé tartozik a szavazókörzetek újraosztása.
  Jobb esetben, az újraosztási tervet egy függetlennek nevezett bizottság
  készíti el, amelyet majd valamely törvényhozó szerv elfogad.
- Az emberek jogosan sejtenek, a gyakran földrajzi szempontból irracionálisnak
- tetsző határvonalak mögé, rejtett szándékokat.
- 
+ Az emberek jogosan sejtenek rejtett szándékokat a gyakran földrajzi szempontból
+ irracionálisnak tetsző határvonalak mögött: 
 \emph on
-Redistricting 
+redistricting
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A választási körzetek újraosztása
+\end_layout
+
+\end_inset
+
+ 
 \emph default
 és 
 \emph on
-Gerrymandering
+gerrymandering
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A választási körzetek újraosztási folyamatának befolyásolása annak érdekében,
+ hogy bizonyos érdekcsoportoknak kedvező választási eredmény szülessen.
+\end_layout
+
+\end_inset
+
+
 \emph default
-, ez a két kifejezés elválaszthatatlanná vált.
+ – ez a két kifejezés elválaszthatatlanná vált.
  Az újra osztás elkerülhetetlen, ezért a választókerület-manipulációt kell
  megszüntetni.
  A dolgozatban bemutandó QGIS plug-in célja az újraosztási folyamat mindenki
  számára követhetővé tétele és teljes automatizálása.
  A felosztást egy több-célfüggvényű, a szimulált hűtés módszerét használó
  algoritmus végzi.
- Az által, hogy eltűnik a folyamatból az emberi tényező elkerülhetővé válnak
+ Azáltal, hogy eltűnik a folyamatból az emberi tényező, elkerülhetővé válnak
  az olyan felosztások, amelyek valamely pártnak vagy etnikai csoportnak
  szándékosan kedveznek.
  Ugyanakkor az, hogy a program milyen kritériumok alapján végzi a felosztást,
  mindenki számára áttekinthető, így az újraosztás körüli gyakori bizalmatlanság
  is megszűnne.
- Ez remélhetőleg csökkentené a kételyeket, a többségi elven müködő demokratikus
+ Ez remélhetőleg csökkentené a kételyeket, a többségi elven működő demokratikus
  rendszerek legitimitását illetően, és megszüntetné a történelem során oly
- sokszor előforduló, önkényes határvonalakat.
+ sokszor előforduló, önkényes "határvonalakat".
  
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -177,10 +196,11 @@ status collapsed
  A következő fejezetben megmagyarázásra kerül néhány, a probléma átlátásához
  szükséges, politikai fogalom.
  Majd az ezt követő részben bemutatásra kerülnek az alkalmazás által használt
- technológiák, elsősorban a GIS, majd konrétan a QGIS.
- Ez után a felosztást végző algoritmus, néhány elengedhetetlen kritériumnak
- megfeleltethető függvény, és végül megvizsgáljuk a program által meghatározott
- lehetséges felosztásait Románia megyéinek.
+ technológiák, elsősorban a GIS, majd konkrétan a QGIS.
+ Ezután a felosztást végző algoritmus, néhány elengedhetetlen kritériumnak
+ megfeleltethető függvény.
+ Végül megvizsgáljuk a program által meghatározott lehetséges felosztásait
+ Románia megyéinek.
 \end_layout
 
 \begin_layout Chapter
