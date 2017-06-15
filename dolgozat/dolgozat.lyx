@@ -353,9 +353,38 @@ Felhasználás
 Az adatok reprezentálásának és elemzésének a GIS által biztosított módját
  sok területen használják: az epidemiológusok a vírusok globális terjedését
  vizsgálják, a kriminológusok bűnözési mintákat keresnek, a geológusok a
- Föld fizikai elváltozásait megfigyelve előre jelzik a földmozgásokat,vagy
- lehetséges fosszilis erőforrásokat keresnek, a globális felmelegedéssel
- kapcsolatos kutatásokban is használnak földrajzi információs rendszereket.
+ Föld fizikai elváltozásait megfigyelve előre jelzik a földmozgásokat, vagy
+ lehetséges fosszilis erőforrásokat keresnek.
+ Minden terület más természeti veszélyeknek kiszolgáltatott, ezen természetes
+ jellemzők összegyűjtése és elemzése segít a kockázatcsökkentő intézkedések
+ meghatározásában, és az esetleges katasztrófa utáni intézkedésekben.
+ A MODFLOW (talajvíz modelező program) GIS-be való integrálásával elérhető,
+ hogy a talajvíz mozgás modelek más GIS adatokkal összekapcsolva váljanak
+ elemezhetővé.
+ Ezt használva vízkészlet-kezeléssel kapcsolatos problémákat oldanak meg.
+ Ugyanakkor a GIS az ökologia fontos eszköze, segítségével belehet határolni
+ a vadon elő állatok mozgáskörzetét (legkisebb konvex sokszög meghúzása),
+ így elkerülhető az élőhelyeik mesterséges szétdarabolódása.
+ Nem csak tudományos területeken használják a GIS-t, ugyanúgy a hétköznapi
+ tevékenységeink szerves része.
+ Amikor egy ismeretlen helyen, egy kocsma után keresgélünk, ma már nem úgy
+ tesszük, hogy bebarangoljuk a környéket.
+ Egyszerűen az okostelefonunk segítségével megnezzük a közeli intézményeket,
+ szűrjük őket funkcionalitásuk szerint, esetleg más emberek ajánlásait,
+ véleményeit is elolvassuk.
+ Amint kiválasztottuk a megfelelő helyet a GPS segítségével egyenesen oda
+ megyünk.
+ A Mapbox Outdoors alkalmazás bicikliutakat, turaösvényeket, sípályakat
+ mutat a szabadban bóklászóknak.
+ A Madrid’s Air Map alkalmazást használva megfigyelhetőek a madridi levegőt
+ alkotó gázak, szennyeződések, vírusok.
+ Mindenki használ valamilyen GIS technológiát, van aki 
+\emph on
+geotagged 
+\emph default
+információkkal ömleszti el az internetet, van aki a GIS eszközök segítségével
+ az adatok komplex elemzését végzi, és van aki egyszerűen csak a világban
+ navigál.
 \end_layout
 
 \begin_layout Chapter
