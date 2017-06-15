@@ -13,9 +13,11 @@ class ObjFunc:
             data = yaml.load(file_descriptor)
             parameters = data.get('parameters')
             self.nr_of_districts = parameters['nr_of_districts']
+            self.deviation = parameters['deviation']
             self.population_country =parameters['population_country']
             self.quota = self.population_country/self.nr_of_districts
             self.logger = logging.getLogger()
+
 
     def c1(self,counties):
         sum=0
@@ -26,7 +28,7 @@ class ObjFunc:
             for district in county.districts:
                     sp_product = district.population/county.population - 1/nr_of_districts
                     self.logger.debug("district %s fp:%f",district.unique_id,sp_product)
-                    sum+=(fp_product*fp_product*sp_product*sp_product)*100
+                    sum+=(fp_product*fp_product*sp_product*sp_product)*1000
                     self.logger.debug("product:%f",fp_product*fp_product*sp_product*sp_product)
         return sum
 
@@ -38,10 +40,11 @@ class ObjFunc:
             for district in county.districts:
                 val = (district.perimeter/(4*math.sqrt(district.area))-1)
                 self.logger.debug("district %s:%f",district.unique_id,val)
-                sum+=val/10
+                sum+=val
         return sum
 
     def EvaluateObjectives(self,counties,log=None):
+        #[C1(s),C2(s),..]
         if log:
             self.logger.setLevel(logging.DEBUG)
             l = [f(counties) for f in [self.c1,self.c2]]

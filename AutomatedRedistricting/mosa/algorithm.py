@@ -362,6 +362,49 @@ class MOSA:
 
         return ans
 
+    def patchSolution(self,pareto,w):
+    #it splits the solutions, selects between them, than creates the best solution from the pieces
+        counties = []
+
+        for i in range(0,self.nr_of_counties):
+            bestcounty = next(iter(pareto)).counties[i]
+            #determine the objectibe value for the given weights
+            bestval = self.dot(self.objf.EvaluateObjectives([bestcounty]),w)
+
+            #look for the best redistricting plan of the county
+            for s in pareto:
+                val = self.dot(self.objf.EvaluateObjectives([s.counties[i]]),w)
+                if bestval > val:
+                    bestcounty = s.counties[i]
+                    bestval = val
+            counties.append(bestcounty)
+
+        return Solution(counties,self.objf.EvaluateObjectives(counties))
+
+    def showResults(self,pareto):
+        minims = random.sample(pareto,1)[0]
+        minimff = minims
+        min_weighted_obj = self.dot(minimff.objective_values,minimff.weight_vectors)
+        for s in pareto:
+            self.log.LogSolution(s)
+            if minims.weighted_obj>s.weighted_obj:
+                minims = s
+            if s.weight_vectors[0] == s.weight_vectors[1] and min_weighted_obj>s.weighted_obj:
+                minimff = s
+                min_weighted_obj = s.weighted_obj
+
+        self.log.LogSolution(minims,"Best Solution")
+        LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color1')
+        self.log.LogObj(minims)
+
+        self.log.LogSolution(minimff,"Best Solution(5-5)")
+        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color2')
+        self.log.LogObj(minimff)
+
+        self.log.LogSolution(self.patchSolution(pareto,[0.5,0.5]),"Patch Solution(5-5)")
+        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
+        self.log.LogObj(minimff)
+
     def Anneal(self):
 	#U-current solution
 	#V-neighbour solution
@@ -412,7 +455,7 @@ class MOSA:
                         #in this case weight vectors for the solution weren't assigned
 
                             V.weight_vectors = U.weight_vectors
-                            self.log.LogSolution(V,"Changed to current solution")
+                            self.log.LogSolution(V,"Changed to current solution with probability %s" % probability)
                             U=V
                     else:
                         U=V
@@ -420,20 +463,4 @@ class MOSA:
             t=self.reduceTemperature(t)
 
         logging.info('Temperature is frozen')
-        minims = random.sample(pareto,1)[0]
-        minimff = None
-        min_weighted_obj = 10000000
-        for s in pareto:
-            self.log.LogSolution(s)
-            if minims.weighted_obj>s.weighted_obj:
-                minims = s
-            if s.weight_vectors[0] == s.weight_vectors[1] and min_weighted_obj>s.weighted_obj:
-                minimff = s
-                min_weighted_obj = s.weighted_obj
-
-        self.log.LogSolution(minims,"Best Solution")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color2')
-        self.log.LogObj(minims)
-        self.log.LogSolution(minimff,"Best Solution(5-5)")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
-        self.log.LogObj(minimff)
+        self.showResults(pareto)
