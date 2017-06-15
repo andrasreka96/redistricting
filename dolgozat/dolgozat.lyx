@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass report
 \begin_preamble
-\usepackage{algorithm,algpseudocode}
 \usepackage{amsmath}
+\usepackage[vlined,ruled]{algorithm2e}
 
-\algnewcommand\algorithmicforeach{\textbf{for each}}
-\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+%\algnewcommand\algorithmicforeach{\textbf{for each}}
+%\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -145,21 +145,57 @@ A választási körzetek újraosztási folyamatának befolyásolása annak érde
 
 \emph default
  – ez a két kifejezés elválaszthatatlanná vált.
- Az újra osztás elkerülhetetlen, ezért a választókerület-manipulációt kell
- megszüntetni.
- A dolgozatban bemutandó QGIS plug-in célja az újraosztási folyamat mindenki
- számára követhetővé tétele és teljes automatizálása.
- A felosztást egy több-célfüggvényű, a szimulált hűtés módszerét használó
- algoritmus végzi.
+ A körzetek újraosztás sokszor elkerülhetetlen, ezért az átlátható és az
+ igazságos választások érdekében a választókerület-manipulációt kell megszüntetn
+i.
+ A dolgozatban bemutatott QGIS
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Korábbi nevén: Quantum GIS.
+\end_layout
+
+\end_inset
+
+ kiterjesztés (plug-in) célja az újraosztási folyamat teljes automatizálása,
+ ami mindenki számára követhetővé és átláthatóvá teszi a folyamatot.
+ A felosztást egy többszörös célfüggvényt optimalizáló algoritmus végzi,
+ a szimulált hűtés
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Angolul 
+\begin_inset Quotes pld
+\end_inset
+
+simulated annealing
+\begin_inset Quotes prd
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ módszerét használva.
  Azáltal, hogy eltűnik a folyamatból az emberi tényező, elkerülhetővé válnak
- az olyan felosztások, amelyek valamely pártnak vagy etnikai csoportnak
- szándékosan kedveznek.
+ az olyan felosztások, amelyek valamely érdekcsoportnak szándékosan kedveznek.
  Ugyanakkor az, hogy a program milyen kritériumok alapján végzi a felosztást,
  mindenki számára áttekinthető, így az újraosztás körüli gyakori bizalmatlanság
  is megszűnne.
- Ez remélhetőleg csökkentené a kételyeket, a többségi elven működő demokratikus
+ Ez remélhetőleg csökkentené a kételyeket a többségi elven működő demokratikus
  rendszerek legitimitását illetően, és megszüntetné a történelem során oly
- sokszor előforduló, önkényes "határvonalakat".
+ sokszor előforduló, önkényes 
+\begin_inset Quotes pld
+\end_inset
+
+határvonalakat
+\begin_inset Quotes prd
+\end_inset
+
+.
  
 \begin_inset Float figure
 wide false
@@ -169,7 +205,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename NORTH CAROLINA'S 12TH DISTRICT.png
+	filename NCDISTRICT.png
 	lyxscale 40
 	scale 20
 
@@ -193,18 +229,67 @@ status open
 
 \end_inset
 
- A következő fejezetben megmagyarázásra kerül néhány, a probléma átlátásához
- szükséges, politikai fogalom.
- Majd az ezt követő részben bemutatásra kerülnek az alkalmazás által használt
- technológiák, elsősorban a GIS, majd konkrétan a QGIS.
- Ezután a felosztást végző algoritmus, néhány elengedhetetlen kritériumnak
- megfeleltethető függvény.
- Végül megvizsgáljuk a program által meghatározott lehetséges felosztásait
- Románia megyéinek.
+ 
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Politika"
+
+\end_inset
+
+.
+ fejezetben megmagyarázásra kerül néhány, a probléma átlátásához szükséges
+ politikai fogalom.
+ Majd a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:GISQGIS"
+
+\end_inset
+
+.
+ fejezet röviden ismerteti az alkalmazás által használt technológiákat:
+ a térinformatikai (GIS) rendszereket általában, majd konkrétan a QGIS térinform
+atikai szoftvercsomagot.
+ 
+\end_layout
+
+\begin_layout Standard
+A szavazókörzetek felosztását végző algoritmus részletes bemutatása a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Algoritmus"
+
+\end_inset
+
+.
+ fejezetben található.
+ A többszörös célfüggvény néhány elengedhetetlen kritériumnak megfelelően
+ van megválasztva, amit szintén ebben a fejezetben tárgyalunk.
+ Végül (a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Romania"
+
+\end_inset
+
+.
+ fejezetben), a módszer alkalmazásaként, generáljuk Románia megyéinek lehetséges
+ felosztásait.
 \end_layout
 
 \begin_layout Chapter
 Politika
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Politika"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -219,7 +304,7 @@ A redistricting kifejezés a választói körzetek határainak újra rajzolásá
  Választói szemszögből, ez azt jelenti, hogy a sürűbben lakott körzetek
  polgárainak szavazata kevesebbet ér, mint a ritkábban lakott kerületekben
  élő polgároké.
- Ez ellentmond a demokrácia 'egy ember egy szavat' elvével.
+ Ez ellentmond a demokrácia 'egy ember egy szavazat' elvével.
  
 \end_layout
 
@@ -258,11 +343,18 @@ at.
 \end_layout
 
 \begin_layout Chapter
-GIS, QGIS, Python
+Térinformatikai rendszerek
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:GISQGIS"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-A GIS(Geographic Information System) egy számítógépes rendszer, amelyet
+A GIS (Geographic Information System) egy számítógépes rendszer, amelyet
  földrajzi helyhez kapcsolódó adatok megjelenítésére, elemzésére és tárolására
  dolgoztak ki.
  Az elképzelés a következő:
@@ -328,12 +420,12 @@ Mivel a Föld pontjainak térképre való vetítésének több módja is van, a 
  akarjuk illeszteni.
  A használt vetítés tárolása a projection (.prj) fájlokban történik.
  A térképvetítés matematikai transzformációk sorozata, amely során egy szferikus
- felület felszínén található pontok síkba vetitődnek.
+ felület felszínén található pontok síkba vetítődnek.
  Először a Föld szabálytalan felszínét egy szabályos geometria alakzatként
  kell kezelnünk, mint a gömb vagy szferoid, aztán az így kapott felületet
  vetíthetjük síkba.
- Ez a folyamat mindig valamilyen torzúlást eredményez, ezért van olyan sok
- féle vetítés.
+ Ez a folyamat mindig valamilyen torzulást eredményez, ezért van olyan sokféle
+ vetítés.
  Van amelyik a pontok közti távolságot őrzi meg, mások a levetített rész
  területét, formáját tartják meg.
  Nem létezik egy egységes vetítési eljárás.
@@ -378,7 +470,7 @@ Az adatok reprezentálásának és elemzésének a GIS által biztosított módj
  Minden terület más természeti veszélyeknek kiszolgáltatott, ezen természetes
  jellemzők összegyűjtése és elemzése segít a kockázatcsökkentő intézkedések
  meghatározásában, és az esetleges katasztrófa utáni intézkedésekben.
- A MODFLOW (talajvíz modelező program) GIS-be való integrálásával elérhető,
+ A MODFLOW (talajvíz modellező program) GIS-be való integrálásával elérhető,
  hogy a talajvíz mozgás modelek más GIS adatokkal összekapcsolva váljanak
  elemezhetővé.
  Ezt használva vízkészlet-kezeléssel kapcsolatos problémákat oldanak meg.
@@ -409,6 +501,13 @@ információkkal ömleszti el az internetet, van aki a GIS eszközök segítség
 
 \begin_layout Chapter
 Algoritmus
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Algoritmus"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -487,7 +586,7 @@ ek az általunk definiált objektív függvényeknek.
 \end_layout
 
 \begin_layout Enumerate
-V' minden objektív függvény szerint jobb megoldásnak bizonyúl
+V' minden objektív függvény szerint jobb megoldásnak bizonyul
 \end_layout
 
 \begin_layout Enumerate
@@ -495,18 +594,18 @@ V' csak bizonyos objektív függvényekre mutat jobb eredményt
 \end_layout
 
 \begin_layout Enumerate
-V' minden objektív függvény szerint rosszabb megoldásnak bizonyúl
+V' minden objektív függvény szerint rosszabb megoldásnak bizonyul
 \end_layout
 
 \begin_layout Standard
 A megoldásainkat egy olyan halmazba gyűjtjük, amely a fenti eseteknek megfelelő
- szabályok szerint bövűl.
+ szabályok szerint bővül.
  Ha V' dominál más megoldásokat (1 eset), átveszi egy dominált megoldás
  helyét és súlyait.
- Azt a megoldást fogja lecserélni, amelyiknél a leginkább jobbnak bizonyúl.
- Ezt azt jelenti, hogy összehasonlitódnak a objektív függvények súlyozott
+ Azt a megoldást fogja lecserélni, amelyiknél a leginkább jobbnak bizonyul.
+ Ezt azt jelenti, hogy összehasonlítódnak a objektív függvények súlyozott
  összegei, és amelyiknél V' súlyozott összege (a súlyokat attól a megoldástól
- kölcsönzi, amellyel éppen összehasonlitódik) a legkisebb, az a megoldás
+ kölcsönzi, amellyel éppen összehasonlítódik) a legkisebb, az a megoldás
  lesz helyettesítve.
  Ha az új megoldás nem dominál (nem igaz az 1.
  eset) és nem dominált (nem igaz a 3.
@@ -520,25 +619,10 @@ A megoldásainkat egy olyan halmazba gyűjtjük, amely a fenti eseteknek megfele
  megoldás tartozni.
  Egy lehetséges algoritmus annak eldöntésére, hogy egy megoldás dominált-e
  más megoldások által, illetve dominál-e más megoldásokat, k darab célfüggvény
- esetén:
-\begin_inset Float algorithm
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Dominálás
+ esetén: 
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -546,36 +630,88 @@ status open
 
 
 \backslash
-begin{algorithmic}[1]
+begin{algorithm}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKw{LogicAnd}{and}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKw{LogicOr}{or}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwData{LogicTrue}{True}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwData{LogicFalse}{False}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-Require{$k
+Input{$k$, ahol $k 
 \backslash
 geq 1$}
 \end_layout
 
 \begin_layout Plain Layout
 
-
+$dominalt 
 \backslash
-State dominalt
+leftarrow 
 \backslash
-gets false
+LogicFalse$
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-
+$dominaltak 
 \backslash
-State dominaltak
+leftarrow
 \backslash
-gets
+emptyset $
 \backslash
-emptyset
+;
 \end_layout
 
 \begin_layout Plain Layout
@@ -586,82 +722,95 @@ For{$s
 \backslash
 in
 \backslash
-mathcal Pareto $}
+mathcal Pareto $} {
 \end_layout
 
 \begin_layout Plain Layout
 
-
+	$UdominaltSaltal 
 \backslash
-State UdominaltSaltal
+leftarrow 
 \backslash
-gets true
+LogicTrue$
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-
+	$SdominaltUaltal 
 \backslash
-State SdominaltUaltal
+leftarrow 
 \backslash
-gets true
+LogicTrue$
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-
+	
 \backslash
-For{$i=1,..,k$}
+For{$i=1,..,k$} {
 \end_layout
 
 \begin_layout Plain Layout
 
-
+		$UdominaltSaltal 
 \backslash
-State UdominaltSaltal
+leftarrow UdominaltSaltal
 \backslash
-gets UdominaltSaltal and s.objektiv(i)<u.objektiv(i)
+  
+\backslash
+LogicAnd
+\backslash
+  s.objektiv(i)<u.objektiv(i) $
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-
+		$SdominaltUaltal 
 \backslash
-State SdominaltUaltal
+leftarrow SdominaltUaltal 
 \backslash
-gets SdominaltUaltal and u.objektiv(i)<s.objektiv(i)
+  
+\backslash
+LogicAnd 
+\backslash
+ u.objektiv(i)<s.objektiv(i) $
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-
-\backslash
-EndFor
+	} 
 \end_layout
 
 \begin_layout Plain Layout
 
-
+	$dominalt 
 \backslash
-State dominalt
+leftarrow dominalt 
 \backslash
-gets dominalt or UdominaltSaltal
+ 
+\backslash
+LogicOr
+\backslash
+  UdominaltSaltal $
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-
+	
 \backslash
-If{SdominaltUaltal}
-\end_layout
-
-\begin_layout Plain Layout
-
-
+lIf{SdominaltUaltal}{$dominaltak 
 \backslash
-State $dominaltak
-\backslash
-gets dominaltak
+leftarrow dominaltak
 \backslash
 cup
 \backslash
@@ -671,28 +820,26 @@ left
 \backslash
 right
 \backslash
-}$
+}$} 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-EndIf
+caption{Dominálás($k$)}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-EndFor
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{algorithmic}
+end{algorithm}
 \end_layout
 
 \end_inset
@@ -700,31 +847,11 @@ end{algorithmic}
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Standard
 A szimulált hűtés több célfüggvény esetén:
-\begin_inset Float algorithm
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Szimulát hűtés több célfüggvénnyel
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -732,37 +859,24 @@ status open
 
 
 \backslash
-begin{algorithmic}[1]
+begin{algorithm}[H] 
+\backslash
+caption{Szimulát hűtés több célfüggvénnyel}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-State legyen U a kezdeti megoldas
-\end_layout
-
-\begin_layout Plain Layout
-
-
+State legyen U a kezdeti megoldas 
 \backslash
-State legyen T a kezdeti kezdeti homerseklet
-\end_layout
-
-\begin_layout Plain Layout
-
-
+State legyen T a kezdeti kezdeti homerseklet 
 \backslash
 State $pareto
 \backslash
 gets
 \backslash
-emptyset$
-\end_layout
-
-\begin_layout Plain Layout
-
-
+emptyset$ 
 \backslash
 State $pareto
 \backslash
@@ -776,74 +890,29 @@ left
 \backslash
 right
 \backslash
-}$
-\end_layout
-
-\begin_layout Plain Layout
-
-
+}$ 
 \backslash
 While{$T
 \backslash
-neq fagyaspont$ }
-\end_layout
-
-\begin_layout Plain Layout
-
-
+neq fagyaspont$ } 
 \backslash
-For{$i=1,..,maxiteracio$}
-\end_layout
-
-\begin_layout Plain Layout
-
-
+For{$i=1,..,maxiteracio$} 
 \backslash
 State $V
 \backslash
-gets szomszed(U)$
-\end_layout
-
-\begin_layout Plain Layout
-
-
+gets szomszed(U)$ 
 \backslash
-If{V dominans}
-\end_layout
-
-\begin_layout Plain Layout
-
-
+If{V dominans} 
 \backslash
-State pareto.update(V)
-\end_layout
-
-\begin_layout Plain Layout
-
-
+State pareto.update(V) 
 \backslash
 State U
 \backslash
-gets V
-\end_layout
-
-\begin_layout Plain Layout
-
-
+gets V 
 \backslash
-Else
-\end_layout
-
-\begin_layout Plain Layout
-
-
+Else 
 \backslash
-If{V nem dominalt}
-\end_layout
-
-\begin_layout Plain Layout
-
-
+If{V nem dominalt} 
 \backslash
 State $pareto
 \backslash
@@ -857,81 +926,31 @@ left
 \backslash
 right
 \backslash
-}$
-\end_layout
-
-\begin_layout Plain Layout
-
-
+}$ 
 \backslash
 State U
 \backslash
-gets V
-\end_layout
-
-\begin_layout Plain Layout
-
-
+gets V 
 \backslash
-Else
-\end_layout
-
-\begin_layout Plain Layout
-
-
+Else 
 \backslash
-If{random(0,1) <= exp(obj(U)-obj(V)/T)}
-\end_layout
-
-\begin_layout Plain Layout
-
-
+If{random(0,1) <= exp(obj(U)-obj(V)/T)} 
 \backslash
 State U
 \backslash
-gets V
-\end_layout
-
-\begin_layout Plain Layout
-
-
+gets V 
 \backslash
-EndIf
-\end_layout
-
-\begin_layout Plain Layout
-
-
+EndIf 
 \backslash
-EndIf
-\end_layout
-
-\begin_layout Plain Layout
-
-
+EndIf 
 \backslash
-EndIf
-\end_layout
-
-\begin_layout Plain Layout
-
-
+EndIf 
 \backslash
-EndFor
-\end_layout
-
-\begin_layout Plain Layout
-
-
+EndFor 
 \backslash
 State $T
 \backslash
-gets T * hutes$
-\end_layout
-
-\begin_layout Plain Layout
-
-
+gets T * hutes$ 
 \backslash
 EndWhile
 \end_layout
@@ -940,21 +959,12 @@ EndWhile
 
 
 \backslash
-end{algorithmic}
+end{algorithm}
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Redistricting
 \end_layout
 
 \begin_layout Section
@@ -1114,7 +1124,7 @@ A másik objektív függvény a körzetek formájának a kompaktságát méri.
 \end_inset
 
 .
- Minnél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy 
+ Minél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy 
 \begin_inset Formula $A_{s}$
 \end_inset
 
@@ -1129,28 +1139,34 @@ C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}(\frac{PE_{s}}{4\sqrt{A_{s}}}-1)
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Chapter
 Románia
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Romania"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Chapter
-Összefoglalás, eredmények
+\begin_layout Section
+Románia
 \end_layout
 
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "Rin"
+key "Elek"
 
 \end_inset
 
-E.
- A.
- Ringcón-García, M.
- A.
- Guiterrez-Andrade et al., A Multiobjective Algorithm for Redistricting,
- Journal of Applied Research and Technology Volume 11, Issue 3, June 2013,
- Pages 324–330.
+I.
+ Elek, 
+\emph on
+Bevezetés a geoinformatikába
+\emph default
+, ELTE Eötvös Kiadó (Budapest), 2006.
 \end_layout
 
 \begin_layout Bibliography
@@ -1161,15 +1177,42 @@ key "Kirk"
 \end_inset
 
 S.
- Kirkpatrick; C.
+ Kirkpatrick, C.
  D.
- Gelatt; M.
+ Gelatt, M.
  P.
- Vecchi , Optimization by Simulated Annealing , Science, New Series, Vol.
+ Vecchi, Optimization by Simulated Annealing, Science New Series, Vol.
  220, No.
  4598.
  (May 13, 1983), pp.
  671-680.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ring"
+
+\end_inset
+
+E.
+ A.
+ Ringcón-García, M.
+ A.
+ Guiterrez-Andrade et al., A Multiobjective Algorithm for Redistricting,
+ Journal of Applied Research and Technology Volume 11, Issue 3, June 2013,
+ pp.
+ 324–330.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
