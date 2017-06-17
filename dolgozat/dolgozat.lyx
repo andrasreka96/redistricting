@@ -269,7 +269,7 @@ reference "chap:Algoritmus"
  fejezetben található.
  A többszörös célfüggvény néhány elengedhetetlen kritériumnak megfelelően
  van megválasztva, amit szintén ebben a fejezetben tárgyalunk.
- Végül (a 
+ Végül az 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Romania"
@@ -277,8 +277,8 @@ reference "chap:Romania"
 \end_inset
 
 .
- fejezetben), a módszer alkalmazásaként, generáljuk Románia megyéinek lehetséges
- felosztásait.
+ fejezetben – a módszer alkalmazásaként – generáljuk Románia megyéinek lehetsége
+s felosztásait.
 \end_layout
 
 \begin_layout Chapter
@@ -304,7 +304,15 @@ A redistricting kifejezés a választói körzetek határainak újra rajzolásá
  Választói szemszögből, ez azt jelenti, hogy a sürűbben lakott körzetek
  polgárainak szavazata kevesebbet ér, mint a ritkábban lakott kerületekben
  élő polgároké.
- Ez ellentmond a demokrácia 'egy ember egy szavazat' elvével.
+ Ez ellentmond a demokrácia 
+\begin_inset Quotes pld
+\end_inset
+
+egy ember egy szavazat
+\begin_inset Quotes prd
+\end_inset
+
+ elvével.
  
 \end_layout
 
@@ -500,7 +508,7 @@ információkkal ömleszti el az internetet, van aki a GIS eszközök segítség
 \end_layout
 
 \begin_layout Chapter
-Algoritmus
+A szavazókörzetek újraosztása
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:Algoritmus"
@@ -515,86 +523,296 @@ A szimulált hűtés módszere
 \end_layout
 
 \begin_layout Standard
-A szimulálát hűtés módszere egy metaheurisztikus algoritmus, amelyet kombinatori
-kus optimalizációs problémák megoldására használnak.
- A kombinatorikus optimalizálás, olyan optimalizációs problémákat old meg,
+A szimulált hűtés módszere egy metaheurisztikus algoritmus, amelyet kombinatorik
+us optimalizációs problémák megoldására használnak.
+ A kombinatorikus optimalizálás olyan optimalizációs problémákat old meg,
  ahol a megoldástér véges.
- A szimulált hűtésnek több változata is van: Párhuzamos Szimulált Hűtés,
- Gyors Szimulált Hűtés, Adaptív Szimulált Hűtés.
- A továbbiakban a Klasszikus Szimulált Hűtés módszerét tárgyaljuk, amelyet
- Kirkpatrick, Gelatt, és Vecchi vezetett be 1983-ban [2] , optimalizációs
- problémák megoldására.
+ A szimulált hűtésnek több változata is van: 
+\emph on
+párhuzamos szimulált hűtés
+\emph default
+, 
+\emph on
+gyors szimulált hűtés
+\emph default
+, 
+\emph on
+adaptív szimulált hűtés
+\emph default
+.
+ A továbbiakban a klasszikus szimulált hűtés módszerét tárgyaljuk, amelyet
+ Kirkpatrick, Gelatt, és Vecchi vezetett be 1983-ban (lásd 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kirk"
+
+\end_inset
+
+), optimalizációs problémák megoldására.
  A cikkben leírják a termodinamikai rendszerek viselkedését, majd megmutatják
- hogyan használható az, mint optimalizációs technika.
- Egy termodinamikai rendszert különböző változók összessége ír le (hőmérséklet,e
-nergia,nyomás,entrópia,stb..), míg egy metaheurisztikus algoritmusnak csupán
- két eszközre van szüksége (költségfüggvény, szomszédos megoldást generáló
- függvény).
- A megfeleltetés a következő: az optimalizációhoz használt költségfüggvény
- a rendszer energiaszintjének felel meg.
- Amikor a rendszer eléri az egyensúlyi állapotát az energia minimális.
- A cél a rendszer egyensúlyi állapotának az elérése, vagyis a költségfüggvény
+ hogy ezeket az elveket hogyan lehet felhasználni egy optimalizációs technika
+ kifejlesztésére.
+ 
+\end_layout
+
+\begin_layout Standard
+Egy termodinamikai rendszert különböző fizikai mennyiségek összessége ír
+ le (hőmérséklet, energia, nyomás, entrópia, stb.), míg egy metaheurisztikus
+ algoritmusnak csupán két eszközre van szüksége: 
+\emph on
+célfüggvény
+\emph default
+re (vagy 
+\emph on
+költségfüggvény
+\emph default
+re) és 
+\emph on
+szomszédos megoldást generáló módszer
+\emph default
+re.
+ A megfeleltetés a következő: az optimalizációhoz használt célfüggvény a
+ rendszer energiaszintjének felel meg.
+ Amikor a rendszer eléri az egyensúlyi állapotát, az energiaszint minimális.
+ A cél a rendszer egyensúlyi állapotának az elérése, vagyis a célfüggvény
  minimumának a megtalálása.
- Egy szomszédos állapotot a jelenlegi állapoton eszközölt random perturbációk
- által kapunk meg, ez a rendszeren belüli atommozgásoknak feleltethető meg.
+ Egy szomszédos állapotot a jelenlegi állapoton eszközölt véletlen perturbációk
+ által érünk el, ami a rendszeren belüli atommozgásoknak feleltethető meg.
  Bevezetünk egy hőmérséklet változót a termodinamikai rendszerek mintájára,
  amely szabályozza a keresésünk viselkedését.
- Ahhoz, hogy megtaláljuk egy anyag egyensúlyi állapotát nem elégendő ha
+ Ahhoz, hogy megtaláljuk egy anyag egyensúlyi állapotát, nem elegendő ha
  lehűtjük.
- Az analógiát követve, a keresés alacsony hőmersékleten azt jelenti, hogy
+ Az analógiát követve, a keresés alacsony hőmérsékleten azt jelenti, hogy
  mindig csak a jobb megoldásokat fogadjuk el, gyakorlatilag lokális minimumot
  keresünk.
  Ha stabil kristályokat akarunk kapni, először forráspont fölé kell melegíteni
  az anyagot, majd lassan hűteni, elegendő időt hagyva a molekuláknak, hogy
- kristályokat formáljanka.
+ kristályokba rendeződjenek.
  Nagy hőmérsékleten a molekulák kaotikus mozgást végeznek, ennek megfelelően
- az algoritmus is nagy ugrásokat tesz a megoldás térben, így elkerülhető
- az, hogy lokális minimumba ragadunk.
- Azt hogy a keresés mekkora valószínűséggel lép a jelenleginél rosszabb
- állapotba a rendszer aktuális hőmérséklete befolyásolja.
- Az iterációk során akkor fogadunk el egy új megoldást, ha az jobbnak bizonyúl,
+ az algoritmus is nagy ugrásokat tesz a megoldástérben, így elkerülhető
+ az, hogy lokális minimumba ragadjunk.
+ Azt, hogy a keresés mekkora valószínűséggel lép a jelenleginél rosszabb
+ állapotba, a rendszer aktuális hőmérséklete befolyásolja.
+ Az iterációk során akkor fogadunk el egy új megoldást, ha az jobbnak bizonyul,
  mint a jelenlegi megoldás.
- Amennyiben nem alacsonyabb az új megoldásunk költségfüggvényének az értéke,
- akkor a jelenlegi megoldást a Metropolis kritérium alapján,
-\begin_inset Formula $\exp((E-E_{0})/T)$
+ Amennyiben nem alacsonyabb az új megoldásunk célfüggvényének az értéke,
+ akkor a jelenlegi megoldást az úgynevezett Metropolis-kritérium alapján
+ 
+\begin_inset Formula 
+\[
+p=\exp((E-E_{0})/T)
+\]
+
 \end_inset
 
- valószínűséggel cseréljük le.
- Ahol E az aktuális megoldás objektív értéké, E
-\begin_inset Formula $_{0}$
+ valószínűséggel cseréljük le, ahol 
+\begin_inset Formula $E$
 \end_inset
 
- a szomszédos megoldás objektív értéke, T a rendszer hőmérséklete.
+ az aktuális megoldás objektív értéke (a célfüggvény értéke az aktuális
+ megoldás esetén), 
+\begin_inset Formula $E_{0}$
+\end_inset
+
+ a szomszédos megoldás objektív értéke, 
+\begin_inset Formula $T$
+\end_inset
+
+ pedig a rendszer hőmérséklete.
 \end_layout
 
 \begin_layout Section
-Több-célfüggvényű algoritmus újraosztáshoz
+A körzetek újraosztásának feladata, a célfüggvények
 \end_layout
 
 \begin_layout Standard
-A több-célfüggvényű algoritmus különböző kritériumokat figyelembe véve optimaliz
-ál.
- A cél olyan (K,U) párosításokat találni, amelyek legnagyobb mértékben megfeleln
-ek az általunk definiált objektív függvényeknek.
- K a körzeteket jelöli, U a unitokat.
+TODO: Bevezetni a problémát részletesebben...
+ Elmagyarázni mi a körzet, mi a unit.
+ 
+\end_layout
+
+\begin_layout Standard
+A program alapértelmezetten két függvényt használ a megoldások kiértékelésénél.
+ Ezek a függvények a gerrymandering és a malapportionment elkerülését szolgálják.
+ A 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ függvény azt méri, hogy a populáció mennyire oszlik el egyenletesen a körzetek
+ között.
+ Minnél alacsonyabb a függvény értéke, annál egyenletesebb az eloszlás.
+ A használt függvényt az IFE (Instituto Federal Electoral) határozta meg,
+ és használta a 2006-os mexicói újra osztások során:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{1}(P)=\sum_{e\epsilon E}(\frac{P_{e}}{d_{e}*M})^{2}\sum_{s\epsilon S}(\frac{P_{s}}{P_{e}}-\frac{1}{n})^{2}
+\]
+
+\end_inset
+
+Ahol 
+\begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
+\end_inset
+
+ egy felosztása az országnak, úgy hogy 
+\begin_inset Formula $Z_{s}=\{U_{1},U_{2},...,U_{s_{k}}\}$
+\end_inset
+
+, 
+\begin_inset Formula $Z_{s}$
+\end_inset
+
+ az 
+\emph on
+s
+\emph default
+ körzet unitjainak a halmaza, és 
+\emph on
+s
+\emph default
+ körzet valamely 
+\emph on
+e 
+\emph default
+megyéhez tartozik.
+ 
+\begin_inset Formula $P_{e}$
+\end_inset
+
+ 
+\emph on
+e
+\emph default
+ megye populációja, M a nemzeti átlag 
+\begin_inset Formula $M=CP/N$
+\end_inset
+
+, úgy hogy CP az ország populációja, N az összesen generálandó körzetek
+ száma.
+
+\emph on
+ A
+\emph default
+ megyében megengedett szórás
+\emph on
+ 
+\emph default
+
+\begin_inset Formula $d_{e}$
+\end_inset
+
+.
+ A szorzat második tagjában levő 
+\begin_inset Formula $P_{s}$
+\end_inset
+
+ jelöli s körzet populációját, 
+\emph on
+n 
+\emph default
+az
+\emph on
+ e 
+\emph default
+megyéhez tartozó körzetek száma.
+ Az hogy egy megyében megengedett szórás értéke mekkora, annak a függvényében
+ változik, hogy a megye átlaga mennyire tér el a nemzeti átlagtól.
+ Ha a két átlag közti különbség kevesebb, mint az ország lakosságának az
+ 5%, a megengedett szórás 15% lesz.
+ 5% és 10% közötti eltérés esetén a szórás 10%, míg nagyobb eltérések esetén
+ a szórás 5%.
+ 
+\begin_inset Newline newline
+\end_inset
+
+A másik célfüggvény a körzetek formájának a kompaktságát méri.
+ Abból kiindulva, hogy a legkompaktabb forma a kör, mérjük a körzet kompaktságát.
+ Legyen a körzethez tartozó unitok által formált alakzat kerülete 
+\begin_inset Formula $PE_{s}$
+\end_inset
+
+ , területe 
+\begin_inset Formula $A_{s}$
+\end_inset
+
+.
+ Minél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy 
+\begin_inset Formula $A_{s}$
+\end_inset
+
+ területű kör kerületével:
+\begin_inset Formula 
+\[
+C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}(\frac{PE_{s}}{4\sqrt{A_{s}}}-1)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Többszörös célfüggvényt használó algoritmus 
+\end_layout
+
+\begin_layout Standard
+A többszörös célfüggvényt használó algoritmus különböző kritériumokat figyelembe
+ véve optimalizál.
+ 
+\end_layout
+
+\begin_layout Standard
+Ebben az esetben a cél olyan 
+\begin_inset Formula $(K,U)$
+\end_inset
+
+ párosításokat találni, amelyek mindkét célfüggvényt megpróbálják egyszerre
+ optimizálni.
+ 
+\begin_inset Formula $K$
+\end_inset
+
+ a körzeteket jelöli, 
+\begin_inset Formula $U$
+\end_inset
+
+ a unitokat.
  A unitok a létező legkisebb közigazgatási egységei a felosztandó országnak.
  Az ország egy lehetséges felosztása, vagyis egy megoldás, olyan (K,U) párok
  összessége, ahol minden körzet előre meghatározott számú unitot foglal
- magába , és egy unit csak egy körzethet tartozhat.
- Amikor összehasonlítunk két megoldást, ahol V az aktuális megoldás, V'
- a szomszédos megoldás, három lehetséges eset van:
+ magába, és egy unit csak egy körzethez tartozhat.
+ 
+\end_layout
+
+\begin_layout Standard
+Két megoldás összehasonlításánál a következő három lehetséges eset merül
+ fel (ahol 
+\begin_inset Formula $V$
+\end_inset
+
+ jelöli az aktuális megoldást, 
+\begin_inset Formula $V'$
+\end_inset
+
+ pedig a szomszédos, új megoldást):
 \end_layout
 
 \begin_layout Enumerate
-V' minden objektív függvény szerint jobb megoldásnak bizonyul
+\begin_inset Formula $V'$
+\end_inset
+
+minden célfüggvény   szerint jobb megoldásnak bizonyul
 \end_layout
 
 \begin_layout Enumerate
-V' csak bizonyos objektív függvényekre mutat jobb eredményt
+V' csak bizonyos célfüggvényekre mutat jobb eredményt
 \end_layout
 
 \begin_layout Enumerate
-V' minden objektív függvény szerint rosszabb megoldásnak bizonyul
+V' minden célfüggvény szerint rosszabb megoldásnak bizonyul
 \end_layout
 
 \begin_layout Standard
@@ -603,10 +821,9 @@ A megoldásainkat egy olyan halmazba gyűjtjük (Pareto halmaz), amely a fenti
  Ha V' dominál más megoldásokat (1 eset), átveszi egy dominált megoldás
  helyét és súlyait.
  Azt a megoldást fogja lecserélni, amelyiknél a leginkább jobbnak bizonyul.
- Ezt azt jelenti, hogy összehasonlítódnak a objektív függvények súlyozott
- összegei, és amelyiknél V' súlyozott összege (a súlyokat attól a megoldástól
- kölcsönzi, amellyel éppen összehasonlítódik) a legkisebb, az a megoldás
- lesz helyettesítve.
+ Ezt azt jelenti, hogy összehasonlítódnak a célfüggvények súlyozott összegei,
+ és amelyiknél V' súlyozott összege (a súlyokat attól a megoldástól kölcsönzi,
+ amellyel éppen összehasonlítódik) a legkisebb, az a megoldás lesz helyettesítve.
  Ha az új megoldás nem dominál (nem igaz az 1.
  eset) és nem dominált (nem igaz a 3.
  eset), akkor a halmazhoz adódik.
@@ -1057,7 +1274,49 @@ ElseIf{$random(0,1) <= exp(obj(U)-obj(V)/T)$}{
 \backslash
 leftarrow V $
 \backslash
-;
+;Általánosan
+\end_layout
+
+\begin_layout Plain Layout
+
+A megírt program a szimulált hűtés módszerével generálja egy ország megyéinek/ál
+lamainak/tartományainak lehetséges körzetekre való felosztását.
+ A célfüggvények és a hozzájuk tartozó súlyok tetszőlegesen megadhatóak.
+ A pythonban írt plug-in a QGIS-ből futtatható.
+ A programnak szüksége van egy shapefájlra, amely tartalmazza a felosztandó
+ megyéket, és egy másik fájlra amely a felosztandó ország közigazgatási
+ egységeit (unit) tartalmazza.
+ A két fájlhoz tartozó adatbázis tábláknak összekapcsolhatóknak kell lenniük
+ a megye azonosítók szerint, tehát tudnunk kell, hogy egy közigazgatási
+ egység melyik megyéhez tartozik.
+ A későbbiekben egy unit szomszédainak a bejárására gyakran kerűl sor, ezért
+ a shapefájlok első használata alkalmával egy scriptet is le kell futtatni,
+ amely bővíti egy attribútummal a unitokat tartalmazó adatbázis táblát.
+ Az új attribútum az adott unit szomszédos unitjainak az azonosítóját tárolja.
+ Ez később rengeteg futási időt nyer majd a körzetek változtatásához szükséges
+ műveletek során.
+ A plug-in könyvtár-struktúrája tartalmaz egy config.yaml elnevezésű fájlt,
+ ezt változtatva állíthatjuk be a paramétereinket.
+ Elsősorban megkell adni a shapefájlainkban szereplő attribútumok elnevezéseit,
+ ezek helyes ismerete nélkül a program nem lesz futtatható.
+ Megkell mondanunk összesen hány körzetet akarunk látni a végső felosztásban.
+ A további paraméterek az optimalizáló algoritmus viselkedését befolyásolják,
+ ezek változtatása nélkűl is használható a program.
+ A szimulált hűtés módszerének olyan paramétereit változtathatjuk, mint
+ a kezdeti és végső hőmérséklet, a hűtés mértéke és a hőmérsékletenkénti
+ iteráció.
+ Beállítható a megoldás halmaz maximális mérete és a költségfüggvényekhez
+ rendelhető lehetséges súlyok listája.
+ Az is megmondható, hogy egy körzethez minimum hány unitnak kell tartoznia.
+ A használt költségfüggvényeket az objectives.py fájl tartalmazza, ezek bővítése
+ értelemszerűen nem adható meg a konfigurációs fájlban.
+ Amennyiben újabb függvényt szeretnénk egy megoldás kiértékeléséhez adni
+ azt implementálnunk kell az objectives.py fájlban.
+ A program indítás után iterációnként loggolni fogja a megoldáshalmaz viselkedés
+ét.
+ A hőmérséklet lehűlése után a legjobb megoldás megjelenik a QGIS grafikus
+ felületén, úgy hogy az ugyanazon körzetekhez tartozó unitok azonos színűek
+ lesznek.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1104,7 +1363,7 @@ end{algorithm}
 \end_layout
 
 \begin_layout Section
-Általánosan
+Az implementáció részletei
 \end_layout
 
 \begin_layout Standard
@@ -1146,133 +1405,6 @@ lamainak/tartományainak lehetséges körzetekre való felosztását.
  A hőmérséklet lehűlése után a legjobb megoldás megjelenik a QGIS grafikus
  felületén, úgy hogy az ugyanazon körzetekhez tartozó unitok azonos színűek
  lesznek.
-\end_layout
-
-\begin_layout Section
-Objektív Függvények
-\end_layout
-
-\begin_layout Standard
-A program alapértelmezetten két függvényt használ a megoldások kiértékelésénél.
- Ezek a függvények a gerrymandering és a malapportionment elkerülését szolgálják.
- A 
-\begin_inset Formula $C_{1}$
-\end_inset
-
- függvény azt méri, hogy a populáció mennyire oszlik el egyenletesen a körzetek
- között.
- Minnél alacsonyabb a függvény értéke, annál egyenletesebb az eloszlás.
- A használt függvényt az IFE (Instituto Federal Electoral) határozta meg,
- és használta a 2006-os mexicói újra osztások során:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-C_{1}(P)=\sum_{e\epsilon E}(\frac{P_{e}}{d_{e}*M})^{2}\sum_{s\epsilon S}(\frac{P_{s}}{P_{e}}-\frac{1}{n})^{2}
-\]
-
-\end_inset
-
-Ahol 
-\begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
-\end_inset
-
- egy felosztása az országnak, úgy hogy 
-\begin_inset Formula $Z_{s}=\{U_{1},U_{2},...,U_{s_{k}}\}$
-\end_inset
-
-, 
-\begin_inset Formula $Z_{s}$
-\end_inset
-
- az 
-\emph on
-s
-\emph default
- körzet unitjainak a halmaza, és 
-\emph on
-s
-\emph default
- körzet valamely 
-\emph on
-e 
-\emph default
-megyéhez tartozik.
- 
-\begin_inset Formula $P_{e}$
-\end_inset
-
- 
-\emph on
-e
-\emph default
- megye populációja, M a nemzeti átlag 
-\begin_inset Formula $M=CP/N$
-\end_inset
-
- , úgy hogy CP az ország populációja, N az összesen generálandó körzetek
- száma.
-
-\emph on
- A
-\emph default
- megyében megengedett szórás
-\emph on
- 
-\emph default
-
-\begin_inset Formula $d_{e}$
-\end_inset
-
-.
- A szorzat második tagjában levő 
-\begin_inset Formula $P_{s}$
-\end_inset
-
- jelöli s körzet populációját, 
-\emph on
-n 
-\emph default
-az
-\emph on
- e 
-\emph default
-megyéhez tartozó körzetek száma.
- Az hogy egy megyében megengedett szórás értéke mekkora, annak a függvényében
- változik, hogy a megye átlaga mennyire tér el a nemzeti átlagtól.
- Ha a két átlag közti különbség kevesebb, mint az ország lakosságának az
- 5%, a megengedett szórás 15% lesz.
- 5% és 10% közötti eltérés esetén a szórás 10%, míg nagyobb eltérések esetén
- a szórás 5%.
- 
-\begin_inset Newline newline
-\end_inset
-
-A másik objektív függvény a körzetek formájának a kompaktságát méri.
- Abból kiindulva, hogy a legkompaktabb forma a kör, mérjük a körzet kompaktságát.
- Legyen a körzethez tartozó unitok által formált alakzat kerülete 
-\begin_inset Formula $PE_{s}$
-\end_inset
-
- , területe 
-\begin_inset Formula $A_{s}$
-\end_inset
-
-.
- Minél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy 
-\begin_inset Formula $A_{s}$
-\end_inset
-
- területű kör kerületével:
-\begin_inset Formula 
-\[
-C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}(\frac{PE_{s}}{4\sqrt{A_{s}}}-1)
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Chapter
@@ -1339,16 +1471,6 @@ E.
  Journal of Applied Research and Technology Volume 11, Issue 3, June 2013,
  pp.
  324–330.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-1"
-
-\end_inset
-
-
 \end_layout
 
 \end_body
