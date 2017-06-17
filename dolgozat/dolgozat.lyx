@@ -145,7 +145,7 @@ A választási körzetek újraosztási folyamatának befolyásolása annak érde
 
 \emph default
  – ez a két kifejezés elválaszthatatlanná vált.
- A körzetek újraosztás sokszor elkerülhetetlen, ezért az átlátható és az
+ A körzetek újraosztása sokszor elkerülhetetlen, ezért az átlátható és az
  igazságos választások érdekében a választókerület-manipulációt kell megszüntetn
 i.
  A dolgozatban bemutatott QGIS
@@ -598,8 +598,8 @@ V' minden objektív függvény szerint rosszabb megoldásnak bizonyul
 \end_layout
 
 \begin_layout Standard
-A megoldásainkat egy olyan halmazba gyűjtjük, amely a fenti eseteknek megfelelő
- szabályok szerint bővül.
+A megoldásainkat egy olyan halmazba gyűjtjük (Pareto halmaz), amely a fenti
+ eseteknek megfelelő szabályok szerint bővül.
  Ha V' dominál más megoldásokat (1 eset), átveszi egy dominált megoldás
  helyét és súlyait.
  Azt a megoldást fogja lecserélni, amelyiknél a leginkább jobbnak bizonyul.
@@ -687,14 +687,21 @@ SetKwInOut{Output}{output}
 
 
 \backslash
-Input{$k$, ahol $k 
+Input{pareto,U,k, where $k 
 \backslash
-geq 1$}
+geq 1$ }
 \end_layout
 
 \begin_layout Plain Layout
 
-$dominalt 
+
+\backslash
+Output{$isdominated$,$dominates$}
+\end_layout
+
+\begin_layout Plain Layout
+
+$isdominated 
 \backslash
 leftarrow 
 \backslash
@@ -705,7 +712,7 @@ LogicFalse$
 
 \begin_layout Plain Layout
 
-$dominaltak 
+$dominates 
 \backslash
 leftarrow
 \backslash
@@ -718,7 +725,7 @@ emptyset $
 
 
 \backslash
-For{$s
+For{$S
 \backslash
 in
 \backslash
@@ -727,7 +734,7 @@ mathcal Pareto $} {
 
 \begin_layout Plain Layout
 
-	$UdominaltSaltal 
+	$dominatedbyS 
 \backslash
 leftarrow 
 \backslash
@@ -738,7 +745,7 @@ LogicTrue$
 
 \begin_layout Plain Layout
 
-	$SdominaltUaltal 
+	$dominatesS 
 \backslash
 leftarrow 
 \backslash
@@ -756,30 +763,30 @@ For{$i=1,..,k$} {
 
 \begin_layout Plain Layout
 
-		$UdominaltSaltal 
+		$dominatedbyS 
 \backslash
-leftarrow UdominaltSaltal
+leftarrow dominatedbyS
 \backslash
   
 \backslash
 LogicAnd
 \backslash
-  s.objektiv(i)<u.objektiv(i) $
+  S.objective(i)<U.objective(i) $
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-		$SdominaltUaltal 
+		$dominatesS 
 \backslash
-leftarrow SdominaltUaltal 
+leftarrow dominatesS 
 \backslash
   
 \backslash
 LogicAnd 
 \backslash
- u.objektiv(i)<s.objektiv(i) $
+ U.objective(i)<S.objective(i) $
 \backslash
 ;
 \end_layout
@@ -791,15 +798,15 @@ LogicAnd
 
 \begin_layout Plain Layout
 
-	$dominalt 
+	$isdominated 
 \backslash
-leftarrow dominalt 
+leftarrow isdominated 
 \backslash
  
 \backslash
 LogicOr
 \backslash
-  UdominaltSaltal $
+  dominatedbyS $
 \backslash
 ;
 \end_layout
@@ -808,9 +815,9 @@ LogicOr
 
 	
 \backslash
-lIf{SdominaltUaltal}{$dominaltak 
+lIf{dominatesS}{$dominates 
 \backslash
-leftarrow dominaltak
+leftarrow dominates
 \backslash
 cup
 \backslash
@@ -832,7 +839,7 @@ right
 
 
 \backslash
-caption{Dominálás($k$)}
+caption{Dominance($pareto$,$U$,$k$)}
 \end_layout
 
 \begin_layout Plain Layout
@@ -848,7 +855,7 @@ end{algorithm}
 \end_layout
 
 \begin_layout Standard
-A szimulált hűtés több célfüggvény esetén:
+A szimulált hűtés:
 \end_layout
 
 \begin_layout Standard
@@ -859,64 +866,156 @@ status open
 
 
 \backslash
-begin{algorithm}[H] 
+begin{algorithm}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
 \backslash
-caption{Szimulát hűtés több célfüggvénnyel}
+SetKw{LogicAnd}{and}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKw{LogicOr}{or}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwData{LogicTrue}{True}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwData{LogicFalse}{False}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Input}{input}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+SetKwInOut{Output}{output}
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-State legyen U a kezdeti megoldas 
+Input{$U$,$T$,$maxiter$,$coolingschedule$ where $U$ is a randomly generated
+ initial solution, $T$ is the initial temperature, $coolingschedule 
 \backslash
-State legyen T a kezdeti kezdeti homerseklet 
+in (0,1)$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-State $pareto
+Output{$pareto$}
+\end_layout
+
+\begin_layout Plain Layout
+
+$pareto 
 \backslash
-gets
-\backslash
-emptyset$ 
-\backslash
-State $pareto
-\backslash
-gets pareto
-\backslash
-cup
-\backslash
-left
+leftarrow 
 \backslash
 {U
 \backslash
-right
+}$;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-}$ 
+While{T not frozen}{
+\end_layout
+
+\begin_layout Plain Layout
+
+	
 \backslash
-While{$T
+For{$i=1,..,maxiter$}{
+\end_layout
+
+\begin_layout Plain Layout
+
+		$V 
 \backslash
-neq fagyaspont$ } 
+leftarrow neighbor(U) $
 \backslash
-For{$i=1,..,maxiteracio$} 
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
 \backslash
-State $V
+uIf{dominates(V,pareto)}{     
+\end_layout
+
+\begin_layout Plain Layout
+
+			pareto.update(V) 
 \backslash
-gets szomszed(U)$ 
+ 
 \backslash
-If{V dominans} 
+; 
+\end_layout
+
+\begin_layout Plain Layout
+
+			$U 
 \backslash
-State pareto.update(V) 
+leftarrow V $
 \backslash
-State U
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}   
+\end_layout
+
+\begin_layout Plain Layout
+
+		
 \backslash
-gets V 
+uElseIf{not dominated(V,pareto)}{
+\end_layout
+
+\begin_layout Plain Layout
+
+		    $pareto 
 \backslash
-Else 
-\backslash
-If{V nem dominalt} 
-\backslash
-State $pareto
-\backslash
-gets pareto
+leftarrow pareto
 \backslash
 cup
 \backslash
@@ -928,31 +1027,68 @@ right
 \backslash
 }$ 
 \backslash
-State U
+;  
+\end_layout
+
+\begin_layout Plain Layout
+
+			$U 
 \backslash
-gets V 
+leftarrow V $
 \backslash
-Else 
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}   
+\end_layout
+
+\begin_layout Plain Layout
+
+		
 \backslash
-If{random(0,1) <= exp(obj(U)-obj(V)/T)} 
+ElseIf{$random(0,1) <= exp(obj(U)-obj(V)/T)$}{
+\end_layout
+
+\begin_layout Plain Layout
+
+			$U 
 \backslash
-State U
+leftarrow V $
 \backslash
-gets V 
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	$T 
 \backslash
-EndIf 
+leftarrow T * coolingschedule$
 \backslash
-EndIf 
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-EndIf 
-\backslash
-EndFor 
-\backslash
-State $T
-\backslash
-gets T * hutes$ 
-\backslash
-EndWhile
+caption{Simulated Annealing()}
 \end_layout
 
 \begin_layout Plain Layout
