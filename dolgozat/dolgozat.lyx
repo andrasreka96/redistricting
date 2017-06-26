@@ -296,8 +296,8 @@ Parlamenti választások
 \end_layout
 
 \begin_layout Standard
-A demokráciákban a törvényhozás tagjait legtöbb esetben közvetlenül választják
- meg.
+A demokratikus rendszerekben a törvényhozás tagjait legtöbb esetben közvetlenül
+ választják meg.
  A törvényhozó testületet lehet egykamarás vagy kétkamarás.
  A kétkamarás rendszerek gyakoribbak, ezeket a Képviselőház és a Szenátus
  alkotja.
@@ -306,8 +306,7 @@ A demokráciákban a törvényhozás tagjait legtöbb esetben közvetlenül vál
 status open
 
 \begin_layout Plain Layout
-Romániában 329 képviselőt választanak, az Egyesült Államokban 435 képviselőt
- választanak
+Romániában 329, az Egyesült Államokban 435 képviselőt választanak
 \end_layout
 
 \end_inset
@@ -317,29 +316,30 @@ Romániában 329 képviselőt választanak, az Egyesült Államokban 435 képvis
 status open
 
 \begin_layout Plain Layout
-Romániában 136 szenátort választanak, az Egyesült Államokban 100 szenátort
- választanak
+Romániában 136, az Egyesült Államokban 100 szenátort választanak
 \end_layout
 
 \end_inset
 
- megválasztását feltételezi, azonban az országok ennél jóval kevesebb adminisztr
-ációs egységre (megye, tartomány, stb.) vannak osztva.
- Míg közigazgatási szempontból optimálisabb, ha az országok kevés egységre
- vannak osztva, a parlament tagjainak száma minnél nagyobb, annál inkább
- beszélhetünk képviseleti demokráciáról.
- Tehát a megyék/tartományok száma nem feleltethető meg a kepviselők és szenátoro
-k számával.
- Ahhoz, hogy parlamenti képviselőket válasszunk, az ország meglévő közigazgatási
- egységeit kisebb részekre kell osztani.
+ megválasztását jelenti, azonban az országok ennél jóval kevesebb adminisztráció
+s egységre (megye, régió, tartomány, stb.) vannak osztva.
+ Míg közigazgatási szempontból egy ország túlzott feldaraboltsága fölösleges
+ bürokráciához vezet, a parlament tagjainak száma minnél nagyobb, annál
+ inkább beszélhetünk képviseleti demokráciáról.
+ Tehát a közigazgatási egységek száma nem feleltethető meg a kepviselőket
+ és szenátorokat megválasztó területek számával.
+ Ahhoz, hogy parlamenti képviselőket válasszunk meg, az ország már meglévő
+ közigazgatási egységeit kisebb részekre kell osztani.
  Ezeket a felosztásokat nevezzük választói körzeteknek.
- A körzeteket az ország legkisebb adminisztrációs egységei (falvak, városok,
- stb.) alkotják.
+ A körzeteket az ország legkisebb egységei (falvak, városok, stb.) alkotják.
  Két fajtájukat különböztetjük meg: többmandátumos választókörzet és egyéni
  (egymandátumos) választókörzet.
  Az egyéni körzeti választási rendszerek esetén minden választókörzet egy
  képviselőt delegál.
  Ebben az esetben a körzetek száma megegyezik a parlamenti mandátumok számával.
+ A kizárólag egyéni választókörzeteket használó szavazások kimenetele sokkal
+ inkább manipulálható, mint a többmandátumos rendszereké.
+ Ennek okát a későbbiekben részletesebben is megmagyarázzuk.
  Ilyen szavazói rendszert alkalmaznak többek között Franciaországban, az
  Egyesült Királyságban és az Amerikai Egyesült Államokban.
  A többmandátumos választókörzeteket az arányos-pártlistás választási rendszerek
@@ -348,9 +348,6 @@ ben használják.
  a kapott szavazatokkal arányos mértékben jutnak be a parlamentbe.
  Sok állam a fent említett választási rendszer valamilyen kombinációját
  használja, például Románia és Magyarország.
- A kizárólag egymandátumos körzeteket használó választások kimenetele manipulálh
-ató a legnagyobb mértékben, ennek okát a következő alfejezetekben tisztázzuk.
- 
 \end_layout
 
 \begin_layout Section
@@ -361,8 +358,8 @@ Redistricting
 Különböző demográfiai változások következtében a választási körzetek populációja
  csökkenhet vagy növekedhet.
  Ez a választói rendszeren belüli aránytalanságokhoz vezet, ami azt eredményezi,
- hogy a sürűbben lakott körzetek polgárainak szavazata kevesebbet ér, mint
- a ritkábban lakott körzetekben élő polgároké.
+ hogy a gyakrabban lakott körzetek polgárainak szavazata kevesebbet ér,
+ mint a ritkábban lakott körzetekben élő polgároké.
  Ez ellentmond a demokrácia 
 \begin_inset Quotes pld
 \end_inset
@@ -381,9 +378,45 @@ k.
  folytonosak kell legyenek, a körzetek között a populáció egyenletes eloszlást
  kell kövessen, kompaktak kell legyenek, megkell örizniük az ország adminisztrác
 iós felbontását, stb.
- Mindezek ellenére a szavazókörzetek újraosztásához, gyakran nem az igazságos
- választási előfeltételek megteremtését társítják, sokkal inkább a gerrymanderin
-g fogalmával együtt emlegetik.
+ Mindezek ellenére, általában nem az igazságos választási előfeltételek
+ megteremtését társítják a szavazókörzetek újraosztásához.
+ Gyakran merül fel a gerrymandering fogalma az újraosztások után, ugyanis
+ kölönböző felosztási tervek, különböző választási kimenetelekhez vezethetnek.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename gerrymandering.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Három különböző kimenetelt eredményező felosztás
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -391,27 +424,55 @@ Gerrymandering
 \end_layout
 
 \begin_layout Standard
-A gerrymandering Elbridge Gerry szenátorról kapta a nevét, aki jóváhagyott
- egy olyan körzet felosztási tervet, amely jelentős előnyhöz jutatta a demokratá
-kat.
+1812-ben Massachusetts kormányzója, Elbridge Gerry, jóváhagyott egy olyan
+ körzet felosztási tervet, amely jelentős előnyhöz jutatta a demokratákat.
  A különös alakú választókerület egy szalamandrához hasonlított.
- A Gerry névhez illesztve az angol 'salamander' szót megkapjuk a gerrymandering
- kifejezést.
- A gerrymandering vagy választókerület-manipuláció a választói körzeteknek
- egy olyan felosztását jelenti, amely kedvező/kedvezőtlen helyzetbe hozhat
- valamely érdekcsoportot:) A választási eredmények ilyen manipulációját
- kiváltképp a többségi elven müködő demokratikus rendszerekben fordulhat
- elő.
- Ezek a rendszerek nem arányosan választják meg képviselőiket, az a képviselő
- nyer aki a szavazatok többségét kapta, így mindig lesznek kárba veszett
- szavazatok.
- Tegyük fel, hogy egy 100 szavazóból álló körzetben, A párt 90 szavazatot
- kap, B párt 10-et.
+ A Gerry név és az angol 
+\begin_inset Quotes pld
+\end_inset
+
+salamander
+\begin_inset Quotes prd
+\end_inset
+
+ szó összetételéből megkapjuk a gerrymandering kifejezést, ami a választói
+ körzeteknek egy olyan felosztását jelenti, amely kedvező/kedvezőtlen helyzetbe
+ hozhat valamely pártot, etnikai vagy vallási csoportot.
+ A gerrymandering két fő stratégiája a 
+\begin_inset Quotes pld
+\end_inset
+
+cracking
+\begin_inset Quotes prd
+\end_inset
+
+ és a 
+\begin_inset Quotes pld
+\end_inset
+
+packing
+\begin_inset Quotes prd
+\end_inset
+
+.
+ Mindkét esetben az ellenfél kárba veszett szavazatainak a maximalizálása
+ a cél.
+ Ez közvetlenül az egymandátumos körzeteket érinti, az arányos választási
+ rendszerekben minden szavazat beleszámít a végső eredménybe, így nem beszélhetü
+nk kárba ment szavazatokról.
+ A probléma megértéséhez vegyünk egy 100 szavazóból álló egymandátumos körzetet,
+ ahol A párt 90 szavazatot kap, B pártra 10-en szavaznak.
  Ebben az esetben B párt vesztesége 10, A párté 39 (90 minusz a győzelemhez
  szükséges 51 szavazat).
- A választókerület-manipulációt végző párt arra törekszik, hogy az ellenfél
- kárba veszett szavazatait maximalizálja, míg az ő esetében minimalizálja
- a veszteséget.
+ Látható, hogy a szavazat veszteség eredménytől független.
+ Akkor is gerrymanderinget végzünk, ha az ellenfél szavazóit egy körzetbe
+ gyűjtjük (packing) és akkor is, ha megosztjuk őket (cracking), úgy hogy
+ a lehető legkevesebb helyen érjék el a szavazati többséget.
+ Így megtörténhet az, hogy egy párt sokkal több parlamenti helyre tesz szert,
+ mint amennyit a valasztók közötti támogatottsága alapján érdemelne.
+ A körzetek újraosztása egy olyan eszköz a politikusok kezében, amely által
+ megválaszthatják a szavazóikat.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -428,24 +489,26 @@ name "chap:GISQGIS"
 \begin_layout Standard
 A GIS (Geographic Information System) hardver, szoftver és módszerek rendszere,
  amely segíti a komplex tervezési és irányítási feladatok megoldására szolgáló
- térbeli adatok gyűjtését, kezelését, feldolgozását, elemzését és a megjelenítés
-t.
+ térbeli adatok gyűjtését, kezelését, feldolgozását, elemzését és megjelenítését.
  A GIS technológiák könnyedebbé teszik a térbeli adatok rendszerezését és
- térbeli kapcsolataik megértését, az által hogy egy rendszerbe integrálják
+ térbeli kapcsolataik megértését, az által, hogy egy rendszerbe integrálják
  a térképi és leíró adatokat.
  Egy térinformatikai rendszerben az adatok elérése földrajzi helyzetük alapján
  is lehetséges, a digitális térképen megjelölve egy pontot, a szoftver kikeresi
  a térképhez tartozó adatbázisból az adott ponthoz tartozó adatokat.
- Ugyanakkor lehetővé teszik a térképek közötti átfedéseket, úgymond a térképek
- 
+ Ami igazán esszenciális ezekben a rendszerekben az a térképek közötti átfedések
+ megvalósítása, úgymond a térképek 
 \begin_inset Quotes pld
 \end_inset
 
-összelinkelését
+összelinkelése
 \begin_inset Quotes prd
 \end_inset
 
 .
+ Így különböző forrásból érkező, különböző típusú adatokat lehet nehézség
+ nélkül egymás viszonylatában vizsgálni.
+ 
 \end_layout
 
 \begin_layout Section
@@ -455,14 +518,14 @@ Adatmodellezés
 \begin_layout Standard
 A GIS által feldolgozott adatok két típusát különböztetjük meg: térbeli
  és leíró adatok.
- A térbeli vonások alapján köthetjük az adatainkat a Föld pontjaihoz (georeferen
-cing), láthatjuk a formájukat és az egymáshoz viszonyított helyzetüket,
+ A térbeli jellemzők alapján köthetjük az adatainkat a Föld pontjaihoz (georefer
+encing), láthatjuk a formájukat és az egymáshoz viszonyított helyzetüket,
  méretüket.
  A térbeli adatokat layerekben (réteg) tároljuk.
- A layerekben tárolt objektumok lehetnek pontok, vonalak vagy polygonok.
- Ezekhez az objektumokhoz kapcsolódik egy relációs adatbázis, amely a leíró
- adatainkat tartalmazza.
- 
+ A layerekben tárolt objektumokhoz kapcsolódik egy attribútumtábla , amely
+ a leíró adatainkat tartalmazza.
+ Minden egyes objektumhoz tartozik egy sor a táblázatban, az oszlopok pedig
+ az egyes elemekhez tartozó további adatokat (attribútumokat) tartalmazzák.
 \end_layout
 
 \begin_layout Standard
@@ -498,22 +561,41 @@ A térképen látható sárga pontoknak megfelelő sorok vannak az attribútumt�
 
 \end_inset
 
-Az attribútumtábla minden sorának megfelel egy, a layerhez tartozó, objektum.
- Ezeket featureknek nevezzük.
- Az attribútumtábla oszlopai tartalmazzák az objektumok különböző tulajdonságait.
- Az attribútumtáblán tetszőleges relációs adatbázisok műveletek hajthatóak
- végre.
+
 \end_layout
 
 \begin_layout Standard
-A GIS kétféle módszert használ a valós világ objektumokra való leképezésére.
+A GIS kétféle modellt használ a valós világ reprezentálására.
  Az egyik a raszteres (grid) adatmodell.
- A raszteres adatmodellt azonos méretű cellák alkotják, amelyek egy szabályos
- rácson helyezkednek el.
+ A raszteres adatmodellt azonos méretű cellák (pixelek) alkotják, amelyek
+ egy szabályos rácson helyezkednek el.
  Minden cella egy értéket tartalmaz, a rácshálózat az egész teret kitölti
  és a tér minden pontjáról információt hordoz.
  Raszteres adatnak számít például egy műholdfotó, ahol minden színhez különböző
- jelentések társulnak.
+ jelentések társulnak vagy egy topográfiai térkep.
+ Legjellemzőbb fájltípusai: .jpg, .tif (GeoTiff), .img stb.
+ 
+\end_layout
+
+\begin_layout Standard
+A második adatmodell a vektoros adatmodell, amely az ábrázolandó területet
+ és a rajta lévő objektumokat pontok és a köztük lévő egyenesek együtteseként
+ fogja fel.
+ A raszteres adatmodellel ellentétben, nem tölti ki a teret.
+ Csupán pontokat tárol koordinátákként, valamint a vonalak vagy polygonok
+ (zárt vonalak) összekötésére vonatkozó információkat.
+ Mindig csak azonos típusú geometriai elemeket tartalmazhat.
+ A vektoros adatok tárolása leggyakrabban shapefájlokban (ESRI shapefile)
+ történik.
+ Egy shapefájl a fájlrendszerben nem egyetlen fájlt jelent, hanem rendszerint
+ 3-6, azonos nevű, de eltérő kiterjesztésű fájlok rendszere: a .dbf kiterjesztésű
+ fájl (dBase file) a leíró adatokat tartalmazza, az .shp kiterjesztésű az
+ objektumokat tárolja, az .shx fájl a kapcsolatot határozza meg az objektumok
+ és az adattábla összetartozó részei között, a .prj kiterjesztésű fájl a
+ használt vetítési rendszerre vonatkozó információkat tartalmazza.
+ További vektoros fájltípusok: .dwg és .dxf (AutoCAD fájl), .kml (Google Earth
+ fájlformátum), .gpx (GPS fájlcsere-formátum).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -525,9 +607,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Fuji_ALI2.jpg
+	filename rasvec.jpg
 	lyxscale 50
-	scale 80
+	scale 50
 
 \end_inset
 
@@ -538,7 +620,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-EO-1 műhold felvétele a A Fudzsi-hegyről 
+Vektoros és raszteres adatok tárolása közti alapvető különbségek
 \end_layout
 
 \end_inset
@@ -546,36 +628,23 @@ EO-1 műhold felvétele a A Fudzsi-hegyről
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
-A második adatmodell a vektoros adatmodell, amely az ábrázolandó területet
- és a rajta lévő objektumokat pontok és a köztük lévő egyenesek együtteseként
- fogja fel.
- A raszteres adatmodellel ellentétben, nem tölti ki a teret.
- Csupán pontokat tárol koordinátákként, valamint a vonalak vagy polygonok
- (zárt vonalak) összekötésére vonatkozó információkat.
- Az ilyen típusú adatok tárolása általában shape fájlokban történik.
- Ez igazábol legkevesebb három másik különböző formátumú fájlt foglal magába.
- A „dbf” kiterjesztésű fájl (dBase file) a leíró adatokat tartalmazza, az
- 
-\begin_inset Quotes pld
-\end_inset
 
-shp
-\begin_inset Quotes prd
-\end_inset
-
- kiterjesztésű az objektumokat tárolja, az „shx” kiterjesztésű fájl a kapcsolato
-t határozza meg a két fájl összetartozó részei közt.
- 
 \end_layout
 
 \begin_layout Standard
 Összefoglalva azt mondhatjuk, hogy a raszteres adatmodell elsősorban az
  entitások jelentését vizsgálja (terep, növényzet, épületek, utak, stb.),
- ezért sokkal inkább alkalmas területi elemzésre (fedvényműveletekre).
+ ezért sokkal inkább alkalmas területi elemzésre és topográfiai térképek
+ ábrázolására.
  Ezzel szemben a vektoros adatmodell grafika-központú modell, azaz nagyobb
  geometriai pontossággal tárolja az adatokat.
+ Nagy előnye, hogy a kép tetszőlegesen nagyítható.
  A két formátum közötti konverzió lehetséges.
  A vektor-raszter konverzió jól megoldott, viszonylag egyszerű feladat,
  melynek során a vektoros információk a raszter felbontásának megfelelő
@@ -586,60 +655,116 @@ lni, megoldása nagymértékben függ az alkalmazott konverziós algoritmustól
 \end_layout
 
 \begin_layout Section
-Adatgyűjtés
+Vetületi rendszerek
 \end_layout
 
 \begin_layout Standard
-A térinformatikai rendszerek fontos része a megfelelő adatok beszerzése
- és feltöltése a rendszerbe.
- Térbeli adatokat sok forrásból kaphatunk, lehetnek hagyományos papírtérképek,
- műholdak által biztosított adatok, GPS által szolgáltatott koordináták,
- vagy akár az interneten megosztott 
-\begin_inset Quotes pld
+A térképvetítés olyan matematikai transzformációk sorozata, amelyek során
+ a Föld felszínén található pontok a síkkoordináta-rendszerben vetítődnek.
+ Bizonyos torzulások, mint szög-, távolság-, vetületi irány-, vonalas aránymérté
+k- és terület-torzulás mindig nemkívánatos eredményei a folyamatnak.
+ Néhány leképezés ezen tulajdonságok valamelyikének torzulását minimálisra
+ csökkenti más, maximálisan kihasználható hibák rovására.
+ Némely vetület pedig csak mérsékelten igyekszik torzítani ezen tulajdonságok
+ mindegyikét.
+ 
+\end_layout
+
+\begin_layout Standard
+A Föld felszíne kitüremkedésekkel és mélyedésekkel teli, ezért ezt a szabálytala
+n idomot, helyetesíteni kell egy matematikailag jól meghatározható, a Föld
+ formáját nagy mértékben megközelítő felülettel.
+ Az így megválasztott felületet nevezik alapfelületnek.
+ A leggyakrabban használt alapfelület a forgási ellipszoid (szferoid).
+ Egy szferoidot leírhatunk a fél-kistengely hossza és a lapultság (körszimmetrit
+ástól való eltérés) által.
+ Mivel az így kapott szferoidok egyike sem modellezheti teljes pontossággal
+ a Földet, különböző referencia szferoidokat használnak a vetítések során.
+ Amikor csak egy adott terület ábrázolása a cél, veszünk egy szferoidot
+ és addig mozgatjuk a középpontját, míg az illeszkedési hiba minimális nem
+ lesz, ezt a szakirodalomban geodéziai dátumnak nevezik.
+ A térbeli modell meghatározása után következik a pontok síkban való vetítése.
+ A vetítés az alapfelületről történik a képfelületre (térkép).
+ Általában nem közvetlenül vetitődnek az alapfelület pontjai a síkra, hanem
+ a vetítés először egy síkba fejthető felületre történik, amelyet aztán
+ felvágva a síkba terítenek.
+ A vetületi rendszerek különbözhetnek az alapfelületben, a vetítés módszerében,
+ az egységnyi hossz mértékében, stb.
+ A GIS által használt vetületi rendszereket két csoportba sorolhatjuk: 
+\end_layout
+
+\begin_layout Enumerate
+Földrajzi koordinátarendszer – ezek hosszúság, szélesség koordinátákat használna
+k, közöttük találjuk például a WGS84-t (World Geodetic System 1984)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A WGS-84 az egész Földre definiált dátum
+\end_layout
+
 \end_inset
 
-geotagged
-\begin_inset Quotes prd
-\end_inset
 
- információk.
+\end_layout
+
+\begin_layout Enumerate
+Vetületi koordinátarendszer – ezek X, Y koordinátákat használnak, közöttük
+ találjuk az UTM-t (Universal Transverse Mercator)
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Section
-Vetítés
+QGIS 
 \end_layout
 
 \begin_layout Standard
-A vetítésének több módja is van, ezért a vetítésre vonatkozó információk
- tárolása is szükséges, amennyiben a térképeket egymásra akarjuk illeszteni.
- A használt vetítés tárolása a projection (.prj) fájlokban történik.
- A térképvetítés matematikai transzformációk sorozata, amely során egy szferikus
- felület felszínén található pontok síkba vetítődnek.
- Először a Föld szabálytalan felszínét egy szabályos geometria alakzatként
- kell kezelnünk, mint a gömb vagy szferoid, aztán az így kapott felületet
- vetíthetjük síkba.
- Ez a folyamat mindig valamilyen torzulást eredményez, ezért van olyan sokféle
- vetítés.
- Van amelyik a pontok közti távolságot őrzi meg, mások a levetített rész
- területét, formáját tartják meg.
- Nem létezik egy egységes vetítési eljárás.
- Vannak elterjedtebbek,mint például a Google Maps és a Mango Map által használt
- Web Mercator vetítés.
+A QGIS az egyik vezető nyílt forráskódú, platformfüggetlen térinformatikai
+ szoftver, melynek fejlesztése még a 2000-es évek elején kezdődött el.
+ Fejlesztése az OSGeo1 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Open Source Geospatial Foundation
+\end_layout
+
+\end_inset
+
+ hivatalos projektje.
+ A szoftver képességei és használati lehetőségeinek száma folyamatosan növekszik
+, köszönhetően a beépített alapvető függvények és a beépülő modulok gyarapodó
+ számának.
+ Így a program alkalmas térképek megjelenítésére, szerkesztésére, adatok
+ elemzésére és nyomtatható térképek összeállítására.
+ Támogatja a legtöbb vektoros formátumot, beleértve az ESRI shapefile, a
+ Mapinfo, SDTS, és GML (GoogleEarth XML) formátumokat is.
+ A QGIS programban megadhatjuk a layerek vetületi rendszerét, ez alapértelmezett
+en a WGS-84.
+ Különböző rendszerek esetén, azonos vetületi rendszerbe transzformálhatjuk
+ az adatainkat, ugyanakkor lehetőségünk van saját vetületi rendszer definiálásár
+a.
 \end_layout
 
 \begin_layout Section
-QGIS Bevezető
+QGIS Tutorial
 \end_layout
 
 \begin_layout Standard
-Az első feladat az objektumokat tartalmazó layerek betöltése.
+A szoftver indítása után az első feladat az objektumokat tartalmazó layerek
+ betöltése.
  Amint betöltünk egy layert az láthatóvá válik a QGIS térképnézegetőjében.
  A térképen történő navigálást legegyszerűbben a Térkép navigáció eszközsor
  elemeivel tehetjük meg.
  Betöltéskor a QGIS felépíti a térképen látható geometria formáknak megfelelő
  objektumokat.
- Ezeket manipulálhatjuk a menüsor által nyújtott eszközökkel, vagy a QGIS
- által biztosított Python konzolból scriptek segítségével.
+ Az adatokat manipulálhatjuk a menüsor által nyújtott eszközökkel vagy a
+ QGIS által biztosított Python konzolból scriptek segítségével.
+ A Python kódrészletekkel lehetőségünk nyílik a program funkcionalitásainak
+ a bővítésére.
 \end_layout
 
 \begin_layout Standard
@@ -675,33 +800,70 @@ A konzolban (alul bal oldalt) látható a mellette lévő szövegszerkesztőben
 
 \end_inset
 
-
+A konzol megnyitása előtt a QGIS az alábbi két parancsot végrehajtja: 
 \end_layout
 
 \begin_layout Standard
-A QGIS által felépített layer objektumokhoz tartozó információkat a QgsInterface
- osztály iface nevű instanciáján keresztűl érhetjük el.
- Az így kapott layer objektumtól kérthetünk egy iterátort a featurekhez.
- A featurek egy olyan szótár (dictionary), ahol a kulcsok az attribútumtábla
- mezőinek nevei.
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+from qgis.core import *
+\end_layout
+
+\begin_layout Plain Layout
+
+import qgis.utils
+\end_layout
+
+\end_inset
+
+A core könyvtár tartalmazza az alap GIS funkcionalításokat, a utils könyvtár
+ tartalmazza a modulok kezeléséhez szükséges funkcionalitásokat.
+ A betöltött layerekhez tartozó információkat a QgsInterface osztály iface
+ nevű instanciáján keresztűl érhetjük el.
+ Az így kapott layer tartalmazza a térképet alkotó objektumokat.
+ Egy objektumot 
+\begin_inset Quotes pld
+\end_inset
+
+feature
+\begin_inset Quotes prd
+\end_inset
+
+-nek nevezünk.
+ A QGIS által felépített feature egy olyan szótár (dictionary), ahol a kulcsok
+ az attribútumtábla mezőinek nevei, az értékek a mezők értékei.
  Tehát az f feature népesség elnevezésű mezőjének az értékére f['népesség']
  formában hivatkozhatunk.
- A QGIS a geometriai műveleteket a GEOS (Geometry Engine, Open Source) könyvtár
- segítségével végzi.
+ A QGIS a geometriai műveleteket a GEOS 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+(Geometry Engine, Open Source)
+\end_layout
+
+\end_inset
+
+ könyvtár segítségével végzi.
  Minden feature rendelkezik egy QgsGeometry objektummal, ezt a geometry
  elnevezésű függvény téríti vissza.
  Az így kapott objektumon már különböző geometriai műveleteket is végrehajthatun
 k.
  Például: terület vagy kerület számítás, metszéspontok és középpont megkeresése,
- polygonok esetén a polygon vonalakon belül elhelyezkedő pontok meghatározása,
- formák kombinálása, stb.
+ polygonok esetén a vonalakon belül elhelyezkedő pontok meghatározása, formák
+ kombinálása, stb.
 \end_layout
 
 \begin_layout Standard
 A QGIS-ben létrehozhatunk saját modulokat, illetve letölthetünk mások által
- keszítetteket.
- Egy modul létrehozása sok repetitív feladattal jár, ezért a QGIS fejlesztői
- keszítettek egy modult a modulok keszítésére.
+ készítetteket.
+ A saját modul keszítését megkönnyíti a Plugin Builder, amely generál egy
+ QGIS modul templatet.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -736,7 +898,8 @@ Plugin Builder modul
 
 \end_inset
 
-A Plugin Builder legenerál egy python modult, az alábbi könyvtárstrukturával.
+A Plugin Builder az alábbi könyvtárstrukturával rendelkező python modult
+ generálja.
 \end_layout
 
 \begin_layout Standard
@@ -773,54 +936,18 @@ generált könyvtárstruktúra
 
 Az __init__.py állomány a modul belépési pontja.
  A redistricting.py fájl tartalmazza a fő programot, a run metódusa hívódik
- meg, a modul minden futtatásakor.
- A redistricting_dialog_base.ui a párbeszédablakot tartalmazza, a redistricting_d
-ialog.py-ban van a párbeszédablak kezelő.
- A pylintrc állományban vannak a szintaktika ellenőrzéshez szükséges reguláris
- kifejezések...
-\end_layout
-
-\begin_layout Section
-Felhasználás
-\end_layout
-
-\begin_layout Standard
-Az adatok reprezentálásának és elemzésének a GIS által biztosított módját
- sok területen használják: az epidemiológusok a vírusok globális terjedését
- vizsgálják, a kriminológusok bűnözési mintákat keresnek, a geológusok a
- Föld fizikai elváltozásait megfigyelve előre jelzik a földmozgásokat, vagy
- lehetséges fosszilis erőforrásokat keresnek.
- Minden terület más természeti veszélyeknek kiszolgáltatott, ezen természetes
- jellemzők összegyűjtése és elemzése segít a kockázatcsökkentő intézkedések
- meghatározásában, és az esetleges katasztrófa utáni intézkedésekben.
- A MODFLOW (talajvíz modellező program) GIS-be való integrálásával elérhető,
- hogy a talajvíz mozgás modelek más GIS adatokkal összekapcsolva váljanak
- elemezhetővé.
- Ezt használva vízkészlet-kezeléssel kapcsolatos problémákat oldanak meg.
- Ugyanakkor a GIS az ökologia fontos eszköze, segítségével belehet határolni
- a vadon elő állatok mozgáskörzetét (legkisebb konvex sokszög meghúzása),
- így elkerülhető az élőhelyeik mesterséges szétdarabolódása.
- Nem csak tudományos területeken használják a GIS-t, ugyanúgy a hétköznapi
- tevékenységeink szerves része.
- Amikor egy ismeretlen helyen, egy étterem után keresgélünk, ma már nem
- úgy tesszük, hogy bebarangoljuk a környéket.
- Egyszerűen az okostelefonunk segítségével megnezzük a közeli intézményeket,
- szűrjük őket funkcionalitásuk szerint, esetleg más emberek ajánlásait,
- véleményeit is elolvassuk.
- Amint kiválasztottuk a megfelelő helyet a GPS segítségével egyenesen oda
- megyünk.
- A Mapbox Outdoors alkalmazás bicikliutakat, turaösvényeket, sípályakat
- mutat a szabadban bóklászóknak.
- A Madrid’s Air Map alkalmazást használva megfigyelhetőek a madridi levegőt
- alkotó gázak, szennyeződések, vírusok.
- Mindenki használ valamilyen GIS technológiát, van aki 
-\emph on
-geotagged 
-\emph default
-információkkal ömleszti el az internetet, van aki a GIS eszközök segítségével
- az adatok komplex elemzését végzi, és van aki egyszerűen csak a világban
- navigál.
- szappanoperák
+ meg a modul indításakor.
+ A redistricting_dialog_base.ui a párbeszédablakot tartalmazza, a párbeszédablak
+ kezelő redistricting_dialog.py fájlban van.
+ A generált modul továbbá tartalmazza a szintaktika ellenőrzéshez szükséges
+ reguláris kifejezéseket a pylintrc fájlban, a modul metainformációt, és
+ egy makefájlt a fordításhoz.
+ Amint megvan a modul fejlesztéséhez a vázunk, telepíthetjük is a modult
+ a QGIS plugin kezelőjéből.
+ A következő indításkor már az újonnan létrehozott modult is beolvassa a
+ QGIS a plugins mappából, és a modul ikonja megjelenik a menűsorban.
+ A modul további fejlesztése az általunk választott környezetek bármelyikében
+ történhet, azonban a modul futtatása a QGIS programon belül lehetséges.
 \end_layout
 
 \begin_layout Chapter
@@ -942,22 +1069,23 @@ A körzetek újraosztásának feladata, a célfüggvények
 \end_layout
 
 \begin_layout Standard
-Az ujraosztási probléma egy ország 
+Az ujraosztási probléma felfogható úgy, mint egy összefüggő terület (ország,álla
+m) 
 \begin_inset Formula $m$
 \end_inset
 
- darab körzetre való felosztását jelenti.
+ darab alterültre (körzetek) való felosztása.
  Egy érvényes felosztási terv alapfeltétele, hogy a körzetek folytonosak
  és figyelembe veszik a már meglévő adminisztrációs határokat.
- Ezeket úgy biztosítjuk, hogy a felosztást mindig egy megyén belül végezzük,
- és a körzeteket az adott megye egymással szomszédos, legkisebb adminisztrációs
- egységei (unitok) alkotják.
+ Ezeket úgy biztosítjuk, hogy a felosztást mindig egy nagyobb adminisztrációs
+ egységen belül végezzük, és a körzeteket a választott egység egymással
+ szomszédos, legkisebb adminisztrációs egységei (unitok) alkotják.
  Az így kapott 
-\begin_inset Formula $(K,U)$
+\begin_inset Formula $(Z,U)$
 \end_inset
 
  párokat, ahol 
-\begin_inset Formula $K$
+\begin_inset Formula $Z$
 \end_inset
 
  a körzeteket, 
@@ -965,14 +1093,14 @@ Az ujraosztási probléma egy ország
 \end_inset
 
  a 
-\begin_inset Formula $K$
+\begin_inset Formula $Z$
 \end_inset
 
  körzethez tartozó unitok halmazát jelöli, nevezzük egy érvényes felosztásnak.
- Azt, hogy egy megyét hány körzetre osztunk, a legnagyobb maradék metódussal
- (largest remainder method) határozzuk meg.
+ Azt, hogy egy adminisztrációs egységhet hány körzetre osztunk, a legnagyobb
+ maradék módszerrel (largest remainder method) határozzuk meg.
  Először kiszámítjuk a nemzeti átlagot (
-\begin_inset Formula $nm=p_{ország}/n$
+\begin_inset Formula $NM=p_{ország}/m$
 \end_inset
 
 , ahol 
@@ -981,43 +1109,37 @@ Az ujraosztási probléma egy ország
 
  az ország populációját jelöli).
  Kezdetben minden megyéhez rendelünk 
-\begin_inset Formula $\lfloor p_{megye}/nm\rfloor$
+\begin_inset Formula $\lfloor p_{megye}/NM\rfloor$
 \end_inset
 
  darab körzetet.
  A megmaradt körzeteket szétosztjuk a legnagyobb 
-\begin_inset Formula $frac(p_{megye}/nm)$
+\begin_inset Formula $frac(p_{megye}/NM)$
 \end_inset
 
  értékkel rendelkező megyék között (mindegyikhez plusz egy körzetet adunk).
- Az újraosztás során a célunk olyan érvényes felosztási terveket találni,
- amelyek más, általunk definiált kritériumoknak is megfelelnek.
+ 
 \end_layout
 
 \begin_layout Standard
-Minden kritériumnak megfeleltethető egy célfüggvény, ezek száma tetszőlegesen
+Az újraosztás során a célunk olyan érvényes felosztási terveket találni,
+ amelyek más, általunk definiált kritériumoknak is megfelelnek.
+ Minden kritériumnak megfeleltethető egy célfüggvény, ezek száma tetszőlegesen
  megválasztható.
- Az optimalizáció során arra törekszünk, hogy a megadott célfüggvények mindegyik
-ét figyelembe véve találjunk optimum közeli megoldást.
+ A többszörös célfüggvényt használó optimalizáció során arra törekszünk,
+ hogy a megadott célfüggvények mindegyikét figyelembe véve találjunk optimum
+ közeli megoldást.
  A dolgozatban bemutatott program két célfüggvényt használ, a mexikói újraosztás
-ok mintájára.
- Ezt a két függvényt használta az IFE (Instituto Federal Electoral) a 2006-os
+ok mintájára, ezeket használta az IFE (Instituto Federal Electoral) a 2006-os
  választásokot megelöző újraosztások során.
- A 
-\begin_inset Formula $C_{1}$
-\end_inset
-
- függvény azt méri, hogy a populáció mennyire oszlik el egyenletesen a körzetek
- között.
- Minnél alacsonyabb a függvény értéke, annál egyenletesebb az eloszlás.
- A használt függvényt az IFE (Instituto Federal Electoral) határozta meg,
- és használta a 2006-os mexicói újra osztások során:
+ Az első célfüggvény a körzetek közti egyenletes populáció eloszlást méri.
+ Minnél alacsonyabb a függvény értéke, annál egyenletesebb az eloszlás:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-C_{1}(P)=\sum_{e\epsilon E}(\frac{P_{e}}{d_{e}*M})^{2}\sum_{s\epsilon S}(\frac{P_{s}}{P_{e}}-\frac{1}{n})^{2}
+C_{1}(P)=\sum_{e\epsilon E}(\frac{P_{e}}{d_{e}*NM})^{2}\sum_{s\epsilon S}(\frac{P_{s}}{P_{e}}-\frac{1}{n_{e}})^{2}
 \]
 
 \end_inset
@@ -1026,76 +1148,49 @@ Ahol
 \begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
 \end_inset
 
- egy felosztása az országnak, úgy hogy 
-\begin_inset Formula $Z_{s}=\{U_{1},U_{2},...,U_{s_{k}}\}$
+ egy felosztási terv, 
+\begin_inset Formula $NM$
 \end_inset
 
-, 
-\begin_inset Formula $Z_{s}$
-\end_inset
-
- az 
-\emph on
-s
-\emph default
- körzet unitjainak a halmaza, és 
-\emph on
-s
-\emph default
- körzet valamely 
-\emph on
-e 
-\emph default
-megyéhez tartozik.
- 
+ a nezeti átlagot jelöli, 
 \begin_inset Formula $P_{e}$
 \end_inset
 
- 
-\emph on
-e
-\emph default
- megye populációja, M a nemzeti átlag 
-\begin_inset Formula $M=CP/N$
-\end_inset
-
-, úgy hogy CP az ország populációja, N az összesen generálandó körzetek
- száma.
+ az adott megye populációja.
 
 \emph on
  A
 \emph default
- megyében megengedett szórás
-\emph on
- 
-\emph default
-
+ megyében megengedett szórást 
 \begin_inset Formula $d_{e}$
 \end_inset
 
-.
+- vel jelöljük.
  A szorzat második tagjában levő 
 \begin_inset Formula $P_{s}$
 \end_inset
 
- jelöli s körzet populációját, 
+ jelöli az adott körzet populációját,
 \emph on
-n 
+ 
+\begin_inset Formula $n_{e}$
+\end_inset
+
+ 
 \emph default
-az
-\emph on
- e 
-\emph default
-megyéhez tartozó körzetek száma.
+a megyéhez rendelt körzek száma.
  Az hogy egy megyében megengedett szórás értéke mekkora, annak a függvényében
  változik, hogy a megye átlaga mennyire tér el a nemzeti átlagtól.
  Ha a két átlag közti különbség kevesebb, mint az ország lakosságának az
- 5%, a megengedett szórás 15% lesz.
- 5% és 10% közötti eltérés esetén a szórás 10%, míg nagyobb eltérések esetén
- a szórás 5%.
- A másik célfüggvény a körzetek formájának a kompaktságát méri.
- Abból kiindulva, hogy a legkompaktabb forma a kör, mérjük a körzet kompaktságát.
- Legyen a körzethez tartozó unitok által formált alakzat kerülete 
+ 5%, a megengedett szórás 15% lesz, 5% és 10% közötti eltérés esetén a szórás
+ 10%, míg nagyobb eltérések esetén a szórás 5%.
+\end_layout
+
+\begin_layout Standard
+A második célfüggvény a körzetek formájának a kompaktságát méri.
+ Abból kiindulva, hogy a legkompaktabb geometriai alakzat a kör, megtudjuk
+ határozni a körzethez tartozó unitok által formált alakzat kompaktságát.
+ Legyen a körzet kerülete 
 \begin_inset Formula $PE_{s}$
 \end_inset
 
@@ -1124,77 +1219,68 @@ Többszörös célfüggvényt használó algoritmus
 \end_layout
 
 \begin_layout Standard
-A többszörös célfüggvényt használó algoritmus különböző kritériumokat figyelembe
- véve optimalizál.
- 
-\end_layout
-
-\begin_layout Standard
-Ebben az esetben a cél olyan 
-\begin_inset Formula $(K,U)$
-\end_inset
-
- párosításokat találni, amelyek mindkét célfüggvényt megpróbálják egyszerre
- optimizálni.
- 
-\begin_inset Formula $K$
-\end_inset
-
- a körzeteket jelöli, 
+Amikor több célfüggvénnyel dolgozunk egy megoldásról nem mindig állithatjuk
+ egyértelműn, hogy jobb/rosszabb, mint a másik megoldás.
+ Két megoldás összehasonlításánál a következő három lehetséges eset merül
+ fel (ahol 
 \begin_inset Formula $U$
 \end_inset
 
- a unitokat.
- A unitok a létező legkisebb közigazgatási egységei a felosztandó országnak.
- Az ország egy lehetséges felosztása, vagyis egy megoldás, olyan (K,U) párok
- összessége, ahol minden körzet előre meghatározott számú unitot foglal
- magába, és egy unit csak egy körzethez tartozhat.
- 
-\end_layout
-
-\begin_layout Standard
-Két megoldás összehasonlításánál a következő három lehetséges eset merül
- fel (ahol 
+ jelöli az aktuális megoldást, 
 \begin_inset Formula $V$
 \end_inset
 
- jelöli az aktuális megoldást, 
-\begin_inset Formula $V'$
+ jelöli az új megoldást) :
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $V$
 \end_inset
 
- pedig a szomszédos, új megoldást):
+ minden célfüggvény szerint jobb megoldásnak bizonyul
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $V'$
+\begin_inset Formula $V$
 \end_inset
 
-minden célfüggvény   szerint jobb megoldásnak bizonyul
+ csak bizonyos célfüggvényekben teljesít jobban
 \end_layout
 
 \begin_layout Enumerate
-V' csak bizonyos célfüggvényekre mutat jobb eredményt
-\end_layout
+\begin_inset Formula $V$
+\end_inset
 
-\begin_layout Enumerate
-V' minden célfüggvény szerint rosszabb megoldásnak bizonyul
+ minden célfüggvény szerint rosszabb megoldásnak bizonyul
 \end_layout
 
 \begin_layout Standard
 A megoldásainkat egy olyan halmazba gyűjtjük (Pareto halmaz), amely a fenti
  eseteknek megfelelő szabályok szerint bővül.
- Ha V' dominál más megoldásokat (1 eset), átveszi egy dominált megoldás
- helyét és súlyait.
- Azt a megoldást fogja lecserélni, amelyiknél a leginkább jobbnak bizonyul.
- Ezt azt jelenti, hogy összehasonlítódnak a célfüggvények súlyozott összegei,
- és amelyiknél V' súlyozott összege (a súlyokat attól a megoldástól kölcsönzi,
- amellyel éppen összehasonlítódik) a legkisebb, az a megoldás lesz helyettesítve.
- Ha az új megoldás nem dominál (nem igaz az 1.
+ Ha 
+\begin_inset Formula $V$
+\end_inset
+
+ dominál más megoldásokat (1 eset), átveszi egy dominált megoldás helyét
+ és a hozza rendelt súlyokat úgy.
+ hogy azt a megoldást cseréli le, amelyiknél a leginkább jobbnak bizonyul.
+ Ha 
+\begin_inset Formula $V$
+\end_inset
+
+ nem dominál (nem igaz az 1.
  eset) és nem dominált (nem igaz a 3.
- eset), akkor a halmazhoz adódik.
- Ha V' dominált valamely megoldás által, nem kerül a halmazba, viszont a
- szimulált hűtésnél leírt valószínűség szerint felválthatja a jelenlegi
- megoldást.
+ eset), akkor bővítjük a halmazunkat a 
+\begin_inset Formula $V$
+\end_inset
+
+ mgoldással.
+ Abban az esetben, a 
+\begin_inset Formula $V$
+\end_inset
+
+ dominált valamely megoldás által, nem kerül a halmazba, viszont a szimulált
+ hűtésnél leírt valószínűség szerint felválthatja a jelenlegi megoldást.
  Amikor egy új megoldás kerül a halmazba, mindig hozza rendelődik egy random
  választott súlyvektor az előre meghatározott súlyok listájából.
  Az algoritmus végére minden súlyvektorhoz fog legalább egy nem dominált
@@ -1707,7 +1793,7 @@ Automated Redistricting
  A QGIS munkafelületre szintén bekell legyen töltve két layer, amelyek tartalmaz
 zák a felosztandó megyékhez és az őket alkotó unitokhoz tartozó polygonokat.
  A két layer attribútumtáblája összekapcsolható kell legyen a megye azonosítók
- szerint, tehát tudnunk kell, hogy egy közigazgatási egység melyik megyéhez
+ szerint, különben nem tudható, hogy egy közigazgatási egység melyik megyéhez
  tartozik.
  A későbbiekben egy unit szomszédainak a bejárására gyakran kerűl sor, ezért
  a modul első használatakor a 
@@ -1718,9 +1804,9 @@ neighbours.py
 \begin_inset Quotes prd
 \end_inset
 
- elnevezésű scriptet is le kell futtatni, amely bővíti egy attribútummal
- a unitokat tartalmazó adatbázis táblát.
- Az új attribútum a szomszédos unitok azonosítóját sorolja fel.
+ elnevezésű script lefuttatása is szükséges.
+ A script egy olyan új attribútumot ad a unitokat tartalmazó adatbázis táblához,
+ amely a szomszédos unitok azonosítóját sorolja fel.
  Ez később majd sok futási időt nyer a körzetek változtatásához szükséges
  műveletek során.
  A körzetek kerületeinek a kiszámításához egy olyan layert használunk, amely
@@ -1795,7 +1881,7 @@ attributes:
 \end_inset
 
 A további paraméterek az optimalizáló algoritmus viselkedését befolyásolják,
- ezek változtatása nélkűl is használható a program, az alapértelmezett beállítás
+ ezek változtatása nélkül is használható a program, az alapértelmezett beállítás
 okkal.
 \end_layout
 
@@ -1899,7 +1985,7 @@ objectives.py
  elnevezésű fájl tartalmazza, ezek bővítése értelemszerűen nem adható meg
  a konfigurációs fájlban.
  Amennyiben újabb függvényt szeretnénk egy megoldás kiértékeléséhez adni
- azt implementálnunk kell az objectives.py fájlban.
+ azt implementálnunk kell a függvényeket tartalmazó fájlban.
  A program indítás után iterációnként naplózni fogja a megoldáshalmaz viselkedés
 ét.
  Amint a hőmérséklet lehűl , a legalacsonyabb objektív értékkel rendelkező
@@ -1924,9 +2010,8 @@ Románia
 \end_layout
 
 \begin_layout Standard
-A Romániá adminisztrációs egységeit tartalmazó shape fájlok, egy ingyenes,
- Romániával kapcsolatos térinformatikai adatokat tartalmazó adatbázisból
- származnak.
+A Romániá adminisztrációs egységeit tartalmazó shape fájlok, egy Romániával
+ kapcsolatos térinformatikai adatokat tartalmazó adatbázisból származnak.
 \begin_inset Foot
 status open
 
@@ -2000,6 +2085,9 @@ Románia megyéi és adminisztrációs egységei
 A 2015-ös népszámlálási adatokra hagyatkozva, a legnagyobb maradék metódust
  használva 120 körzetet osztottunk szét a megyék között, az alábbi kódot
  használva:
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -2007,7 +2095,7 @@ status open
 
 
 \backslash
-begin{lstlisting}[language=Python]
+begin{lstlisting}[language=Python,frame=single,title=Körzetek Kiosztása]
 \end_layout
 
 \begin_layout Plain Layout
@@ -2022,7 +2110,17 @@ def AssignDistricts(self):
 
 \begin_layout Plain Layout
 
-self.counties_pop[i]/self.national_mean - self.counties_pop[i]//self.national_mean)	
+	self.counties_pop[i]/self.national_mean - 
+\end_layout
+
+\begin_layout Plain Layout
+
+	self.counties_pop[i]//self.national_mean)
+\end_layout
+
+\begin_layout Plain Layout
+
+	
 \end_layout
 
 \begin_layout Plain Layout
@@ -2072,8 +2170,17 @@ self.counties_pop[i]/self.national_mean - self.counties_pop[i]//self.national_me
 
 \begin_layout Plain Layout
 
-	#assigne an additional district to counties with the highest fractional
- remainder         
+	#assigne an additional district to counties with the highest 
+\end_layout
+
+\begin_layout Plain Layout
+
+	#fractional remainder
+\end_layout
+
+\begin_layout Plain Layout
+
+        
 \end_layout
 
 \begin_layout Plain Layout
@@ -2083,8 +2190,17 @@ self.counties_pop[i]/self.national_mean - self.counties_pop[i]//self.national_me
 
 \begin_layout Plain Layout
 
-		dict_sorted = sorted(dict_assigned.items(), key=lambda (k, v): v[1],reverse=Tru
-e)             
+		dict_sorted = sorted(dict_assigned.items(), 
+\end_layout
+
+\begin_layout Plain Layout
+
+		key=lambda (k, v): v[1],reverse=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+            
 \end_layout
 
 \begin_layout Plain Layout
@@ -2100,12 +2216,12 @@ e)
 
 \begin_layout Plain Layout
 
-	#return the assigned values         
+	         
 \end_layout
 
 \begin_layout Plain Layout
 
-		return [assv for (assv,rem) in dict_assigned.values()]
+	return [assv for (assv,rem) in dict_assigned.values()]
 \end_layout
 
 \begin_layout Plain Layout
@@ -2117,7 +2233,46 @@ end{lstlisting}
 
 \end_inset
 
+A következő körzet kiosztások születtek:
+\end_layout
 
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Körzetek Szétosztása
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset External
+	template GnumericSpreadsheet
+	filename assigndis.ods
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Látható, hogy azokhoz a megyékhez, amelyek az egész rész szerint csak egy
+ körzetből állnak, hozzaadtunk még egyet.
+ Bukaresthez az egész rész módszer szerint 11 körzet tartozna, azonban mindössze
+ 6 kissebb adminisztrációs egységre van osztva a főváros, ezért Bukaresttől
+ elvettünk 5 körzetet.
+ Az egész részek kiosztása után, a maradék 14 körzetet a legnagyobb törtrésszel
+ rendelkező megyék között szétosztottuk.
 \end_layout
 
 \begin_layout Bibliography
