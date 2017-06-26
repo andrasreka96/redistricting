@@ -322,7 +322,7 @@ Romániában 136, az Egyesült Államokban 100 szenátort választanak
 \end_inset
 
  megválasztását jelenti, azonban az országok ennél jóval kevesebb adminisztráció
-s egységre (megye, régió, tartomány, stb.) vannak osztva.
+s egységre (megye, régió, tartomány, stb.) vannak felosztva.
  Míg közigazgatási szempontból egy ország túlzott feldaraboltsága fölösleges
  bürokráciához vezet, a parlament tagjainak száma minnél nagyobb, annál
  inkább beszélhetünk képviseleti demokráciáról.
@@ -334,20 +334,20 @@ s egységre (megye, régió, tartomány, stb.) vannak osztva.
  A körzeteket az ország legkisebb egységei (falvak, városok, stb.) alkotják.
  Két fajtájukat különböztetjük meg: többmandátumos választókörzet és egyéni
  (egymandátumos) választókörzet.
- Az egyéni körzeti választási rendszerek esetén minden választókörzet egy
+ Az egyéni körzetes választási rendszerek esetén minden választókörzet egy
  képviselőt delegál.
  Ebben az esetben a körzetek száma megegyezik a parlamenti mandátumok számával.
+ Ilyen szavazói rendszert alkalmaznak többek között Franciaországban, az
+ Egyesült Királyságban és az Amerikai Egyesült Államokban.
  A kizárólag egyéni választókörzeteket használó szavazások kimenetele sokkal
  inkább manipulálható, mint a többmandátumos rendszereké.
  Ennek okát a későbbiekben részletesebben is megmagyarázzuk.
- Ilyen szavazói rendszert alkalmaznak többek között Franciaországban, az
- Egyesült Királyságban és az Amerikai Egyesült Államokban.
  A többmandátumos választókörzeteket az arányos-pártlistás választási rendszerek
 ben használják.
  Ez esetben az állampolgárok a pártok jelöltlistáira szavaznak, a pártok
  a kapott szavazatokkal arányos mértékben jutnak be a parlamentbe.
- Sok állam a fent említett választási rendszer valamilyen kombinációját
- használja, például Románia és Magyarország.
+ Sok állam a fent említett választási rendszerek valamilyen kombinációját
+ használja, ilyen például Románia és Magyarország.
 \end_layout
 
 \begin_layout Section
@@ -470,9 +470,94 @@ nk kárba ment szavazatokról.
  a lehető legkevesebb helyen érjék el a szavazati többséget.
  Így megtörténhet az, hogy egy párt sokkal több parlamenti helyre tesz szert,
  mint amennyit a valasztók közötti támogatottsága alapján érdemelne.
- A körzetek újraosztása egy olyan eszköz a politikusok kezében, amely által
- megválaszthatják a szavazóikat.
- 
+ A gerrymandering mérésének egyik módja a parlamentben elfoglalt helyek
+ es a szavazók közötti támogatottság kapcsolatának az elemzése.
+ Ezen kapcsolat ábrázolására vezették be a hely-szavazat görbét 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Angolul 
+\begin_inset Quotes pld
+\end_inset
+
+seat-vote curve
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ (lásd 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Coate"
+
+\end_inset
+
+).
+ A hely-szavazat görbét az 
+\begin_inset Formula $S(V_{A})$
+\end_inset
+
+ függvénnyel írhatjuk le, ahol 
+\begin_inset Formula $V_{A}$
+\end_inset
+
+ az 
+\begin_inset Formula $A$
+\end_inset
+
+ párt által kapott szavazatok százalékát jelöli, 
+\begin_inset Formula $S(V_{A})$
+\end_inset
+
+ a parlamentben elfoglalt helyek százaléka.
+ Az így kapott görbék összehasonlításával mérhető a részrehajlás
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Angolul 
+\begin_inset Quotes pld
+\end_inset
+
+partisan bias
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ a felosztási tervben.
+ Egy teljesen igazságos felosztás azt jelentené, hogy 
+\begin_inset Formula $S(V_{A})=S(V_{B})$
+\end_inset
+
+ minden 
+\begin_inset Formula $V$
+\end_inset
+
+-re.
+ Az 
+\begin_inset Formula $S$
+\end_inset
+
+ függvényértékeink összehasonlítása minden párt esetén megmondaná nekünk,
+ hogy az adott felosztási terv mennyire igazságos.
+ Ez a választások lebonyolítása után megtehető, de ezzel nem biztosítottunk
+ egy igazságos választást, csupán utólagos bírálatnak tehetjük ki az eredményeke
+t.
+ Annak garantálása, hogy a felosztási tervek teljesen igazságosak továbbra
+ is megoldatlan feladat.
+ Az érintett államok különböző módszerekkel próbálkoznak.
+ Van ahol egy politika mentes bizottság végzi a felosztást, máshol egy program
+ generálja a felosztásokat, és mind e közben, újabb és újabb törvényeket
+ hoznak, amelyeket egy felosztási tervnek bekell tartania.
 \end_layout
 
 \begin_layout Chapter
@@ -2278,6 +2363,20 @@ Látható, hogy azokhoz a megyékhez, amelyek az egész rész szerint csak egy
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "Coate"
+
+\end_inset
+
+S.
+ Coate, B.
+ Knight, Socially Optimal Districting: A Theoretical and Empirical Exploration,
+ The Quarterly Journal of Economics, Vol.
+ 122, Issue 4
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "Elek"
 
 \end_inset
@@ -2321,8 +2420,8 @@ E.
  Ringcón-García, M.
  A.
  Guiterrez-Andrade et al., A Multiobjective Algorithm for Redistricting,
- Journal of Applied Research and Technology Volume 11, Issue 3, June 2013,
- pp.
+ Journal of Applied Research and Technology Vol.
+ 11, Issue 3, June 2013, pp.
  324–330.
 \end_layout
 
