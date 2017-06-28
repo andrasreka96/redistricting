@@ -7,22 +7,14 @@ import math
 
 class ObjFunc:
 
-    def __init__(self):
-        #load yaml
-        with open(os.path.join(os.path.dirname(__file__), os.pardir, 'config.yaml'),'r') as file_descriptor:
-            data = yaml.load(file_descriptor)
-            parameters = data.get('parameters')
-            self.nr_of_districts = parameters['nr_of_districts']
-            self.deviation = parameters['deviation']
-            self.population_country =parameters['population_country']
-            self.quota = self.population_country/self.nr_of_districts
-            self.logger = logging.getLogger()
-
+    def __init__(self,national_mean):
+        self.national_mean=national_mean
+        self.logger = logging.getLogger()
 
     def c1(self,counties):
         sum=0
         for county in counties:
-            fp_product = county.population/(county.deviation*(self.population_country/self.nr_of_districts))
+            fp_product = county.population/(county.deviation*(self.national_mean))
             self.logger.debug("county %d fp:%f",county.id,fp_product)
             nr_of_districts = len(county.districts)
             for district in county.districts:

@@ -66,8 +66,6 @@ class AutomatedRedistricting:
                 self.layer_poliline=layer
             if (layer.name().find("uat")!=-1):
                 self.layer_poligon=layer
-            if(layer.name().find("judete")!=-1):
-                self.layer_county=layer
 
 
         # initialize plugin directory
@@ -216,7 +214,7 @@ class AutomatedRedistricting:
 
     def run(self):
         "Run method that performs all the real work"""
-        mosa = MOSA(self.layer_poligon,self.layer_poliline,self.layer_county)
+        mosa = MOSA(self.layer_poligon,self.layer_poliline)
         #log = Log()
         #lm = LayerManipulation(self.layer_poligon)
 

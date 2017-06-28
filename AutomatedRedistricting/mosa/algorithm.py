@@ -1,5 +1,6 @@
 from __future__ import division
 from collections import deque
+from itertools import islice
 
 import random
 import logging
@@ -24,7 +25,7 @@ from PyQt4.QtGui import QColor
 
 class MOSA:
 
-    def __init__(self,layer_poligon,layer_poliline,layer_county ):
+    def __init__(self,layer_poligon,layer_poliline ):
         #load yaml
         with open(os.path.join(os.path.dirname(__file__), os.pardir, 'config.yaml'),'r') as file_descriptor:
             data = yaml.load(file_descriptor)
@@ -34,27 +35,19 @@ class MOSA:
 
         #save used layers
         self.layer_poligon=layer_poligon
-        self.layer_county=layer_county
-
 
         #create dictionary where
-        #key - countyid
+        #key - regionid
         #values - lists of features
         self.dict_units = defaultdict(list)
-        for feature in layer_poligon.getFeatures():
-            self.dict_units[feature[attributes['county_id']]].append(feature)
 
-        self.counties_dict = {}
-        self.counties_pop = {}
-        for f in layer_county.getFeatures():
-            self.counties_dict[f[attributes['county_id']]]= f[attributes['county_name']]
-            self.counties_pop[f[attributes['county_id']]]= f[attributes['attribute_population']]
+        self.attrib_join_id = attributes['join_id']
+        self.attrib_pop = attributes['attribute_population']
 
         self.cooling_schedule = parameters['cooling_schedule']
         self.initial_temperature = parameters['initial_temperature']
         self.final_temperature = parameters['final_temperature']
         self.iterations = parameters['iterations']
-        self.nr_of_counties = parameters['nr_of_counties']
         self.small_partition = parameters['small_partition']
         self.upper_limit = parameters['upper_limit']
         self.neighbourhood = parameters['neighbourhood']
@@ -62,15 +55,30 @@ class MOSA:
         self.minnr_of_unit = parameters['minnr_of_unit']
         self.max_iter = parameters['max_iter']
         self.max_size_pareto = parameters['max_size_pareto']
-        self.population_country = parameters['population_country']
         self.nr_of_districts = parameters['nr_of_districts']
-        self.national_mean = self.population_country/self.nr_of_districts
 
         self.district_builder = DistrictBuilder(layer_poliline,attributes['attribute_id_poliline'])
-        self.objf = objectives.ObjFunc()
-        self.log = Log()
 
         self.attributes=attributes
+
+
+    def BuildRegion(self):
+        idx = self.layer_poligon.fieldNameIndex(self.attrib_join_id)
+        uniqueValues = self.layer_poligon.uniqueValues(idx)
+
+        self.nr_of_regions = len(uniqueValues)
+        self.dict_pop = dict.fromkeys(uniqueValues,0)
+        self.population_country = 0
+
+        for feature in self.layer_poligon.getFeatures():
+            self.population_country +=  feature[self.attrib_pop]
+            self.dict_pop[feature[self.attrib_join_id]] += feature[self.attrib_pop]
+            self.dict_units[feature[self.attrib_join_id]].append(feature)
+
+        #init population related stuff
+        self.national_mean = self.population_country/self.nr_of_districts
+        self.objf = objectives.ObjFunc(self.national_mean)
+        self.log = Log(self.objf)
 
     def DistrictNear(self,units,solution):
         for unit in units:
@@ -85,17 +93,13 @@ class MOSA:
         return random_unit
 
     def CreateInitialCounty(self,nr_of_districts,features,county):
+
         #convert features into unit objects
         util = UnitBuilder(features,self.attributes)
         units = set(util.units)
 
         unit_in_district=len(units)/nr_of_districts
         solution=[]
-
-        #get color for every district
-        #randomScheme = QgsRandomColorScheme()
-        #colors=randomScheme.fetchColors(int(nr_of_districts))
-        colors = [QColor(255,0,0).name(), QColor(0,255,0).name(), QColor(0,0,255).name(), QColor(128,0,0).name(),QColor(0,128,0).name(), QColor(0,0,128).name(), QColor(128,128,128).name()]
 
         i=0
         while units:
@@ -145,7 +149,7 @@ class MOSA:
             else:
             #create district and add to the solution
 
-                solution.append(District(i,str(county)+'_'+str(i),new_district,colors[i]))
+                solution.append(District(i,str(county)+'_'+str(i),new_district,self.colors[i]))
                 logging.debug('District %d has been added to the solution with %d units',i+1,len(new_district))
 
                 #take the next district
@@ -156,28 +160,44 @@ class MOSA:
             self.district_builder.BuildDistrict(s)
         return solution
 
-    def NumberOfDistricts(self):
+    def AssignDistricts(self):
 
-        remainder = map(lambda x: 2 if x<=1 else x,[self.counties_pop[countyid]//self.national_mean for countyid in range(1,self.nr_of_counties + 1)])
-        slice_ = self.nr_of_districts-sum(remainder)
+        dict_assigned = {i: (self.dict_pop[i]//self.national_mean,self.dict_pop[i]/self.national_mean - self.dict_pop[i]//self.national_mean) for i in range(1,self.nr_of_regions + 1)}
+
+        assigned = 0
+        for key, value in dict_assigned.iteritems():
+            if value[0] == 1:
+                dict_assigned[key] = (2,0)
+                assigned+=2
+            else:
+                assigned+=value[0]
 
         #romania specific
-        slice_ += (remainder[self.nr_of_counties-3]-6)
-        remainder[self.nr_of_counties-3]=6
+        #assigned-=(dict_assigned[40][0]-6)
+        #dict_assigned[40]=(6,0)
 
-        if slice_:
-            for i in [j[0] for j in sorted(enumerate(remainder),key=lambda i:i[1],reverse=True)][:int(slice_)]:
-                remainder[i]+=1
 
-        logging.info(remainder)
-        return remainder
+        unassigned = self.nr_of_districts-assigned
+        #assigne an additional district to counties with the highest fractional remainder
+        if unassigned:
+            dict_sorted = sorted(dict_assigned.items(), key=lambda (k, v): v[1],reverse=True)
+            for key,value in list(islice(dict_sorted, unassigned)):
+                dict_assigned[key] = (value[0]+1,value[1])
+
+
+        assigned_districts = [assv for (assv,rem) in dict_assigned.values()]
+        logging.info("Assigned Districts:%s", ','.join(str(x) for x in assigned_districts))
+        #return the assigned values
+        return assigned_districts
 
     def CreateInitialSolution(self):
-    #create districts for every county
+    #create districts for every region
+        self.BuildRegion()
 
         counties = []
-        district_in_counties = self.NumberOfDistricts()
-        for countyid in range(1,self.nr_of_counties + 1):
+        district_in_counties = self.AssignDistricts()
+        self.colors =  Color().generateColors(max(district_in_counties))
+        for countyid in range(1,self.nr_of_regions + 1):
             #get units in county
             units = self.dict_units[countyid]
 
@@ -186,18 +206,18 @@ class MOSA:
             #determine the allowed deviations in each county
 
             #differene between the national and state mean
-            diff = abs(self.counties_pop[countyid]/district_in_counties[countyid-1]-self.national_mean)
+            diff = abs(self.dict_pop[countyid]/district_in_counties[countyid-1]-self.national_mean)
 
             #store deviations in county
-            if diff<self.counties_pop[countyid]*(5/100):
+            if diff<self.dict_pop[countyid]*(5/100):
                 deviation = 15
             else:
-                if diff < self.counties_pop[countyid]/10:
+                if diff < self.dict_pop[countyid]/10:
                     deviation = 10
                 else:
                     deviation = 5
 
-            county = County(countyid,self.counties_dict[countyid],district,deviation)
+            county = County(countyid,countyid,district,deviation)
             counties.append(county)
 
 
@@ -366,7 +386,7 @@ class MOSA:
     #it splits the solutions, selects between them, than creates the best solution from the pieces
         counties = []
 
-        for i in range(0,self.nr_of_counties):
+        for i in range(0,self.nr_of_regions):
             bestcounty = next(iter(pareto)).counties[i]
             #determine the objectibe value for the given weights
             bestval = self.dot(self.objf.EvaluateObjectives([bestcounty]),w)
