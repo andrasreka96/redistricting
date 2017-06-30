@@ -252,7 +252,7 @@ reference "chap:GISQGIS"
 .
  fejezet röviden ismerteti az alkalmazás által használt technológiákat:
  a térinformatikai (GIS) rendszereket általában, majd konkrétan a QGIS térinform
-atikai szoftvercsomagot.
+atikai szoftvercsomagot ([??, ??, ??] alapján).
  
 \end_layout
 
@@ -936,7 +936,7 @@ A szoftver indítása után az első feladat az objektumokat tartalmazó layer-e
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1080,7 +1080,7 @@ QGIS-ben létrehozhatunk saját modulokat, illetve letölthetünk mások által
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1116,7 +1116,7 @@ A Plugin Builder az alábbi könyvtárstruktúrával rendelkező Python modult
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
