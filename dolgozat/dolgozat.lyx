@@ -106,19 +106,19 @@ Bevezetés
 \begin_layout Standard
 A modern demokráciák működésének elengedhetetlen alapfeltétele (többek között)
  egy átlátható választási rendszer.
- Egy pártatlan és átlátható választási folyamat hiánya, kétségbe vonhatja
+ Egy pártatlan és átlátható választási folyamat hiánya kétségbe vonhatja
  a közigazgatási rendszer (kormány, intézmények, stb.) legitimitását.
  Sajnos mindig vannak olyan folyamatok, amelyek azt az érzetet ébresztik
  a szavazóban, hogy a döntések tőle függetlenül, zárt ajtók mögött zajlanak.
  Ezen folyamatok közé tartozik a szavazókörzetek újraosztása.
- Jobb esetben, az újraosztási tervet egy függetlennek nevezett bizottság
+ Jobb esetben az újraosztási tervet egy függetlennek nevezett bizottság
  készíti el, amelyet majd valamely törvényhozó szerv elfogad.
  Az emberek jogosan sejtenek rejtett szándékokat a gyakran földrajzi szempontból
  irracionálisnak tetsző határvonalak mögött: 
 \emph on
 redistricting
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 A választási körzetek újraosztása
@@ -132,7 +132,7 @@ A választási körzetek újraosztása
 \emph on
 gerrymandering
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 A választási körzetek újraosztási folyamatának befolyásolása annak érdekében,
@@ -147,9 +147,13 @@ A választási körzetek újraosztási folyamatának befolyásolása annak érde
  A körzetek újraosztása sokszor elkerülhetetlen, ezért az átlátható és az
  igazságos választások érdekében a választókerület-manipulációt kell megszüntetn
 i.
- A dolgozatban bemutatott QGIS
+ 
+\end_layout
+
+\begin_layout Standard
+Az általunk készített és a dolgozatban bemutatott QGIS
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Korábbi nevén: Quantum GIS.
@@ -166,13 +170,9 @@ status open
 
 \begin_layout Plain Layout
 Angolul 
-\begin_inset Quotes pld
-\end_inset
-
+\emph on
 simulated annealing
-\begin_inset Quotes prd
-\end_inset
-
+\emph default
 .
 \end_layout
 
@@ -199,7 +199,7 @@ határvonalakat
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -240,8 +240,8 @@ reference "chap:Politika"
 \end_inset
 
 .
- fejezetben megmagyarázásra kerül néhány, a probléma átlátásához szükséges
- politikai fogalom.
+ fejezetben megmagyarázunk néhány, a probléma átlátásához szükséges politikai
+ fogalmat.
  Majd a 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -298,7 +298,7 @@ Parlamenti választások
 \begin_layout Standard
 A demokratikus rendszerekben a törvényhozás tagjait legtöbb esetben közvetlenül
  választják meg.
- A törvényhozó testületet lehet egykamarás vagy kétkamarás.
+ A törvényhozó testület lehet egykamarás vagy kétkamarás.
  A kétkamarás rendszerek gyakoribbak, ezeket a Képviselőház és a Szenátus
  alkotja.
  Ez nagy számú képviselő
@@ -323,24 +323,36 @@ Romániában 136, az Egyesült Államokban 100 szenátort választanak
 
  megválasztását jelenti, azonban az országok ennél jóval kevesebb adminisztráció
 s egységre (megye, régió, tartomány, stb.) vannak felosztva.
- Míg közigazgatási szempontból egy ország túlzott feldaraboltsága fölösleges
- bürokráciához vezet, a parlament tagjainak száma minnél nagyobb, annál
- inkább beszélhetünk képviseleti demokráciáról.
- Tehát a közigazgatási egységek száma nem feleltethető meg a kepviselőket
- és szenátorokat megválasztó területek számával.
- Ahhoz, hogy parlamenti képviselőket válasszunk meg, az ország már meglévő
+ Közigazgatási szempontból egy ország túlzott 
+\begin_inset Quotes pld
+\end_inset
+
+felaprózása
+\begin_inset Quotes prd
+\end_inset
+
+ fölösleges bürokráciához vezet.
+ Ugyanakkor, minél nagyobb a parlament tagjainak száma, annál inkább beszélhetün
+k képviseleti demokráciáról.
+ Tehát a közigazgatási egységek száma nem feleltethető meg a képviselőket
+ és szenátorokat megválasztó körzetek számával.
+ 
+\end_layout
+
+\begin_layout Standard
+Ahhoz, hogy parlamenti képviselőket válasszunk meg, az ország már meglévő
  közigazgatási egységeit kisebb részekre kell osztani.
  Ezeket a felosztásokat nevezzük választói körzeteknek.
  A körzeteket az ország legkisebb egységei (falvak, városok, stb.) alkotják.
- Két fajtájukat különböztetjük meg: többmandátumos választókörzet és egyéni
+ Kétféle típust különböztetünk meg: többmandátumos választókörzet és egyéni
  (egymandátumos) választókörzet.
- Az egyéni körzetes választási rendszerek esetén minden választókörzet egy
+ Az egyéni körzetes választási rendszerek esetén minden választókörzet egyetlen
  képviselőt delegál.
  Ebben az esetben a körzetek száma megegyezik a parlamenti mandátumok számával.
  Ilyen szavazói rendszert alkalmaznak többek között Franciaországban, az
  Egyesült Királyságban és az Amerikai Egyesült Államokban.
- A kizárólag egyéni választókörzeteket használó szavazások kimenetele sokkal
- inkább manipulálható, mint a többmandátumos rendszereké.
+ A kizárólag egymandátumos választási rendszerekben a választások kimenetele
+ sokkal inkább manipulálható, mint a többmandátumos rendszerek esetében.
  Ennek okát a későbbiekben részletesebben is megmagyarázzuk.
  A többmandátumos választókörzeteket az arányos-pártlistás választási rendszerek
 ben használják.
@@ -358,8 +370,8 @@ Redistricting
 Különböző demográfiai változások következtében a választási körzetek populációja
  csökkenhet vagy növekedhet.
  Ez a választói rendszeren belüli aránytalanságokhoz vezet, ami azt eredményezi,
- hogy a gyakrabban lakott körzetek polgárainak szavazata kevesebbet ér,
- mint a ritkábban lakott körzetekben élő polgároké.
+ hogy a sűrűbben lakott körzetek polgárainak szavazata kevesebbet ér, mint
+ a gyérebben lakott körzetekben élő polgároké.
  Ez ellentmond a demokrácia 
 \begin_inset Quotes pld
 \end_inset
@@ -369,19 +381,25 @@ egy ember egy szavazat
 \end_inset
 
  elvével.
- Ennek elkerülése érdekében a választási körzeteket bizonyos évenként újraosztjá
-k.
- Korábban az újraosztást a törvényhozó hatalom jelölte ki különösebb megkötések
+ Ennek elkerülése érdekében a választási körzeteket szükség szerint újraoszthatj
+ák.
+ Ezenkívül törvényi követelmény is lehet, hogy a körzeteket újra kell osztani
+ bizonyos időközönként.
+ 
+\end_layout
+
+\begin_layout Standard
+Korábban az újraosztást a törvényhozó hatalom végezte el különösebb megkötések
  nélkül.
  Az így bekövetkezett folyamatos visszaélések eredményeként, az országok
- elkezdtek törvényeket hozni az újraosztási tervekre vonatkozólag: a körzetek
- folytonosak kell legyenek, a körzetek között a populáció egyenletes eloszlást
- kell kövessen, kompaktak kell legyenek, megkell örizniük az ország adminisztrác
-iós felbontását, stb.
+ elkezdtek törvényeket hozni az újraosztási tervekre vonatkozólag, például:
+ a körzeteknek folytonosnak és kompaktaknak kell lenniük, a körzetek között
+ a populációnak egyenletes eloszlást kell követnie, meg kell őrizniük az
+ ország adminisztrációs felbontását, stb.
  Mindezek ellenére, általában nem az igazságos választási előfeltételek
  megteremtését társítják a szavazókörzetek újraosztásához.
  Gyakran merül fel a gerrymandering fogalma az újraosztások után, ugyanis
- kölönböző felosztási tervek, különböző választási kimenetelekhez vezethetnek.
+ különböző felosztási tervek, különböző választási kimenetelekhez vezethetnek.
 \end_layout
 
 \begin_layout Standard
@@ -406,7 +424,14 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Három különböző kimenetelt eredményező felosztás
+Három különböző kimenetelt eredményező felosztás (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Nass,Ing"
+
+\end_inset
+
+)
 \end_layout
 
 \end_inset
@@ -425,7 +450,7 @@ Gerrymandering
 
 \begin_layout Standard
 1812-ben Massachusetts kormányzója, Elbridge Gerry, jóváhagyott egy olyan
- körzet felosztási tervet, amely jelentős előnyhöz jutatta a demokratákat.
+ körzetfelosztási tervet, amely jelentős előnyhöz juttatta a demokratákat.
  A különös alakú választókerület egy szalamandrához hasonlított.
  A Gerry név és az angol 
 \begin_inset Quotes pld
@@ -435,9 +460,13 @@ salamander
 \begin_inset Quotes prd
 \end_inset
 
- szó összetételéből megkapjuk a gerrymandering kifejezést, ami a választói
- körzeteknek egy olyan felosztását jelenti, amely kedvező/kedvezőtlen helyzetbe
- hozhat valamely pártot, etnikai vagy vallási csoportot.
+ szó összetételéből megkapjuk a 
+\emph on
+gerrymandering
+\emph default
+ kifejezést, ami a választói körzeteknek egy olyan felosztását jelenti,
+ amely kedvező/kedvezőtlen helyzetbe hozhat valamely pártot, etnikai vagy
+ vallási csoportot.
  A gerrymandering két fő stratégiája a 
 \begin_inset Quotes pld
 \end_inset
@@ -446,7 +475,7 @@ cracking
 \begin_inset Quotes prd
 \end_inset
 
- és a 
+ (szétosztás) és a 
 \begin_inset Quotes pld
 \end_inset
 
@@ -454,24 +483,43 @@ packing
 \begin_inset Quotes prd
 \end_inset
 
-.
+ (összerakás).
  Mindkét esetben az ellenfél kárba veszett szavazatainak a maximalizálása
  a cél.
- Ez közvetlenül az egymandátumos körzeteket érinti, az arányos választási
- rendszerekben minden szavazat beleszámít a végső eredménybe, így nem beszélhetü
-nk kárba ment szavazatokról.
- A probléma megértéséhez vegyünk egy 100 szavazóból álló egymandátumos körzetet,
- ahol A párt 90 szavazatot kap, B pártra 10-en szavaznak.
- Ebben az esetben B párt vesztesége 10, A párté 39 (90 minusz a győzelemhez
- szükséges 51 szavazat).
- Látható, hogy a szavazat veszteség eredménytől független.
- Akkor is gerrymanderinget végzünk, ha az ellenfél szavazóit egy körzetbe
+ Ez közvetlenül az egymandátumos körzeteket érinti.
+ Az arányos választási rendszerekben minden szavazat beleszámít a végső
+ eredménybe, így nem beszélhetünk kárba ment szavazatokról.
+ 
+\end_layout
+
+\begin_layout Standard
+A probléma megértéséhez vegyünk például egy 100 szavazóból álló egymandátumos
+ körzetet, ahol az 
+\begin_inset Formula $A$
+\end_inset
+
+ párt 90 szavazatot kap, a 
+\begin_inset Formula $B$
+\end_inset
+
+ pártra pedig 10-en szavaznak.
+ Ebben az esetben a 
+\begin_inset Formula $B$
+\end_inset
+
+ párt vesztesége 10, a 
+\begin_inset Formula $A$
+\end_inset
+
+ párté pedig 39 (90 mínusz a győzelemhez szükséges 51 szavazat).
+ Látható, hogy a szavazatveszteség eredménytől független.
+ Akkor is gerrymandering-et végzünk, ha az ellenfél szavazóit egy körzetbe
  gyűjtjük (packing) és akkor is, ha megosztjuk őket (cracking), úgy hogy
  a lehető legkevesebb helyen érjék el a szavazati többséget.
  Így megtörténhet az, hogy egy párt sokkal több parlamenti helyre tesz szert,
- mint amennyit a valasztók közötti támogatottsága alapján érdemelne.
+ mint amennyit a választok közötti támogatottsága alapján érdemelne.
  A gerrymandering mérésének egyik módja a parlamentben elfoglalt helyek
- es a szavazók közötti támogatottság kapcsolatának az elemzése.
+ és a szavazók közötti támogatottság kapcsolatának az elemzése.
  Ezen kapcsolat ábrázolására vezették be a hely-szavazat görbét 
 \begin_inset Foot
 status open
@@ -498,24 +546,37 @@ key "Coate"
 \end_inset
 
 ).
- A hely-szavazat görbét az 
-\begin_inset Formula $S(V_{A})$
-\end_inset
-
- függvénnyel írhatjuk le, ahol 
-\begin_inset Formula $V_{A}$
-\end_inset
-
- az 
+ Például az 
 \begin_inset Formula $A$
 \end_inset
 
- párt által kapott szavazatok százalékát jelöli, 
+ párt esetében a hely-szavazat görbét az 
+\begin_inset Formula $S$
+\end_inset
+
+ függvény ábrázolásával szemléltetjük.
+ Az 
+\begin_inset Formula $S$
+\end_inset
+
+ függvény megadja a parlamentben elfoglalt helyek 
 \begin_inset Formula $S(V_{A})$
 \end_inset
 
- a parlamentben elfoglalt helyek százaléka.
- Az így kapott görbék összehasonlításával mérhető a részrehajlás
+ arányát a párt által kapott szavazatok 
+\begin_inset Formula $V_{A}$
+\end_inset
+
+ arányának függvényében.
+ 
+\end_layout
+
+\begin_layout Standard
+KÉP
+\end_layout
+
+\begin_layout Standard
+Az így kapott görbék összehasonlításával kimutatható a részrehajlás
 \begin_inset Foot
 status collapsed
 
@@ -538,26 +599,24 @@ partisan bias
 \begin_inset Formula $S(V_{A})=S(V_{B})$
 \end_inset
 
- minden 
-\begin_inset Formula $V$
+ bármely két 
+\begin_inset Formula $A$
 \end_inset
 
--re.
- Az 
-\begin_inset Formula $S$
+ és 
+\begin_inset Formula $B$
 \end_inset
 
- függvényértékeink összehasonlítása minden párt esetén megmondaná nekünk,
- hogy az adott felosztási terv mennyire igazságos.
- Ez a választások lebonyolítása után megtehető, de ezzel nem biztosítottunk
- egy igazságos választást, csupán utólagos bírálatnak tehetjük ki az eredményeke
-t.
- Annak garantálása, hogy a felosztási tervek teljesen igazságosak továbbra
+ párt esetén.
+ A hely-szavazat görbe elemzése a választások lebonyolítása után megtehető,
+ de ezzel nem biztosítottunk egy igazságos választást, csupán utólagos bírálatna
+k tehetjük ki az eredményeket.
+ Annak garantálása, hogy a felosztási tervek teljesen igazságosak, továbbra
  is megoldatlan feladat.
  Az érintett államok különböző módszerekkel próbálkoznak.
- Van ahol egy politika mentes bizottság végzi a felosztást, máshol egy program
- generálja a felosztásokat, és mind e közben, újabb és újabb törvényeket
- hoznak, amelyeket egy felosztási tervnek bekell tartania.
+ Van ahol egy politikamentes bizottság végzi a felosztást, máshol egy szoftver
+ generálja ezeket, és mindeközben újabb és újabb törvényeket hoznak, amelyeket
+ egy felosztási tervnek be kell tartania.
 \end_layout
 
 \begin_layout Chapter
@@ -576,13 +635,13 @@ A GIS (Geographic Information System) hardver, szoftver és módszerek rendszere
  amely segíti a komplex tervezési és irányítási feladatok megoldására szolgáló
  térbeli adatok gyűjtését, kezelését, feldolgozását, elemzését és megjelenítését.
  A GIS technológiák könnyedebbé teszik a térbeli adatok rendszerezését és
- térbeli kapcsolataik megértését, az által, hogy egy rendszerbe integrálják
+ térbeli kapcsolataik megértését, azáltal, hogy egy rendszerbe integrálják
  a térképi és leíró adatokat.
  Egy térinformatikai rendszerben az adatok elérése földrajzi helyzetük alapján
  is lehetséges, a digitális térképen megjelölve egy pontot, a szoftver kikeresi
  a térképhez tartozó adatbázisból az adott ponthoz tartozó adatokat.
- Ami igazán esszenciális ezekben a rendszerekben az a térképek közötti átfedések
- megvalósítása, úgymond a térképek 
+ Ami igazán fontos ezekben a rendszerekben az a térképek közötti átfedések
+ megvalósítása, a térképek úgynevezett 
 \begin_inset Quotes pld
 \end_inset
 
@@ -591,8 +650,8 @@ A GIS (Geographic Information System) hardver, szoftver és módszerek rendszere
 \end_inset
 
 .
- Így különböző forrásból érkező, különböző típusú adatokat lehet nehézség
- nélkül egymás viszonylatában vizsgálni.
+ Így különösebb nehézség nélkül lehet egymás viszonylatában vizsgálni a
+ különböző forrásból érkező, különböző típusú adatokat.
  
 \end_layout
 
@@ -603,21 +662,25 @@ Adatmodellezés
 \begin_layout Standard
 A GIS által feldolgozott adatok két típusát különböztetjük meg: térbeli
  és leíró adatok.
- A térbeli jellemzők alapján köthetjük az adatainkat a Föld pontjaihoz (georefer
-encing), láthatjuk a formájukat és az egymáshoz viszonyított helyzetüket,
- méretüket.
- A térbeli adatokat layerekben (réteg) tároljuk.
- A layerekben tárolt objektumokhoz kapcsolódik egy attribútumtábla , amely
+ A térbeli jellemzők alapján köthetjük az adatainkat a Föld pontjaihoz (
+\emph on
+georeferencing
+\emph default
+), láthatjuk a formájukat és az egymáshoz viszonyított helyzetüket, méretüket.
+ A térbeli adatokat úgynevezett 
+\emph on
+layer
+\emph default
+-ekben (rétegek, fóliák) tároljuk.
+ A layer-ekben tárolt objektumokhoz kapcsolódik egy attribútumtábla, amely
  a leíró adatainkat tartalmazza.
  Minden egyes objektumhoz tartozik egy sor a táblázatban, az oszlopok pedig
  az egyes elemekhez tartozó további adatokat (attribútumokat) tartalmazzák.
-\end_layout
-
-\begin_layout Standard
+ 
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -636,7 +699,7 @@ status open
 
 \begin_layout Plain Layout
 A térképen látható sárga pontoknak megfelelő sorok vannak az attribútumtáblában
- kijelölve
+ kijelölve 
 \end_layout
 
 \end_inset
@@ -657,7 +720,7 @@ A GIS kétféle modellt használ a valós világ reprezentálására.
  Minden cella egy értéket tartalmaz, a rácshálózat az egész teret kitölti
  és a tér minden pontjáról információt hordoz.
  Raszteres adatnak számít például egy műholdfotó, ahol minden színhez különböző
- jelentések társulnak vagy egy topográfiai térkep.
+ jelentések társulnak vagy egy topográfiai térkép.
  Legjellemzőbb fájltípusai: .jpg, .tif (GeoTiff), .img stb.
  
 \end_layout
@@ -667,7 +730,7 @@ A második adatmodell a vektoros adatmodell, amely az ábrázolandó területet
  és a rajta lévő objektumokat pontok és a köztük lévő egyenesek együtteseként
  fogja fel.
  A raszteres adatmodellel ellentétben, nem tölti ki a teret.
- Csupán pontokat tárol koordinátákként, valamint a vonalak vagy polygonok
+ Csupán pontokat tárol koordinátákként, valamint a vonalak vagy poligonok
  (zárt vonalak) összekötésére vonatkozó információkat.
  Mindig csak azonos típusú geometriai elemeket tartalmazhat.
  A vektoros adatok tárolása leggyakrabban shapefájlokban (ESRI shapefile)
@@ -676,18 +739,15 @@ A második adatmodell a vektoros adatmodell, amely az ábrázolandó területet
  3-6, azonos nevű, de eltérő kiterjesztésű fájlok rendszere: a .dbf kiterjesztésű
  fájl (dBase file) a leíró adatokat tartalmazza, az .shp kiterjesztésű az
  objektumokat tárolja, az .shx fájl a kapcsolatot határozza meg az objektumok
- és az adattábla összetartozó részei között, a .prj kiterjesztésű fájl a
- használt vetítési rendszerre vonatkozó információkat tartalmazza.
+ és az adattábla összetartozó részei között, a .prj kiterjesztésű fájl pedig
+ a használt vetítési rendszerre vonatkozó információkat tartalmazza.
  További vektoros fájltípusok: .dwg és .dxf (AutoCAD fájl), .kml (Google Earth
  fájlformátum), .gpx (GPS fájlcsere-formátum).
  
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -705,7 +765,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Vektoros és raszteres adatok tárolása közti alapvető különbségek
+Vektoros és raszteres adatok tárolása közti alapvető különbségek (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Vel"
+
+\end_inset
+
+)
 \end_layout
 
 \end_inset
@@ -757,30 +824,43 @@ k- és terület-torzulás mindig nemkívánatos eredményei a folyamatnak.
 
 \begin_layout Standard
 A Föld felszíne kitüremkedésekkel és mélyedésekkel teli, ezért ezt a szabálytala
-n idomot, helyetesíteni kell egy matematikailag jól meghatározható, a Föld
+n idomot, helyettesíteni kell egy matematikailag jól meghatározható, a Föld
  formáját nagy mértékben megközelítő felülettel.
  Az így megválasztott felületet nevezik alapfelületnek.
  A leggyakrabban használt alapfelület a forgási ellipszoid (szferoid).
- Egy szferoidot leírhatunk a fél-kistengely hossza és a lapultság (körszimmetrit
-ástól való eltérés) által.
+ Egy szferoidot leírhatunk a fél-kistengely hossza és a lapultság (gömb
+ formájától való eltérés) által.
  Mivel az így kapott szferoidok egyike sem modellezheti teljes pontossággal
- a Földet, különböző referencia szferoidokat használnak a vetítések során.
- Amikor csak egy adott terület ábrázolása a cél, veszünk egy szferoidot
- és addig mozgatjuk a középpontját, míg az illeszkedési hiba minimális nem
- lesz, ezt a szakirodalomban geodéziai dátumnak nevezik.
- A térbeli modell meghatározása után következik a pontok síkban való vetítése.
+ a Földet, különböző referencia-szferoidokat használnak a vetítések során.
+ Amikor csak egy adott terület ábrázolása a cél, a szferoidnak olyan középpontot
+ választunk, amivel az illeszkedési hiba minimális.
+ Ezt a szakirodalom 
+\emph on
+geodéziai dátum
+\emph default
+nak nevezi.
+ A térbeli modell meghatározása után következik a pontok síkba való vetítése.
  A vetítés az alapfelületről történik a képfelületre (térkép).
- Általában nem közvetlenül vetitődnek az alapfelület pontjai a síkra, hanem
+ Általában nem közvetlenül vetítődnek az alapfelület pontjai a síkra, hanem
  a vetítés először egy síkba fejthető felületre történik, amelyet aztán
- felvágva a síkba terítenek.
+ 
+\begin_inset Quotes pld
+\end_inset
+
+felvágva
+\begin_inset Quotes prd
+\end_inset
+
+ a síkba terítenek.
  A vetületi rendszerek különbözhetnek az alapfelületben, a vetítés módszerében,
- az egységnyi hossz mértékében, stb.
+ az egységnyi hosszmértékében, stb.
  A GIS által használt vetületi rendszereket két csoportba sorolhatjuk: 
 \end_layout
 
 \begin_layout Enumerate
-Földrajzi koordinátarendszer – ezek hosszúság, szélesség koordinátákat használna
-k, közöttük találjuk például a WGS84-t (World Geodetic System 1984)
+Földrajzi koordináta-rendszer – ezek hosszúsági és szélességi koordinátákat
+ használnak, közöttük találjuk például a WGS84-t (World Geodetic System
+ 1984)
 \begin_inset Foot
 status open
 
@@ -794,8 +874,12 @@ A WGS-84 az egész Földre definiált dátum
 \end_layout
 
 \begin_layout Enumerate
-Vetületi koordinátarendszer – ezek X, Y koordinátákat használnak, közöttük
- találjuk az UTM-t (Universal Transverse Mercator)
+Vetületi koordináta-rendszer – ezek 
+\begin_inset Formula $X,Y$
+\end_inset
+
+ Descartes-koordinátákat használnak, közöttük találjuk az UTM-t (Universal
+ Transverse Mercator)
 \end_layout
 
 \begin_layout Standard
@@ -803,13 +887,13 @@ Vetületi koordinátarendszer – ezek X, Y koordinátákat használnak, közöt
 \end_layout
 
 \begin_layout Section
-QGIS 
+A QGIS-ről röviden
 \end_layout
 
 \begin_layout Standard
-A QGIS az egyik vezető nyílt forráskódú, platformfüggetlen térinformatikai
- szoftver, melynek fejlesztése még a 2000-es évek elején kezdődött el.
- Fejlesztése az OSGeo1 
+A QGIS az egyik legnépszerűbb nyílt forráskódú, platformfüggetlen térinformatika
+i szoftver, melynek fejlesztése még a 2000-es évek elején kezdődött el.
+ Fejlesztése az OSGeo 
 \begin_inset Foot
 status open
 
@@ -825,29 +909,25 @@ Open Source Geospatial Foundation
  számának.
  Így a program alkalmas térképek megjelenítésére, szerkesztésére, adatok
  elemzésére és nyomtatható térképek összeállítására.
- Támogatja a legtöbb vektoros formátumot, beleértve az ESRI shapefile, a
- Mapinfo, SDTS, és GML (GoogleEarth XML) formátumokat is.
- A QGIS programban megadhatjuk a layerek vetületi rendszerét, ez alapértelmezett
-en a WGS-84.
+ Támogatja a legtöbb vektoros formátumot, beleértve az ESRI shapefájlt,
+ a Mapinfo, SDTS, és GML (GoogleEarth XML) formátumokat is.
+ A QGIS programban megadhatjuk a layer-ek vetületi rendszerét, ez alapértelmezet
+ten a WGS-84.
  Különböző rendszerek esetén, azonos vetületi rendszerbe transzformálhatjuk
  az adatainkat, ugyanakkor lehetőségünk van saját vetületi rendszer definiálásár
 a.
 \end_layout
 
-\begin_layout Section
-QGIS Tutorial
-\end_layout
-
 \begin_layout Standard
-A szoftver indítása után az első feladat az objektumokat tartalmazó layerek
+A szoftver indítása után az első feladat az objektumokat tartalmazó layer-ek
  betöltése.
- Amint betöltünk egy layert az láthatóvá válik a QGIS térképnézegetőjében.
+ Amint betöltünk egy layer-t az láthatóvá válik a QGIS térképnézegetőjében.
  A térképen történő navigálást legegyszerűbben a Térkép navigáció eszközsor
  elemeivel tehetjük meg.
- Betöltéskor a QGIS felépíti a térképen látható geometria formáknak megfelelő
+ Betöltéskor a QGIS felépíti a térképen látható geometriai formáknak megfelelő
  objektumokat.
  Az adatokat manipulálhatjuk a menüsor által nyújtott eszközökkel vagy a
- QGIS által biztosított Python konzolból scriptek segítségével.
+ QGIS által biztosított Python konzolból szkriptek segítségével.
  A Python kódrészletekkel lehetőségünk nyílik a program funkcionalitásainak
  a bővítésére.
 \end_layout
@@ -874,8 +954,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-A konzolban (alul bal oldalt) látható a mellette lévő szövegszerkesztőben
- (alul jobb oldalt) írt script végrehajtásának eredménye
+A konzolban látható a mellette lévő szövegszerkesztőben írt szkript végrehajtásá
+nak eredménye
 \end_layout
 
 \end_inset
@@ -890,6 +970,7 @@ A konzol megnyitása előtt a QGIS az alábbi két parancsot végrehajtja:
 
 \begin_layout Standard
 \begin_inset listings
+lstparams "language=Python,keywordstyle={\color{blue}}"
 inline false
 status open
 
@@ -905,10 +986,24 @@ import qgis.utils
 
 \end_inset
 
-A core könyvtár tartalmazza az alap GIS funkcionalításokat, a utils könyvtár
- tartalmazza a modulok kezeléséhez szükséges funkcionalitásokat.
- A betöltött layerekhez tartozó információkat a QgsInterface osztály iface
- nevű instanciáján keresztűl érhetjük el.
+A 
+\family typewriter
+core
+\family default
+ könyvtár tartalmazza az alap GIS funkcionalitásokat, a 
+\family typewriter
+utils
+\family default
+ könyvtár tartalmazza a modulok kezeléséhez szükséges funkcionalitásokat.
+ A betöltött layer-ekhez tartozó információkat a 
+\family typewriter
+QgsInterface
+\family default
+ osztály 
+\family typewriter
+iface
+\family default
+ nevű példányán keresztül érhetjük el.
  Az így kapott layer tartalmazza a térképet alkotó objektumokat.
  Egy objektumot 
 \begin_inset Quotes pld
@@ -919,11 +1014,26 @@ feature
 \end_inset
 
 -nek nevezünk.
- A QGIS által felépített feature egy olyan szótár (dictionary), ahol a kulcsok
- az attribútumtábla mezőinek nevei, az értékek a mezők értékei.
- Tehát az f feature népesség elnevezésű mezőjének az értékére f['népesség']
+ A QGIS által felépített feature egy olyan szótár (Python dictionary), ahol
+ a kulcsok az attribútumtábla mezőinek nevei, az értékek pedig a mezők értékei.
+ Tehát például az 
+\family typewriter
+f
+\family default
+ feature 
+\emph on
+népesség
+\emph default
+ elnevezésű mezőjének az értékére 
+\family typewriter
+f['népesség']
+\family default
  formában hivatkozhatunk.
- A QGIS a geometriai műveleteket a GEOS 
+ A QGIS a geometriai műveleteket a 
+\family typewriter
+GEOS
+\family default
+ 
 \begin_inset Foot
 status open
 
@@ -934,20 +1044,35 @@ status open
 \end_inset
 
  könyvtár segítségével végzi.
- Minden feature rendelkezik egy QgsGeometry objektummal, ezt a geometry
+ Minden feature rendelkezik egy 
+\family typewriter
+QgsGeometry
+\family default
+ objektummal, ezt a 
+\family typewriter
+geometry()
+\family default
  elnevezésű függvény téríti vissza.
  Az így kapott objektumon már különböző geometriai műveleteket is végrehajthatun
-k.
- Például: terület vagy kerület számítás, metszéspontok és középpont megkeresése,
- polygonok esetén a vonalakon belül elhelyezkedő pontok meghatározása, formák
- kombinálása, stb.
+k, például: terület- vagy kerületszámítás, metszéspontok és középpont megkeresés
+e, poligonok esetén a vonalakon belül elhelyezkedő pontok meghatározása,
+ formák összeillesztése, stb.
 \end_layout
 
 \begin_layout Standard
-A QGIS-ben létrehozhatunk saját modulokat, illetve letölthetünk mások által
+QGIS-ben létrehozhatunk saját modulokat, illetve letölthetünk mások által
  készítetteket.
- A saját modul keszítését megkönnyíti a Plugin Builder, amely generál egy
- QGIS modul templatet.
+ A saját modul készítését megkönnyíti a Plugin Builder, amely generál egy
+ 
+\begin_inset Quotes pld
+\end_inset
+
+üres
+\begin_inset Quotes prd
+\end_inset
+
+ QGIS modult (amiben létrehozza a megfelelő könyvtárstruktúrát és a szükséges
+ állományokat).
  
 \end_layout
 
@@ -973,7 +1098,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Plugin Builder modul
+A Plugin Builder modul
 \end_layout
 
 \end_inset
@@ -983,8 +1108,8 @@ Plugin Builder modul
 
 \end_inset
 
-A Plugin Builder az alábbi könyvtárstrukturával rendelkező python modult
- generálja.
+A Plugin Builder az alábbi könyvtárstruktúrával rendelkező Python modult
+ generálja:
 \end_layout
 
 \begin_layout Standard
@@ -1019,18 +1144,43 @@ generált könyvtárstruktúra
 
 \end_inset
 
-Az __init__.py állomány a modul belépési pontja.
- A redistricting.py fájl tartalmazza a fő programot, a run metódusa hívódik
- meg a modul indításakor.
- A redistricting_dialog_base.ui a párbeszédablakot tartalmazza, a párbeszédablak
- kezelő redistricting_dialog.py fájlban van.
+Az 
+\family typewriter
+__init__.py
+\family default
+ állomány a modul belépési pontja.
+ A 
+\family typewriter
+redistricting.py
+\family default
+ fájl tartalmazza a főprogramot, a 
+\family typewriter
+run()
+\family default
+ metódusa hívódik meg a modul indításakor.
+ A 
+\family typewriter
+redistricting_dialog_base.ui
+\family default
+ a párbeszédablakot tartalmazza, a párbeszédablak-kezelő a 
+\family typewriter
+redistricting_dialog.py
+\family default
+ nevű fájlban van.
  A generált modul továbbá tartalmazza a szintaktika ellenőrzéshez szükséges
- reguláris kifejezéseket a pylintrc fájlban, a modul metainformációt, és
- egy makefájlt a fordításhoz.
- Amint megvan a modul fejlesztéséhez a vázunk, telepíthetjük is a modult
- a QGIS plugin kezelőjéből.
+ reguláris kifejezéseket (a 
+\family typewriter
+pylintrc
+\family default
+ fájlban), a modul metainformációt és egy makefájlt a fordításhoz.
+ Amint megvan a modul fejlesztéséhez szükséges keret, telepíthetjük is a
+ modult a QGIS pluginkezelőjéből.
  A következő indításkor már az újonnan létrehozott modult is beolvassa a
- QGIS a plugins mappából, és a modul ikonja megjelenik a menűsorban.
+ QGIS a 
+\family typewriter
+plugins
+\family default
+ mappából, és a modul ikonja megjelenik a menüsorban.
  A modul további fejlesztése az általunk választott környezetek bármelyikében
  történhet, azonban a modul futtatása a QGIS programon belül lehetséges.
 \end_layout
@@ -2411,6 +2561,60 @@ S.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "Ing"
+
+\end_inset
+
+C.
+ Ingraham, 
+\emph on
+How to steal an election: a visual guide
+\emph default
+, 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://www.washingtonpost.com/news/wonk/wp/2015/03/01/this-is-the-best-explanatio
+n-of-gerrymandering-you-will-ever-see/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Nass"
+
+\end_inset
+
+S.
+ Nass, 
+\emph on
+A chart illustrating gerrymandering in its most basic form
+\emph default
+, 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://commons.wikimedia.org/wiki/File:How_to_Steal_an_Election_-_Gerrymandering.s
+vg
+\end_layout
+
+\end_inset
+
+ (CC-BY-SA-4.0).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "Ring"
 
 \end_inset
@@ -2423,6 +2627,29 @@ E.
  Journal of Applied Research and Technology Vol.
  11, Issue 3, June 2013, pp.
  324–330.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Vel"
+
+\end_inset
+
+S.
+ Velasquez, Pàgina de l'assignatura ALE 'Cartografia i Noves Tecnologies
+ Cartogràfiques', 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.catalonia.org/cartografia/Clase_03/Raster_Vector.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \end_body
