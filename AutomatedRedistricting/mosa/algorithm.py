@@ -421,7 +421,7 @@ class MOSA:
         LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color2')
         self.log.LogObj(minimff)
 
-        self.log.LogSolution(self.patchSolution(pareto,[0.5,0.5]),"Patch Solution(5-5)")
+        self.log.LogSolution(self.patchSolution(pareto,[0.8,0.2]),"Patch Solution(5-5)")
         LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
         self.log.LogObj(minimff)
 
