@@ -441,13 +441,14 @@ class MOSA:
 
         t = self.initial_temperature
         t_num=0
+        iterations = self.iterations
 
     #3-8
 
         while not self.frozen(t):
             t_num+=1
-            logging.info("Temperature:%f(%d)",t,t_num)
-            for i in xrange(self.iterations):
+            logging.info("Temperature:%f(%d),Iterations:%d",t,t_num,iterations)
+            for i in xrange(iterations):
 
                 #neighbour solution of U
                 V = self.NeighbourSolution(U)
@@ -481,6 +482,7 @@ class MOSA:
                         U=V
 
             t=self.reduceTemperature(t)
+            iterations+=5
 
         logging.info('Temperature is frozen')
         self.showResults(pareto)
