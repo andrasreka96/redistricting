@@ -12,7 +12,8 @@ parameters:
   cooling_schedule: 0.99
   initial_temperature: 5
   final_temperature: 0.001
-  iterations: 1800
+  iterations: 0
+  iterations_increment : 0
   small_partition: 5
   upper_limit: 5
   neighbourhood: [-1]

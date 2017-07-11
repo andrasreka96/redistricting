@@ -48,6 +48,7 @@ class MOSA:
         self.initial_temperature = parameters['initial_temperature']
         self.final_temperature = parameters['final_temperature']
         self.iterations = parameters['iterations']
+        self.iterations_increment = parameters['iterations_increment']
         self.small_partition = parameters['small_partition']
         self.upper_limit = parameters['upper_limit']
         self.neighbourhood = parameters['neighbourhood']
@@ -417,11 +418,11 @@ class MOSA:
         LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color1')
         self.log.LogObj(minims)
 
-        self.log.LogSolution(minimff,"Best Solution(5-5)")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color2')
-        self.log.LogObj(minimff)
+        #self.log.LogSolution(minimff,"Best Solution(5-5)")
+        #LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color2')
+        #self.log.LogObj(minimff)
 
-        self.log.LogSolution(self.patchSolution(pareto,[0.8,0.2]),"Patch Solution(5-5)")
+        self.log.LogSolution(self.patchSolution(pareto,[0.8,0.2]),"Patch Solution")
         LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
         self.log.LogObj(minimff)
 
@@ -482,7 +483,9 @@ class MOSA:
                         U=V
 
             t=self.reduceTemperature(t)
-            iterations+=5
+            iterations+=self.iterations_increment
+            #start the next iterations with a solution randomly selected from the Pareto set
+            U = random.sample(pareto,1)[0]
 
         logging.info('Temperature is frozen')
         self.showResults(pareto)
