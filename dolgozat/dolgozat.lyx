@@ -256,7 +256,7 @@ reference "chap:GISQGIS"
 atikai szoftvercsomagot (
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Elek,Bel,Pad,Szabó"
+key "Elek,Bel,Pad,Szabó,Siki"
 
 \end_inset
 
@@ -580,7 +580,42 @@ key "Coate"
 \end_layout
 
 \begin_layout Standard
-KÉP
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename seat-vote_curve.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hely-szavazat görbe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -888,10 +923,6 @@ Vetületi koordináta-rendszer – ezek
 
  Descartes-koordinátákat használnak, közöttük találjuk az UTM-t (Universal
  Transverse Mercator)
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Section
@@ -1312,17 +1343,17 @@ A körzetek újraosztásának feladata, a célfüggvények
 \end_layout
 
 \begin_layout Standard
-Az ujraosztási probléma felfogható úgy, mint egy összefüggő terület (ország,álla
-m) 
+Az ujraosztási probléma felfogható úgy, mint egy összefüggő terület (megye,
+ tartomány, zóna, stb.) 
 \begin_inset Formula $m$
 \end_inset
 
- darab alterültre (körzetek) való felosztása.
- Egy érvényes felosztási terv alapfeltétele, hogy a körzetek folytonosak
+ darab alterültre, vagyis körzetre való felosztása.
+ Egy érvényes felosztási terv alapfeltétele, hogy a körzetek folytonosak,
  és figyelembe veszik a már meglévő adminisztrációs határokat.
- Ezeket úgy biztosítjuk, hogy a felosztást mindig egy nagyobb adminisztrációs
- egységen belül végezzük, és a körzeteket a választott egység egymással
- szomszédos, legkisebb adminisztrációs egységei (unitok) alkotják.
+ Ezek az alapfeltételek a legegyszerűbben úgy biztosíthatóak, ha egy körzetet,
+ olyan legkisebb adminisztrációs egységek (unitok) alkotnak , amelyek ugyanahhoz
+ a nagyobb területi egységhez tartoznak.
  Az így kapott 
 \begin_inset Formula $(Z,U)$
 \end_inset
@@ -1339,10 +1370,28 @@ m)
 \begin_inset Formula $Z$
 \end_inset
 
- körzethez tartozó unitok halmazát jelöli, nevezzük egy érvényes felosztásnak.
- Azt, hogy egy adminisztrációs egységhet hány körzetre osztunk, a legnagyobb
- maradék módszerrel (largest remainder method) határozzuk meg.
- Először kiszámítjuk a nemzeti átlagot (
+ körzethez tartozó unitok halmazát jelöli, nevezünk egy érvényes felosztásnak.
+ Azt, hogy egy adminisztrációs egységhez, hány körzetet rendelünk, a legnagyobb
+ maradék módszerrel
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Angolul 
+\begin_inset Quotes pld
+\end_inset
+
+largest remainder method
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ határozzuk meg.
+ Először kiszámítjuk a nemzeti átlagot: 
 \begin_inset Formula $NM=p_{ország}/m$
 \end_inset
 
@@ -1350,17 +1399,18 @@ m)
 \begin_inset Formula $p_{ország}$
 \end_inset
 
- az ország populációját jelöli).
- Kezdetben minden megyéhez rendelünk 
-\begin_inset Formula $\lfloor p_{megye}/NM\rfloor$
+ az ország populációját jelöli.
+ Kezdetben minden egységhez rendelünk 
+\begin_inset Formula $\lfloor p_{e}/NM\rfloor$
 \end_inset
 
  darab körzetet.
  A megmaradt körzeteket szétosztjuk a legnagyobb 
-\begin_inset Formula $frac(p_{megye}/NM)$
+\begin_inset Formula $frac(p_{e}/NM)$
 \end_inset
 
- értékkel rendelkező megyék között (mindegyikhez plusz egy körzetet adunk).
+ értékkel rendelkező egységek között, azaz mindegyikhez egy újabb körzetet
+ adunk.
  
 \end_layout
 
@@ -1372,11 +1422,13 @@ Az újraosztás során a célunk olyan érvényes felosztási terveket találni,
  A többszörös célfüggvényt használó optimalizáció során arra törekszünk,
  hogy a megadott célfüggvények mindegyikét figyelembe véve találjunk optimum
  közeli megoldást.
- A dolgozatban bemutatott program két célfüggvényt használ, a mexikói újraosztás
-ok mintájára, ezeket használta az IFE (Instituto Federal Electoral) a 2006-os
- választásokot megelöző újraosztások során.
- Az első célfüggvény a populáció eloszlását mutatja.
- Minnél alacsonyabb a függvény értéke, annál egyenletesebb az eloszlás:
+ A dolgozatban bemutatott program, a mexikói újraosztási folyamatok mintájára,
+ két célfüggvényt használ.
+ Ezeket használta az IFE (Instituto Federal Electoral) a 2006-os választásokot
+ megelöző újraosztások során.
+ Az első célfüggvény a populáció egyenletes eloszlását méri.
+ Minnél alacsonyabb a függvény értéke, annál egyenletesebb a populáció eloszlása
+ a körzetek között:
 \end_layout
 
 \begin_layout Standard
@@ -1399,12 +1451,12 @@ Ahol
 \begin_inset Formula $P_{e}$
 \end_inset
 
- az adott megye populációja.
+ az adott egység populációja.
 
 \emph on
  A
 \emph default
- megyében megengedett szórást 
+z egységen belül megengedett szórást 
 \begin_inset Formula $d_{e}$
 \end_inset
 
@@ -1421,28 +1473,26 @@ Ahol
 
  
 \emph default
-a megyéhez rendelt körzek száma.
- Az hogy egy megyében megengedett szórás értéke mekkora, annak a függvényében
- változik, hogy a megye átlaga mennyire tér el a nemzeti átlagtól.
+az egységhez rendelt körzek száma.
+ Az hogy egy egységben megengedett szórás értéke mekkora, annak a függvényében
+ változik, hogy az egység átlaga mennyire tér el a nemzeti átlagtól.
  Ha a két átlag közti különbség kevesebb, mint az ország lakosságának az
  5%, a megengedett szórás 15% lesz, 5% és 10% közötti eltérés esetén a szórás
- 10%, míg nagyobb eltérések esetén a szórás 5%.
+ 10%, míg nagyobb eltérések esetén a megengedett szórás 5%.
 \end_layout
 
 \begin_layout Standard
 A második célfüggvény a körzetek formájának a kompaktságát méri.
- Abból kiindulva, hogy a legkompaktabb geometriai alakzat a kör, megtudjuk
- határozni a körzethez tartozó unitok által formált alakzat kompaktságát.
- Legyen a körzet kerülete 
+ A legkompaktabb geometriai alakzat a kör, ezért egy 
 \begin_inset Formula $PE_{s}$
 \end_inset
 
- , területe 
+ kerületű, és 
 \begin_inset Formula $A_{s}$
 \end_inset
 
-.
- Minél kompaktabb a körzetünk, a kerülete annál inkább megegyezik egy 
+ területű körzet, annál kompaktabb, minnél inkább megegyezik a kerülete
+ egy 
 \begin_inset Formula $A_{s}$
 \end_inset
 
@@ -1462,10 +1512,9 @@ Többszörös célfüggvényt használó algoritmus
 \end_layout
 
 \begin_layout Standard
-Amikor több célfüggvénnyel dolgozunk egy megoldásról nem mindig állithatjuk
- egyértelműn, hogy jobb/rosszabb, mint a másik megoldás.
- Két megoldás összehasonlításánál a következő három lehetséges eset merül
- fel (ahol 
+Amikor több célfüggvény szerint optimalizálunk, egy megoldásról nem mindig
+ állithatjuk egyértelműen, hogy jobb vagy rosszabb, mint egy másik megoldás.
+ Két megoldás összehasonlításánál három esetet különböztetünk meg (
 \begin_inset Formula $U$
 \end_inset
 
@@ -1480,57 +1529,94 @@ Amikor több célfüggvénnyel dolgozunk egy megoldásról nem mindig állithatj
 \begin_inset Formula $V$
 \end_inset
 
- minden célfüggvény szerint jobb megoldásnak bizonyul
+ minden célfüggvény szerint jobb megoldás, mint 
+\begin_inset Formula $U$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $V$
 \end_inset
 
- csak bizonyos célfüggvényekben teljesít jobban
+ minden célfüggvény szerint rosszabb megoldás, mint 
+\begin_inset Formula $U$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $V$
 \end_inset
 
- minden célfüggvény szerint rosszabb megoldásnak bizonyul
+ csak bizonyos célfüggvényekben teljesít jobban, mint 
+\begin_inset Formula $U$
+\end_inset
+
+ (az 1.
+ és 2.
+ eset nem teljesül)
 \end_layout
 
 \begin_layout Standard
 A megoldásainkat egy olyan halmazba gyűjtjük (Pareto halmaz), amely a fenti
- eseteknek megfelelő szabályok szerint bővül.
+ esetenek megfelelően bővül.
  Ha 
 \begin_inset Formula $V$
 \end_inset
 
- dominál más megoldásokat (1 eset), átveszi egy dominált megoldás helyét
- és a hozza rendelt súlyokat úgy, hogy azt a megoldást cseréli le, amelyiknél
- a leginkább jobbnak bizonyul.
+ dominál más megoldásokat (1.
+ eset), átveszi egy dominált megoldás helyét és a hozza rendelt súlyokat.
  Ha 
 \begin_inset Formula $V$
 \end_inset
 
- nem dominál (nem igaz az 1.
- eset) és nem dominált (nem igaz a 3.
- eset), akkor bővítjük a halmazunkat a 
+ nem dominál és nem dominált egyetlen megoldás által sem (3.
+ eset), bővítjük a halmazunkat a 
 \begin_inset Formula $V$
 \end_inset
 
  megoldással.
+ Amikor egy új megoldás kerül a halmazba, mindig hozza rendelődik egy random
+ választott súlyvektor az előre meghatározott súlyok listájából.
  Abban az esetben, ha 
 \begin_inset Formula $V$
 \end_inset
 
- dominált valamely megoldás által, nem kerül a halmazba, viszont a szimulált
- hűtésnél leírt valószínűség szerint felválthatja a jelenlegi megoldást.
- Amikor egy új megoldás kerül a halmazba, mindig hozza rendelődik egy random
- választott súlyvektor az előre meghatározott súlyok listájából.
- Az algoritmus végére minden súlyvektorhoz fog legalább egy nem dominált
- megoldás tartozni.
- Egy lehetséges algoritmus annak eldöntésére, hogy egy megoldás dominált-e
- más megoldások által, illetve dominál-e más megoldásokat, k darab célfüggvény
- esetén:
+ dominált valamely megoldás által (2.
+ eset), nem kerül a halmazba, azonban a szimulált hűtésnél leírt valószínűséggel
+ felválthatja a jelenlegi megoldást.
+ A fenti szabályokat követve 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{alg1}
+\end_layout
+
+\end_inset
+
+ a szimulált hűtés módszere 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{alg2}
+\end_layout
+
+\end_inset
+
+ az optimalizáció végére minden súlyvektorhoz talál legalább egy, nem dominált
+ megoldást.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1546,6 +1632,9 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
+	
+\backslash
+label{alg1}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1598,7 +1687,7 @@ SetKwInOut{Output}{output}
 
 
 \backslash
-Input{pareto,U,k, where $k 
+Input{V,pareto,k, where $k 
 \backslash
 geq 1$ }
 \end_layout
@@ -1607,12 +1696,12 @@ geq 1$ }
 
 
 \backslash
-Output{$isdominated$,$dominates$}
+Output{$dominated$,$dominates$}
 \end_layout
 
 \begin_layout Plain Layout
 
-$isdominated 
+$dominated 
 \backslash
 leftarrow 
 \backslash
@@ -1682,7 +1771,7 @@ leftarrow dominatedbyS
 \backslash
 LogicAnd
 \backslash
-  S.objective(i)<U.objective(i) $
+  S.objective(i)<V.objective(i) $
 \backslash
 ;
 \end_layout
@@ -1697,7 +1786,7 @@ leftarrow dominatesS
 \backslash
 LogicAnd 
 \backslash
- U.objective(i)<S.objective(i) $
+ V.objective(i)<S.objective(i) $
 \backslash
 ;
 \end_layout
@@ -1711,7 +1800,7 @@ LogicAnd
 
 	$isdominated 
 \backslash
-leftarrow isdominated 
+leftarrow dominated 
 \backslash
  
 \backslash
@@ -1750,7 +1839,7 @@ right
 
 
 \backslash
-caption{Dominance($pareto$,$U$,$k$)}
+caption{dominance($V$,$pareto$,$k$)}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1762,8 +1851,7 @@ end{algorithm}
 
 \end_inset
 
-A körzetek felosztását generáló, többszörös célfüggvényt használó szimulált
- hűtés módszer:
+
 \end_layout
 
 \begin_layout Standard
@@ -1785,28 +1873,7 @@ begin{algorithm}[H]
 
 	
 \backslash
-SetKw{LogicAnd}{and}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKw{LogicOr}{or}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwData{LogicTrue}{True}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-SetKwData{LogicFalse}{False}
+label{alg2}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1831,10 +1898,10 @@ SetKwInOut{Output}{output}
 
 
 \backslash
-Input{$U$,$T$,$maxiter$,$coolingschedule$ where $U$ is a randomly generated
+Input{$U$,$T$,$maxiter$,$coolingschedule$,$k$ where $U$ is a randomly generated
  initial solution, $T$ is the initial temperature, $coolingschedule 
 \backslash
-in (0,1)$}
+in (0,1)$, $k$ is the number of the objective functions}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1886,7 +1953,7 @@ leftarrow neighbor(U) $
 
 		
 \backslash
-uIf{dominates(V,pareto)}{     
+uIf{dominance(pareto,V,k).dominates}{     
 \end_layout
 
 \begin_layout Plain Layout
@@ -2511,8 +2578,8 @@ Románia
 \end_layout
 
 \begin_layout Standard
-A Romániá adminisztrációs egységeit tartalmazó shape fájlok, egy Romániával
- kapcsolatos térinformatikai adatokat tartalmazó adatbázisból származnak.
+A Romániá adminisztrációs egységeit tartalmazó shapefájl, egy Romániával
+ kapcsolatos térinformatikai adatokat tartalmazó adatbázisból származik.
 \begin_inset Foot
 status open
 
@@ -2532,8 +2599,8 @@ http://www.geo-spatial.org/
 
 \end_inset
 
-A felosztásokat Románia 8 zónájában végeztük, a körzeteket Románia adminisztráci
-ós egységei alkotják
+ A felosztásokat Románia 8 zónáján belül végeztük, a körzeteket Románia
+ legkisebb adminisztrációs egységei alkotják
 \begin_inset Foot
 status open
 
@@ -2560,7 +2627,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename jud_uat.png
+	filename zoneandunit.jpg
 	lyxscale 40
 	scale 40
 
@@ -2573,7 +2640,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Románia megyéi és adminisztrációs egységei
+Románia zónái és legkisebb adminisztrációs egységei
 \end_layout
 
 \end_inset
@@ -2583,9 +2650,8 @@ Románia megyéi és adminisztrációs egységei
 
 \end_inset
 
-A 2015-ös népszámlálási adatokra hagyatkozva, a legnagyobb maradék metódust
- használva 120 körzetet osztottunk szét a zónák között, az alábbi kódot
- használva:
+A 2015-ben tartott népszámlálási adatok alapján 120 körzetet osztottunk
+ szét 8 zóna között, az alábbi kódot használva.
 \end_layout
 
 \begin_layout Standard
@@ -2741,7 +2807,8 @@ end{lstlisting}
 
 \end_inset
 
-A következő körzet kiosztások születtek:
+Az így kapott körzetek száma minden zóna esetén a következő táblazatban
+ látható:
 \end_layout
 
 \begin_layout Standard
@@ -2851,7 +2918,25 @@ key "Szabó"
 G.
  Szabó, 
 \emph on
-Quantum GIS
+Quantum GIS Felhasználói kézikönyv, 
+\emph default
+2010.
+ október 7
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Siki"
+
+\end_inset
+
+Z.
+ Siki, 
+\emph on
+QGIS Python programozás, 
+\emph default
+BME Geodézia
 \end_layout
 
 \begin_layout Bibliography

@@ -76,6 +76,10 @@ class MOSA:
             self.dict_pop[feature[self.attrib_join_id]] += feature[self.attrib_pop]
             self.dict_units[feature[self.attrib_join_id]].append(feature)
 
+        logging.info("Population in regions:")
+        logging.info(self.dict_pop)
+        print(self.dict_pop)
+
         #init population related stuff
         self.national_mean = self.population_country/self.nr_of_districts
         self.objf = objectives.ObjFunc(self.national_mean)
@@ -93,7 +97,7 @@ class MOSA:
         setinto.add(random_unit)
         return random_unit
 
-    def CreateInitialCounty(self,nr_of_districts,features,county):
+    def CreateInitialCounty(self,nr_of_districts,features,regionid):
 
         #convert features into unit objects
         util = UnitBuilder(features,self.attributes)
@@ -150,7 +154,7 @@ class MOSA:
             else:
             #create district and add to the solution
 
-                solution.append(District(i,str(county)+'_'+str(i),new_district,self.colors[i]))
+                solution.append(District(i,str(regionid)+'_'+str(i),new_district,self.colors[regionid-1][i]))
                 logging.debug('District %d has been added to the solution with %d units',i+1,len(new_district))
 
                 #take the next district
@@ -164,6 +168,7 @@ class MOSA:
     def AssignDistricts(self):
 
         dict_assigned = {i: (self.dict_pop[i]//self.national_mean,self.dict_pop[i]/self.national_mean - self.dict_pop[i]//self.national_mean) for i in range(1,self.nr_of_regions + 1)}
+        logging.info(dict_assigned)
 
         assigned = 0
         for key, value in dict_assigned.iteritems():
@@ -197,7 +202,16 @@ class MOSA:
 
         counties = []
         district_in_counties = self.AssignDistricts()
-        self.colors =  Color().generateColors(max(district_in_counties))
+        color_obj = Color()
+
+        #create a base color for every region
+        base_colors = color_obj.generateColors(self.nr_of_regions)
+        colors = []
+        for i in range(0,self.nr_of_regions):
+                #colors.append(color_obj.generateColors(district_in_counties[i]))
+            colors.append(color_obj.lighter(base_colors[i],int(district_in_counties[i])))
+
+        self.colors =  color_obj.RGBtoHex(colors)
         for countyid in range(1,self.nr_of_regions + 1):
             #get units in county
             units = self.dict_units[countyid]
@@ -418,12 +432,16 @@ class MOSA:
         LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color1')
         self.log.LogObj(minims)
 
-        #self.log.LogSolution(minimff,"Best Solution(5-5)")
-        #LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color2')
-        #self.log.LogObj(minimff)
+        self.log.LogSolution(minimff,"Best Solution(5-5)")
+        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color2')
+        self.log.LogObj(minimff)
+
+        self.log.LogSolution(self.patchSolution(pareto,[0.5,0.5]),"Patch Solution 5-5")
+        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
+        self.log.LogObj(minimff)
 
         self.log.LogSolution(self.patchSolution(pareto,[0.8,0.2]),"Patch Solution")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
+        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color4')
         self.log.LogObj(minimff)
 
     def Anneal(self):

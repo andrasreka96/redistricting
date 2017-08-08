@@ -15,14 +15,13 @@ class ObjFunc:
         sum=0
         for county in counties:
             fp_product = county.population/(county.deviation*(self.national_mean))
-            self.logger.debug("region %d fp:%f",county.id,fp_product)
             nr_of_districts = len(county.districts)
             for district in county.districts:
                     self.logger.debug("district %s with population:%f",district.unique_id,district.population)
                     sp_product = district.population/county.population - 1/nr_of_districts
-                    self.logger.debug("district %s sp:%f",district.unique_id,sp_product)
-                    sum+=(fp_product*fp_product*sp_product*sp_product)*1000
-                    self.logger.debug("product:%f",fp_product*fp_product*sp_product*sp_product)
+                    objvalue = fp_product*fp_product*sp_product*sp_product*1000
+                    sum+=objvalue
+                    self.logger.debug("obj:%f",objvalue)
         return sum
 
     def c2(self,counties):

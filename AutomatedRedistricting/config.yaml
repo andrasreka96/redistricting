@@ -1,5 +1,5 @@
 attributes:
-  join_id: 'regionId'
+  join_id: 'countyId'
   attribute_name: 'name'
   attribute_population: 'pop2015'
   attribute_id: 'natcode'
@@ -13,11 +13,11 @@ parameters:
   initial_temperature: 5
   final_temperature: 0.001
   iterations: 0
-  iterations_increment : 0
+  iterations_increment : 5
   small_partition: 5
   upper_limit: 5
-  neighbourhood: [-1]
-  weight_vectors : [[0.8,0.2]]
+  neighbourhood: [3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+  weight_vectors : [[0.1,0.9],[0.2,0.8],[0.3,0.7],[0.4,0.6],[0.5,0.5],[0.6,0.4],[0.8,0.2],[0.7,0.3],[0.9,0.1]]
   minnr_of_unit : 2
   max_iter: 25
   max_size_pareto: 100

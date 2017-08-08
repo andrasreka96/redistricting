@@ -43,10 +43,22 @@ class Color():
 
 
     def generateColors(self,n):
-            basecolors_number = math.ceil(math.pow(n+2,1.0/3.0))
-            basecolors =self.iteratef(lambda x:x//2,255,basecolors_number)
-            basecolors.append(0)
+        basecolors_number = math.ceil(math.pow(n+2,1.0/3.0))
+        basecolors =self.iteratef(lambda x:x+20,0,basecolors_number)
+        basecolors.append(0)
 
-            colors = [QColor(color[0],color[1],color[2]).name() for color in self.allVariatons(basecolors,3,0,[0,0,0])]
+        colors = [QColor(color[0],color[1],color[2]) for color in self.allVariatons(basecolors,3,0,[0,0,0])]
 
-            return colors[1:len(colors)-2]
+        return colors[1:len(colors)-2]
+
+    def lighter(self,color,n):
+
+        colors = [color]
+        for _ in range(0,n):
+            color = color.lighter(112)
+            colors.append(color)
+
+        return colors
+
+    def RGBtoHex(self,colors):
+        return [[color.name() for color in c] for c in colors]
