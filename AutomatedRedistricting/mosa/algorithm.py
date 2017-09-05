@@ -1,10 +1,8 @@
 from __future__ import division
 from collections import deque
-from itertools import islice
 
 import random
 import logging
-from collections import defaultdict
 import yaml
 import os.path
 import math
@@ -18,6 +16,7 @@ from AutomatedRedistricting.model.sol_build import SolutionBuilder
 from AutomatedRedistricting.model.unit_build import UnitBuilder
 from AutomatedRedistricting.layer_manipulation.layer import LayerManipulation
 from AutomatedRedistricting.util.util import *
+from AutomatedRedistricting.processing.pre_proc import PreProcessing
 
 import objectives
 
@@ -26,23 +25,25 @@ from PyQt4.QtGui import QColor
 class MOSA:
 
     def __init__(self,layer_poligon,layer_poliline ):
-        #load yaml
+        self.layer_poligon = layer_poligon
+
+        pre_processing = PreProcessing(layer_poligon,layer_poliline)
+        pre_processing.BuildRegion()
+
+        self.objf = objectives.ObjFunc(pre_processing.national_mean)
+
+        self.national_mean = pre_processing.national_mean
+        self.nr_of_regions = pre_processing.nr_of_regions
+        self.dict_units = pre_processing.dict_units
+        self.dict_pop = pre_processing.dict_pop
+        self.district_in_counties = pre_processing.AssignDistricts()
+
+
         with open(os.path.join(os.path.dirname(__file__), os.pardir, 'config.yaml'),'r') as file_descriptor:
+            #read config file
             data = yaml.load(file_descriptor)
 
-        attributes = data.get('attributes')
         parameters = data.get('parameters')
-
-        #save used layers
-        self.layer_poligon=layer_poligon
-
-        #create dictionary where
-        #key - regionid
-        #values - lists of features
-        self.dict_units = defaultdict(list)
-
-        self.attrib_join_id = attributes['join_id']
-        self.attrib_pop = attributes['attribute_population']
 
         self.cooling_schedule = parameters['cooling_schedule']
         self.initial_temperature = parameters['initial_temperature']
@@ -58,32 +59,11 @@ class MOSA:
         self.max_size_pareto = parameters['max_size_pareto']
         self.nr_of_districts = parameters['nr_of_districts']
 
-        self.district_builder = DistrictBuilder(layer_poliline,attributes['attribute_id_poliline'])
+        self.attributes = data.get('attributes')
+        self.district_builder = DistrictBuilder(layer_poliline,self.attributes['attribute_id_poliline'])
 
-        self.attributes=attributes
-
-
-    def BuildRegion(self):
-        idx = self.layer_poligon.fieldNameIndex(self.attrib_join_id)
-        uniqueValues = self.layer_poligon.uniqueValues(idx)
-
-        self.nr_of_regions = len(uniqueValues)
-        self.dict_pop = dict.fromkeys(uniqueValues,0)
-        self.population_country = 0
-
-        for feature in self.layer_poligon.getFeatures():
-            self.population_country +=  feature[self.attrib_pop]
-            self.dict_pop[feature[self.attrib_join_id]] += feature[self.attrib_pop]
-            self.dict_units[feature[self.attrib_join_id]].append(feature)
-
-        logging.info("Population in regions:")
-        logging.info(self.dict_pop)
-        print(self.dict_pop)
-
-        #init population related stuff
-        self.national_mean = self.population_country/self.nr_of_districts
-        self.objf = objectives.ObjFunc(self.national_mean)
-        self.log = Log(self.objf)
+        #for logging
+        self.log =  Log(ObjFunc(self.national_mean))
 
     def DistrictNear(self,units,solution):
         for unit in units:
@@ -98,34 +78,24 @@ class MOSA:
         return random_unit
 
     def CreateInitialCounty(self,nr_of_districts,features,regionid):
-
         #convert features into unit objects
         util = UnitBuilder(features,self.attributes)
         units = set(util.units)
-
         unit_in_district=len(units)/nr_of_districts
         solution=[]
-
         i=0
         while units:
-
             #the district is divided into two set
             district=set()
-
             #this set stores the units which hasn't been chosen before
             selectable_district=set()
-
             #select the first unit randomly
             self.RandomChoise(units,selectable_district)
-
             j=0
-
             #search until enough units were found or there are no more free neighbour
             while j<=unit_in_district-self.upper_limit and selectable_district:
-
             	#start with a random unit from district
                 random_unit = self.RandomChoise(selectable_district,district)
-
                 #find out which neighbour units are free
                 neighbour_units=random_unit.neighbours&units
 
@@ -139,7 +109,7 @@ class MOSA:
             #units in new district
             new_district=district | selectable_district
 
-            #don't create new district if there are enough of it or it wwould be too small
+            #don't create new district if there are enough of it or it would be too small
             if i>=nr_of_districts or len(new_district)<unit_in_district/self.small_partition:
             #add units to an already existing district
 
@@ -165,63 +135,35 @@ class MOSA:
             self.district_builder.BuildDistrict(s)
         return solution
 
-    def AssignDistricts(self):
-
-        dict_assigned = {i: (self.dict_pop[i]//self.national_mean,self.dict_pop[i]/self.national_mean - self.dict_pop[i]//self.national_mean) for i in range(1,self.nr_of_regions + 1)}
-        logging.info(dict_assigned)
-
-        assigned = 0
-        for key, value in dict_assigned.iteritems():
-            if value[0] == 1:
-                dict_assigned[key] = (2,0)
-                assigned+=2
-            else:
-                assigned+=value[0]
-
-        #romania specific
-        #assigned-=(dict_assigned[40][0]-6)
-        #dict_assigned[40]=(6,0)
-
-
-        unassigned = self.nr_of_districts-assigned
-        #assigne an additional district to counties with the highest fractional remainder
-        if unassigned:
-            dict_sorted = sorted(dict_assigned.items(), key=lambda (k, v): v[1],reverse=True)
-            for key,value in list(islice(dict_sorted, unassigned)):
-                dict_assigned[key] = (value[0]+1,value[1])
-
-
-        assigned_districts = [assv for (assv,rem) in dict_assigned.values()]
-        logging.info("Assigned Districts:%s", ','.join(str(x) for x in assigned_districts))
-        #return the assigned values
-        return assigned_districts
-
     def CreateInitialSolution(self):
-    #create districts for every region
-        self.BuildRegion()
 
         counties = []
-        district_in_counties = self.AssignDistricts()
+
+        max_val = max(self.district_in_counties)
+        light_value = 51-max_val
+        if max_val > 10:
+            light_value/=(max_val/10)
+
         color_obj = Color()
 
         #create a base color for every region
         base_colors = color_obj.generateColors(self.nr_of_regions)
         colors = []
         for i in range(0,self.nr_of_regions):
-                #colors.append(color_obj.generateColors(district_in_counties[i]))
-            colors.append(color_obj.lighter(base_colors[i],int(district_in_counties[i])))
+                #colors.append(color_obj.generateColors(self.district_in_counties[i]))
+            colors.append(color_obj.lighter(base_colors[i],int(self.district_in_counties[i]),light_value))
 
         self.colors =  color_obj.RGBtoHex(colors)
         for countyid in range(1,self.nr_of_regions + 1):
             #get units in county
             units = self.dict_units[countyid]
 
-            district = self.CreateInitialCounty(district_in_counties[countyid-1],units,countyid)
+            district = self.CreateInitialCounty(self.district_in_counties[countyid-1],units,countyid)
 
             #determine the allowed deviations in each county
 
             #differene between the national and state mean
-            diff = abs(self.dict_pop[countyid]/district_in_counties[countyid-1]-self.national_mean)
+            diff = abs(self.dict_pop[countyid]/self.district_in_counties[countyid-1]-self.national_mean)
 
             #store deviations in county
             if diff<self.dict_pop[countyid]*(5/100):
@@ -293,7 +235,17 @@ class MOSA:
 
         while not units_to_move:
         #move units from d1 to d2
+
             (d1,d2) = random.sample(county.districts,2)
+            if d2.population > d1.population:
+                acc = d1
+                d1 = d2
+                d2 = acc
+
+            print("d1")
+            print(d1.population)
+            print(d2.population)
+
             for unit in d2.borders:
                 units_to_move |= unit.neighbours & d1.borders
 
@@ -331,26 +283,6 @@ class MOSA:
     def reduceTemperature(self,t):
         return t*self.cooling_schedule
 
-    def ObjectivesSum(self,counties,weights):
-        #returns the scalar product of the objective functions and their weights
-        return self.dot(self.objf.EvaluateObjectives(counties),weights)
-
-    def Dominations(self,new_solution,pareto):
-        dominated = False
-        dominate = []
-        for solution in pareto:
-            dominatedbys = True
-            dominatess = True
-            for new,old in zip(new_solution.objective_values, solution.objective_values):
-                dominatedbys = dominatedbys and old<new
-                dominatess = dominatess and new<old
-
-            dominated = dominated or dominatedbys
-            if dominatess:
-                dominate.append(solution)
-
-        return (dominated,dominate)
-
     def ChooseBetweenDominated(self,solution,dominates):
         best = dominates.pop()
 
@@ -363,28 +295,6 @@ class MOSA:
                 distance = hip_distance
                 best = s
         return best
-
-    def UpdatePareto(self,solution,pareto):
-        (dominated,dominates) = self.Dominations(solution,pareto)
-
-        if not dominated and not dominates:
-        	#set weights
-            solution.weight_vectors = random.sample(self.weight_vectors,1)[0]
-
-            #set weighted objective function
-            solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
-            return 1
-
-        if dominates:
-
-            removable_solution = self.ChooseBetweenDominated(solution,dominates)
-            solution.weight_vectors = removable_solution.weight_vectors
-            solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
-            removable_solution = solution
-            self.log.LogSolution(removable_solution,"New solution")
-            return 2
-
-        return 0
 
     def probability(self,obj1,obj2,t):
         diff=obj1-obj2
@@ -444,6 +354,65 @@ class MOSA:
         LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color4')
         self.log.LogObj(minimff)
 
+    def dominates(self,regions1,regions2):
+        dominates = True
+
+        for r1,r2 in zip(self.objf.EvaluateObjectives(regions1),self.objf.EvaluateObjectives(regions2)):
+            dominates = dominates and r1<r2 #region1 dominates
+        return dominates
+
+    def dominatesSet(self,solution,pareto):
+        dominates = []
+
+        for s in pareto:
+            if self.dominates(solution.counties,s.counties):
+                dominates.append(s)
+
+        return dominates
+
+    def dominatedSet(self,solution,pareto):
+        dominated = False
+
+        i=0
+        #iter over the pareto set until solution isn't dominated
+        for s in pareto:
+            if dominated:
+                break
+            dominated = dominated or self.dominates(s.counties,solution.counties)
+
+        return dominated
+
+
+
+    def merge(self,s1,s2):
+        #merge s2 into s1
+
+        for i in range(0,self.nr_of_regions):
+            r1 = s1.counties[i]
+                #if s2's region dominates merge into s1
+            r2 = s2.counties[i]
+
+            if self.dominates([r2],[r1]):
+                s1.counties[i] = SolutionBuilder().CopyCounty(r2)
+        #set the new objective values accoirding to the merged regions
+        s1.objective_values = self.objf.EvaluateObjectives(s1.counties)
+
+    def UpdatePareto(self,solution,pareto):
+
+        if not dominated and not dominates:
+            return 1
+
+        if dominates:
+
+            removable_solution = self.ChooseBetweenDominated(solution,dominates)
+            solution.weight_vectors = removable_solution.weight_vectors
+            solution.weighted_obj = self.dot(solution.weight_vectors,solution.objective_values)
+            removable_solution = solution
+            self.log.LogSolution(removable_solution,"New solution")
+            return 2
+
+        return 0
+
     def Anneal(self):
 	#U-current solution
 	#V-neighbour solution
@@ -454,8 +423,9 @@ class MOSA:
         LayerManipulation(self.layer_poligon).ColorDistricts(U.counties,'color')
 
         #save the initial solution into the archive
-        self.UpdatePareto(U,pareto)
         pareto.add(U)
+        #assign a weight vector
+        U.weights(random.sample(self.weight_vectors,1)[0])
         self.log.LogSolution(U,"Added to Pareto")
 
         t = self.initial_temperature
@@ -471,34 +441,43 @@ class MOSA:
 
                 #neighbour solution of U
                 V = self.NeighbourSolution(U)
-
+                V.temperature = t
+                V.iter = i+1
                 self.log.LogSolution(V,"Neighbour Solution")
-                update = self.UpdatePareto(V,pareto)
-                if update==1:
 
-                    if len(pareto)>self.max_size_pareto:
-                            U=random.sample(pareto,1)[0]
-                            logging.info("Random choice from pareto")
-                    else:
-                    #the recently saved solution becomes the current solution
+                dominates = self.dominatesSet(V,pareto)
+                if dominates:
 
-                        self.log.LogSolution(V,"Added to Pareto")
-                        pareto.add(V)
-                        U=V
+                    removable_solution = self.ChooseBetweenDominated(V,dominates)
+                    V.weights(removable_solution.weight_vectors)
+                    removable_solution = V
+                    self.log.LogSolution(V,"New solution")
+                    U=V
+
                 else:
-                    if update==0:
+                    #when V doesn't dominate any solution from the pareto set
+                    if self.dominatedSet(V,pareto):
 
-                        V.weighted_obj = self.dot(U.weight_vectors,V.objective_values)
+                        V.weights(U.weight_vectors)
                         probability = self.probability(U.weighted_obj,V.weighted_obj,t)
                         logging.info("probability:%f",probability)
                         if random.uniform(0, 1)<= probability:
-                        #in this case weight vectors for the solution weren't assigned
-
-                            V.weight_vectors = U.weight_vectors
                             self.log.LogSolution(V,"Changed to current solution with probability %s" % probability)
                             U=V
                     else:
-                        U=V
+                        if len(pareto)>self.max_size_pareto:
+                            self.log.LogSolution(U,"s1")
+                            self.log.LogSolution(V,"s2")
+                            self.merge(U,V)
+                            U.temperature = t
+                            U.iter = i+1
+                            self.log.LogSolution(U,"Solution merged")
+                        else:
+                        #add solution to pareto
+                            V.weights(random.sample(self.weight_vectors,1)[0])
+                            pareto.add(V)
+                            self.log.LogSolution(V,"Added to Pareto")
+                            U=V
 
             t=self.reduceTemperature(t)
             iterations+=self.iterations_increment
@@ -506,4 +485,4 @@ class MOSA:
             U = random.sample(pareto,1)[0]
 
         logging.info('Temperature is frozen')
-        self.showResults(pareto)
+        #self.showResults(pareto)

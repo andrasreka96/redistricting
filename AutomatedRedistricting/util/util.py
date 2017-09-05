@@ -13,7 +13,8 @@ class Log():
         if info:
             logging.info(info)
 
-        logging.info("Solution objective values:%s",','.join(str(x) for x in solution.objective_values))
+        logging.info("Solution was found at temperature %f,iteration %d",solution.temperature,solution.iter)
+        logging.info("With objective values:%s",','.join(str(x) for x in solution.objective_values))
 
         try:
             logging.info("Weighted objective %f(%s)",solution.weighted_obj,'-'.join(str(x) for x in solution.weight_vectors))
@@ -51,11 +52,11 @@ class Color():
 
         return colors[1:len(colors)-2]
 
-    def lighter(self,color,n):
+    def lighter(self,color,n,value):
 
         colors = [color]
         for _ in range(0,n):
-            color = color.lighter(112)
+            color = color.lighter(100+value)
             colors.append(color)
 
         return colors
