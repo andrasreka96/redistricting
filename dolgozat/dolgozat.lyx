@@ -1314,15 +1314,46 @@ re.
  mint a jelenlegi megoldás.
  Amennyiben nem alacsonyabb az új megoldásunk célfüggvényének az értéke,
  akkor a jelenlegi megoldást az úgynevezett Metropolis-kritérium alapján
- 
-\begin_inset Formula 
-\[
-p=\exp((E-E_{0})/T)
-\]
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eqn:prob}     
+\end_layout
+
+\begin_layout Plain Layout
+
+p=exp((E-E_{0})/T)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
 
 \end_inset
 
- valószínűséggel cseréljük le, ahol 
+
+\end_layout
+
+\begin_layout Standard
+valószínűséggel cseréljük le, ahol 
 \begin_inset Formula $E$
 \end_inset
 
@@ -1339,7 +1370,7 @@ p=\exp((E-E_{0})/T)
 \end_layout
 
 \begin_layout Section
-A körzetek újraosztásának feladata, a célfüggvények
+A körzetek újraosztása többszörös célfüggvényt használó algoritmussal
 \end_layout
 
 \begin_layout Standard
@@ -1351,8 +1382,8 @@ Az ujraosztási probléma felfogható úgy, mint egy összefüggő terület (meg
  darab alterültre, vagyis körzetre való felosztása.
  Egy érvényes felosztási terv alapfeltétele, hogy a körzetek folytonosak,
  és figyelembe veszik a már meglévő adminisztrációs határokat.
- Ezek az alapfeltételek a legegyszerűbben úgy biztosíthatóak, ha egy körzetet,
- olyan legkisebb adminisztrációs egységek (unitok) alkotnak , amelyek ugyanahhoz
+ Ezen feltételek a legegyszerűbben úgy biztosíthatóak, ha egy körzetet,
+ olyan legkisebb adminisztrációs egységek (unitok) alkotnak, amelyek ugyanahhoz
  a nagyobb területi egységhez tartoznak.
  Az így kapott 
 \begin_inset Formula $(Z,U)$
@@ -1415,100 +1446,45 @@ largest remainder method
 \end_layout
 
 \begin_layout Standard
-Az újraosztás során a célunk olyan érvényes felosztási terveket találni,
- amelyek más, általunk definiált kritériumoknak is megfelelnek.
- Minden kritériumnak megfeleltethető egy célfüggvény, ezek száma tetszőlegesen
- megválasztható.
- A többszörös célfüggvényt használó optimalizáció során arra törekszünk,
- hogy a megadott célfüggvények mindegyikét figyelembe véve találjunk optimum
- közeli megoldást.
- A dolgozatban bemutatott program, a mexikói újraosztási folyamatok mintájára,
- két célfüggvényt használ.
- Ezeket használta az IFE (Instituto Federal Electoral) a 2006-os választásokot
- megelöző újraosztások során.
- Az első célfüggvény a populáció egyenletes eloszlását méri.
- Minnél alacsonyabb a függvény értéke, annál egyenletesebb a populáció eloszlása
- a körzetek között:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-C_{1}(P)=\sum_{e\epsilon E}(\frac{P_{e}}{d_{e}*NM})^{2}\sum_{s\epsilon S}(\frac{P_{s}}{P_{e}}-\frac{1}{n_{e}})^{2}
-\]
+Az olyan kritériumok, mint a körzetek folytonossága vagy a nagyobb adminisztráci
+ós határok megőrzése, felfoghatóak úgy, mint az optimalizáció során betartandó
+ megkötések.
+ Azonban egy felosztási tervnek, olyan kritériumoknak is megkell felelni,
+ amelyeket függvényekkel mérhetünk.
+ Gyakran előfordul, hogy a kritériumok nem egyszerre teljesülnek, versengenek,
+ vagy konfliktusban állnak egymással.
+ Ilyenkor az optimalizációt nem végezhetjük egy célfüggvény alapján, tehát
+ nem is beszélhetünk egy optimális megoldásról.
+ A többszörös célfüggvényt használó optimalizáció során a Pareto-hatékony
+ megoldásokat 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Yoo"
 
 \end_inset
 
-Ahol 
+ tartalmazó halmaz egy részhalmazának a megtalálására törekszünk.
+ A Pareto-hatékony megoldás ebben az esetben azt jelenti, hogy 
 \begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
 \end_inset
 
- egy felosztási terv, 
-\begin_inset Formula $NM$
+ felosztás, és 
+\begin_inset Formula $k$
 \end_inset
 
- a nezeti átlagot jelöli, 
-\begin_inset Formula $P_{e}$
+ darab célfüggvény esetén nem létezik 
+\begin_inset Formula $P'=\{Z_{1}',Z_{2}',...,Z_{n}'\}$
 \end_inset
 
- az adott egység populációja.
-
-\emph on
- A
-\emph default
-z egységen belül megengedett szórást 
-\begin_inset Formula $d_{e}$
+, úgy hogy 
+\begin_inset Formula $f_{n}(P')<f_{n}(P)\;n\epsilon\{1,..,k\}$
 \end_inset
 
-- vel jelöljük.
- A szorzat második tagjában levő 
-\begin_inset Formula $P_{s}$
-\end_inset
-
- jelöli az adott körzet populációját,
-\emph on
- 
-\begin_inset Formula $n_{e}$
-\end_inset
-
- 
-\emph default
-az egységhez rendelt körzek száma.
- Az hogy egy egységben megengedett szórás értéke mekkora, annak a függvényében
- változik, hogy az egység átlaga mennyire tér el a nemzeti átlagtól.
- Ha a két átlag közti különbség kevesebb, mint az ország lakosságának az
- 5%, a megengedett szórás 15% lesz, 5% és 10% közötti eltérés esetén a szórás
- 10%, míg nagyobb eltérések esetén a megengedett szórás 5%.
-\end_layout
-
-\begin_layout Standard
-A második célfüggvény a körzetek formájának a kompaktságát méri.
- A legkompaktabb geometriai alakzat a kör, ezért egy 
-\begin_inset Formula $PE_{s}$
-\end_inset
-
- kerületű, és 
-\begin_inset Formula $A_{s}$
-\end_inset
-
- területű körzet, annál kompaktabb, minnél inkább megegyezik a kerülete
- egy 
-\begin_inset Formula $A_{s}$
-\end_inset
-
- területű kör kerületével:
-\begin_inset Formula 
-\[
-C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}(\frac{PE_{s}}{4\sqrt{A_{s}}}-1)
-\]
-
+ és 
+\begin_inset Formula $f_{n}(P')<=f_{n}(P)\;\forall n\epsilon\{1,..,k\}$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-Többszörös célfüggvényt használó algoritmus 
 \end_layout
 
 \begin_layout Standard
@@ -1561,34 +1537,59 @@ Amikor több célfüggvény szerint optimalizálunk, egy megoldásról nem mindi
 \end_layout
 
 \begin_layout Standard
-A megoldásainkat egy olyan halmazba gyűjtjük (Pareto halmaz), amely a fenti
- esetenek megfelelően bővül.
- Ha 
+Az első két eset a hagyományos optimalizáció eseteinek felel meg.
+ Amikor 
 \begin_inset Formula $V$
 \end_inset
 
- dominál más megoldásokat (1.
- eset), átveszi egy dominált megoldás helyét és a hozza rendelt súlyokat.
- Ha 
-\begin_inset Formula $V$
+ jobbnak bizonyul 
+\begin_inset Formula $U$
 \end_inset
 
- nem dominál és nem dominált egyetlen megoldás által sem (3.
- eset), bővítjük a halmazunkat a 
-\begin_inset Formula $V$
+-t lecseréljük, különben a szimulált hűtésnél leírt valószínűség szerint
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{eqn:prob}
+\end_layout
+
 \end_inset
 
- megoldással.
- Amikor egy új megoldás kerül a halmazba, mindig hozza rendelődik egy random
- választott súlyvektor az előre meghatározott súlyok listájából.
- Abban az esetben, ha 
-\begin_inset Formula $V$
-\end_inset
-
- dominált valamely megoldás által (2.
- eset), nem kerül a halmazba, azonban a szimulált hűtésnél leírt valószínűséggel
  felválthatja a jelenlegi megoldást.
- A fenti szabályokat követve 
+ A 3.
+ esetben a szakirodalom több lehetőséget is tárgyal 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ulu,Teg"
+
+\end_inset
+
+, legtöbbjük az esetek össze Mivel a mi esetünkben egy 
+\begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
+\end_inset
+
+ megoldás 
+\begin_inset Formula $Z$
+\end_inset
+
+ a felosztása egymástól független, a két megoldás össze 
+\begin_inset Quotes pld
+\end_inset
+
+merge
+\begin_inset Quotes prd
+\end_inset
+
+-elhető.
+\end_layout
+
+\begin_layout Standard
+A többszörös célfüggvényt használó 
 \begin_inset ERT
 status open
 
@@ -1601,7 +1602,7 @@ ref{alg1}
 
 \end_inset
 
- a szimulált hűtés módszere 
+ szimulált hűtés módszer 
 \begin_inset ERT
 status open
 
@@ -2060,6 +2061,15 @@ leftarrow T * coolingschedule$
 
 \begin_layout Plain Layout
 
+	$U 
+\backslash
+leftarrow pareto.random() $
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
 }
 \end_layout
 
@@ -2083,45 +2093,12 @@ end{algorithm}
 \end_layout
 
 \begin_layout Section
-Az implementáció részletei
+Az implementáció részletei, a célfüggvények
 \end_layout
 
 \begin_layout Standard
-A modul futtatásához szükségünk van két layerre, és a hozzájuk tartozó adatbázis
- mezők konfigurálására.
- A konfigurálást a 
-\begin_inset Quotes pld
-\end_inset
-
-config.yaml
-\begin_inset Quotes prd
-\end_inset
-
- elnevezésű fájl változtatásával tehetjük meg.
- A későbbiekben egy unit szomszédainak a bejárására gyakran kerül sor, ezért
- a modul első használatakor a 
-\begin_inset Quotes pld
-\end_inset
-
-neighbours.py
-\begin_inset Quotes prd
-\end_inset
-
- elnevezésű script lefuttatása is szükséges.
- A script meghatározza az egymással szomszédos unitokat.
- Az így kapott azonosítok tárolása sok futási időt nyer majd az új felosztások
- meghatározása közben.
-\end_layout
-
-\begin_layout Standard
-A fent említett layerek a felosztandó ország legkisebb adminisztrációs egységeit
- kell tartalmazzák.
- Ez egyik, mint poligonok, a másik mint vonalak (polilines) összessége.
- Azért nem elegendő a unitok csupán poligonos reprezentációja, mert a körzetek
- formálásakor új poligonokat kapunk, amelyeknek a kerületét egyszerűbb kiszámoln
-unk, ha vonalakkal dolgozunk.
- A vonalakat tartalmazó attríbútumtábla minden sora egy poligonhoz tartozik
- 
+A dolgozatban bemutatott program bemeneti adatai a következők: a generálandó
+ körzetek száma 
 \begin_inset ERT
 status open
 
@@ -2129,15 +2106,24 @@ status open
 
 
 \backslash
-ref{unitid}
+ref{nr_of_districts}
 \end_layout
 
 \end_inset
 
-.
- A további információk a poligon layer mezőire vonatkoznak.
- Megkell adnunk azt a mezőt, amely alapján a unitok nagyobb adminisztrációs
- egységekbe (megye, zóna, stb..) sorolhatóak 
+, a felosztandó ország legkisebb adminisztrációs területeit tartalmazó shapefájl
+, a kulcsmező
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ezen értékek alapján csoportosíthatjuk a unitokat nagyobb adminisztrációs
+ egységekbe (régió, megye , stb..)
+\end_layout
+
+\end_inset
+
+ neve 
 \begin_inset ERT
 status open
 
@@ -2150,7 +2136,7 @@ ref{joinid}
 
 \end_inset
 
-, a unitok nevét 
+, a unitokat
 \begin_inset ERT
 status open
 
@@ -2163,7 +2149,7 @@ ref{name}
 
 \end_inset
 
-, azonosítóját 
+, az azonosítót 
 \begin_inset ERT
 status open
 
@@ -2215,7 +2201,30 @@ ref{lines}
 
 \end_inset
 
- tároló mezők neveit.
+ tároló mezők nevei, a területekhez tartozó határvonalakat tartalmazó shapefájl
+ és a mező neve amely alapján a vonalakat a unitokhoz kapcsolhatjuk 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{unitid}
+\end_layout
+
+\end_inset
+
+.
+ A felsorolt adatok megadása a modulban találhato 
+\begin_inset Quotes pld
+\end_inset
+
+config.yaml
+\begin_inset Quotes prd
+\end_inset
+
+ elnevezésű fájlban tehető meg.
 \end_layout
 
 \begin_layout Standard
@@ -2303,24 +2312,21 @@ end{lstlisting}
 \end_layout
 
 \begin_layout Standard
-A további paraméterek megadásával az optimalizáló algoritmus viselkedését
- változtathatjuk.
- Beállítható a generálandó körzetek száma 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{nr_of_districts}
-\end_layout
-
+A későbbiekben egy unit szomszédainak a bejárására gyakran kerül sor, ezért
+ a modul első használatakor a 
+\begin_inset Quotes pld
 \end_inset
 
-.
- A szimulált hűtés módszerének a következő paramétereit változtathatjuk:
- a kezdeti 
+neighbours.py
+\begin_inset Quotes prd
+\end_inset
+
+ elnevezésű script lefuttatása is szükséges.
+ A script meghatározza az egymással szomszédos unitokat.
+ Az így kapott azonosítok tárolása sok futási időt nyer majd az új felosztások
+ meghatározása közben.
+ A további paraméterek beállításával az optimalizáló algoritmus viselkedését
+ változtathatjuk: a kezdeti 
 \begin_inset ERT
 status open
 
@@ -2433,6 +2439,8 @@ status open
 
 \begin_layout Plain Layout
 
+
+\backslash
 ref{neigh}
 \end_layout
 
@@ -2543,6 +2551,10 @@ end{lstlisting}
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 Az optimalizáció során alkalmazott célfüggvényeket az 
 \begin_inset Quotes pld
 \end_inset
@@ -2555,15 +2567,111 @@ objectives.py
  fájlban.
  Amennyiben újabb függvényt szeretnénk egy megoldás kiértékeléséhez adni
  azt implementálnunk kell a függvényeket tartalmazó fájlban.
- A program indítás után iterációnként naplózni fogja a megoldáshalmaz viselkedés
-ét.
- Amint a hőmérséklet eléri a fagyáspontot, a legalacsonyabb objektív értékkel
- rendelkező felosztás megjelenik a QGIS térképnézegetőjében.
  
 \end_layout
 
+\begin_layout Standard
+A dolgozatban bemutatott program, a mexikói újraosztási folyamatok mintájára,
+ két célfüggvényt használ.
+ Ezeket használta az IFE (Instituto Federal Electoral) a 2006-os választásokot
+ megelöző újraosztások során.
+ Az első célfüggvény a populáció egyenletes eloszlását méri.
+ Minnél alacsonyabb a 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ függvény értéke, annál egyenletesebb a populáció eloszlása a körzetek között:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{1}(P)=\sum_{e\epsilon E}(\frac{P_{e}}{d_{e}*NM})^{2}\sum_{s\epsilon S}(\frac{P_{s}}{P_{e}}-\frac{1}{n_{e}})^{2}
+\]
+
+\end_inset
+
+Ahol 
+\begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
+\end_inset
+
+ egy felosztási terv, 
+\begin_inset Formula $NM$
+\end_inset
+
+ a nezeti átlagot jelöli, 
+\begin_inset Formula $P_{e}$
+\end_inset
+
+ az adott egység populációja.
+
+\emph on
+ A
+\emph default
+z egységen belül megengedett szórást 
+\begin_inset Formula $d_{e}$
+\end_inset
+
+- vel jelöljük.
+ A szorzat második tagjában levő 
+\begin_inset Formula $P_{s}$
+\end_inset
+
+ jelöli az adott körzet populációját,
+\emph on
+ 
+\begin_inset Formula $n_{e}$
+\end_inset
+
+ 
+\emph default
+az egységhez rendelt körzek száma.
+ Az hogy egy egységben megengedett szórás értéke mekkora, annak a függvényében
+ változik, hogy az egység átlaga mennyire tér el a nemzeti átlagtól.
+ Amikor egy egységen belül a körzetek populációja megegyezik, a szorzat
+ második tagja zéróval egyenlő.
+ Ha ez minden egység esetén teljesül, elértük az optimális népesség egyenlőséget
+, tehát 
+\begin_inset Formula $C_{1}(P)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A második célfüggvény a körzetek formájának a kompaktságát méri.
+ A legkompaktabb geometriai alakzat a kör.
+ A függvény azt méri mennyire hasonlít a körzetek formája egy kör formájához:
+\begin_inset Formula 
+\[
+C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}(\frac{PE_{s}}{4\sqrt{A_{s}}}-1)
+\]
+
+\end_inset
+
+Egy 
+\begin_inset Formula $PE_{s}$
+\end_inset
+
+ kerületű, és 
+\begin_inset Formula $A_{s}$
+\end_inset
+
+ területű körzet, annál kompaktabb, minnél inkább megegyezik a kerülete
+ egy 
+\begin_inset Formula $A_{s}$
+\end_inset
+
+ területű kör kerületével.
+ Minnél kompaktabbak egy felosztási terv kerületei 
+\begin_inset Formula $C_{2}(P)$
+\end_inset
+
+ értéke annál alacsonyabb.
+\end_layout
+
 \begin_layout Chapter
-Románia
+Eredmények
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:Romania"
@@ -2573,34 +2681,11 @@ name "chap:Romania"
 
 \end_layout
 
-\begin_layout Section
-Románia
-\end_layout
-
 \begin_layout Standard
-A Romániá adminisztrációs egységeit tartalmazó shapefájl, egy Romániával
- kapcsolatos térinformatikai adatokat tartalmazó adatbázisból származik.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-http://www.geo-spatial.org/
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
- A felosztásokat Románia 8 zónáján belül végeztük, a körzeteket Románia
- legkisebb adminisztrációs egységei alkotják
+A dolgozatban bemutatott program segítségével, a 2015-ben tartott népszámlálási
+ adatok alapján, Romániát 136 körzetre osztottuk\SpecialChar endofsentence
+ Az így kapott körzeteket
+ Románia legkisebb adminisztrációs egységei alkotják
 \begin_inset Foot
 status open
 
@@ -2619,233 +2704,7 @@ Unități administrativ-teritoriale
 \end_inset
 
 .
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename zoneandunit.jpg
-	lyxscale 40
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Románia zónái és legkisebb adminisztrációs egységei
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-A 2015-ben tartott népszámlálási adatok alapján 120 körzetet osztottunk
- szét 8 zóna között, az alábbi kódot használva.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-lstset{numbers=none}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{lstlisting}[language=Python,frame=single,title=Körzetek Kiosztása]
-\end_layout
-
-\begin_layout Plain Layout
-
-def AssignDistricts(self):
-\end_layout
-
-\begin_layout Plain Layout
-
-	dict_assigned = {i: (self.counties_pop[i]//self.national_mean,
-\end_layout
-
-\begin_layout Plain Layout
-
-	self.counties_pop[i]/self.national_mean - 
-\end_layout
-
-\begin_layout Plain Layout
-
-	self.counties_pop[i]//self.national_mean)
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\end_layout
-
-\begin_layout Plain Layout
-
-	for i in range(1,self.nr_of_counties + 1)} 
-\end_layout
-
-\begin_layout Plain Layout
-
-		assigned = 0
-\end_layout
-
-\begin_layout Plain Layout
-
-		for key, value in dict_assigned.iteritems():             
-\end_layout
-
-\begin_layout Plain Layout
-
-			if value[0] == 1:                 
-\end_layout
-
-\begin_layout Plain Layout
-
-				dict_assigned[key] = (2,0)                 
-\end_layout
-
-\begin_layout Plain Layout
-
-				assigned+=2             
-\end_layout
-
-\begin_layout Plain Layout
-
-			else:                 
-\end_layout
-
-\begin_layout Plain Layout
-
-				assigned+=value[0]
-\end_layout
-
-\begin_layout Plain Layout
-
-	unassigned = self.nr_of_districts-assigned         
-\end_layout
-
-\begin_layout Plain Layout
-
-	#assigne an additional district to counties with the highest 
-\end_layout
-
-\begin_layout Plain Layout
-
-	#fractional remainder
-\end_layout
-
-\begin_layout Plain Layout
-
-        
-\end_layout
-
-\begin_layout Plain Layout
-
-	if unassigned:             
-\end_layout
-
-\begin_layout Plain Layout
-
-		dict_sorted = sorted(dict_assigned.items(), 
-\end_layout
-
-\begin_layout Plain Layout
-
-		key=lambda (k, v): v[1],reverse=True)
-\end_layout
-
-\begin_layout Plain Layout
-
-            
-\end_layout
-
-\begin_layout Plain Layout
-
-		for key,value in list(islice(dict_sorted, unassigned)):              
-   
-\end_layout
-
-\begin_layout Plain Layout
-
-			dict_assigned[key] = (value[0]+1,value[1])       
-\end_layout
-
-\begin_layout Plain Layout
-
-	         
-\end_layout
-
-\begin_layout Plain Layout
-
-	return [assv for (assv,rem) in dict_assigned.values()]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{lstlisting}
-\end_layout
-
-\end_inset
-
-Az így kapott körzetek száma minden zóna esetén a következő táblazatban
- látható:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Körzetek Szétosztása
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset External
-	template GnumericSpreadsheet
-	filename assigndis.ods
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Eredmények
+ A felosztást a 8 zónán, majd a 42 megyén belül végeztük.
 \end_layout
 
 \begin_layout Bibliography
@@ -2960,6 +2819,58 @@ Optimization by Simulated Annealing
  4598.
  (May 13, 1983), pp.
  671-680.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Yoo"
+
+\end_inset
+
+S.
+ Yoo, M.
+ Harman, 
+\emph on
+Pareto Efficient Multi-Objective Test Case Selection, 
+\emph default
+ISSTA ’07, July 9-12, London, U.K.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ulu"
+
+\end_inset
+
+E.L.
+ Ulungu, J.
+ Teghem, P.H.
+ Fortemps, D.
+ Tuyttens, 
+\emph on
+MOSA Method: A Tool for Solving Multiobjective Combinatorial Optimization
+ Problems
+\emph default
+, Service de Mathematique & Recherche Ope ́rationnelle, Faculte ́ Polytechnique
+ de Mons 9, Rue de Houdain, B -7000 Mons, Belgium
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Teg"
+
+\end_inset
+
+ J.
+ Teghem, 
+\emph on
+Methodologies For Solving Multiobjective Combinatorial Optimization Problems,
+ 
+\emph default
+Faculte Poly technique de Mons, Belgium
 \end_layout
 
 \begin_layout Bibliography
