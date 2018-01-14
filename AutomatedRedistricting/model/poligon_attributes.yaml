@@ -1,0 +1,7 @@
+attributes:
+  groupid: 'countyId'
+  name: 'name'
+  population: 'pop2015'
+  id: 'natcode'
+  neighbours: 'neighbours'
+  lines: 'lines'
