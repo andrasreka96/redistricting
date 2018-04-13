@@ -2396,7 +2396,7 @@ lstset{numbers=left,stepnumber=1,firstnumber=1,numberfirstline}
 
 
 \backslash
-begin{lstlisting}[frame=single,title=config.yaml]
+begin{lstlisting}[frame=single,title=config.yaml, language=yaml]
 \end_layout
 
 \begin_layout Plain Layout
@@ -2406,51 +2406,51 @@ attributes:
 
 \begin_layout Plain Layout
 
-	join_id: 'regionId'	*@
+	|
 \backslash
-label{joinid}@*   
+label{joinid}|join_id: 'regionId'   
 \end_layout
 
 \begin_layout Plain Layout
 
-	attribute_name: 'name' 	*@
+	|
 \backslash
-label{name}@*  
+label{name}|attribute_name: 'name' 
 \end_layout
 
 \begin_layout Plain Layout
 
-	attribute_population: 'pop2015'	*@
+	|
 \backslash
-label{pop}@*  
+label{pop}|attribute_population: 'pop2015'
 \end_layout
 
 \begin_layout Plain Layout
 
-	attribute_id: 'natcode'	*@
+	|
 \backslash
-label{natcode}@*   
+label{natcode}|attribute_id: 'natcode'
 \end_layout
 
 \begin_layout Plain Layout
 
-	attribute_neighbours: 'neighbours'	*@
+	|
 \backslash
-label{neighbours}@*   
+label{neighbours}|attribute_neighbours: 'neighbours'
 \end_layout
 
 \begin_layout Plain Layout
 
-	attribute_lines: 'lines'	*@
+	|
 \backslash
-label{lines}@*
+label{lines}|attribute_lines: 'lines'
 \end_layout
 
 \begin_layout Plain Layout
 
-	attribute_id_poliline: 'id'   *@
+	|
 \backslash
-label{unitid}@*
+label{unitid}|attribute_id_poliline: 'id'
 \end_layout
 
 \begin_layout Plain Layout
@@ -2618,7 +2618,7 @@ lstset{numbers=left,stepnumber=1,firstnumber=1,numberfirstline}
 
 
 \backslash
-begin{lstlisting}[frame=single,title=config.yaml,language=yaml,escapechar=|]
+begin{lstlisting}[frame=single,title=config.yaml,language=yaml]
 \end_layout
 
 \begin_layout Plain Layout
@@ -2729,7 +2729,7 @@ A dolgozatban bemutatott program, a mexikói újraosztási folyamatok mintájár
  két célfüggvényt használ.
  Ezeket használta az IFE (Instituto Federal Electoral) a 2006-os választásokat
  megelőző újraosztások során.
- Az 
+ A 
 \begin_inset Formula $C_{1}$
 \end_inset
 
