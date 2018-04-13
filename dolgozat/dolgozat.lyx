@@ -10,6 +10,48 @@
 \usepackage[vlined,ruled]{algorithm2e}
 \usepackage{nonfloat}
 \usepackage{listings}
+\usepackage{makecell}
+
+\usepackage[dvipsnames]{xcolor}
+
+\newcommand\YAMLcolonstyle{\color{red}\mdseries}
+\newcommand\YAMLkeystyle{\color{black}\bfseries}
+\newcommand\YAMLvaluestyle{\color{blue}\mdseries}
+
+\makeatletter
+
+% here is a macro expanding to the name of the language
+% (handy if you decide to change it further down the road)
+\newcommand\language@yaml{yaml}
+
+\expandafter\expandafter\expandafter\lstdefinelanguage
+\expandafter{\language@yaml}
+{
+  keywords={true,false,null,y,n},
+  keywordstyle=\color{darkgray}\bfseries,
+  basicstyle=\YAMLkeystyle,                                 % assuming a key comes first
+  sensitive=false,
+  comment=[l]{\#},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\YAMLvaluestyle\ttfamily,
+  moredelim=[l][\color{orange}]{\&},
+  moredelim=[l][\color{magenta}]{*},
+  moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
+  morestring=[b]',
+  morestring=[b]",
+  escapechar=|,
+  literate =    {---}{{\ProcessThreeDashes}}3
+                {>}{{\textcolor{red}\textgreater}}1     
+                {|}{{\textcolor{red}\textbar}}1 
+                {\ -\ }{{\mdseries\ -\ }}3,
+}
+
+% switch to key style at EOL
+\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
+\makeatother
+
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -33,7 +75,7 @@
 \bibtex_command default
 \index_command default
 \float_placement H
-\paperfontsize default
+\paperfontsize 12
 \spacing onehalf
 \use_hyperref true
 \pdf_bookmarks true
@@ -70,10 +112,10 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2.5cm
-\topmargin 2.5cm
-\rightmargin 2.5cm
-\bottommargin 2.5cm
+\leftmargin 2.45cm
+\topmargin 2.45cm
+\rightmargin 2.45cm
+\bottommargin 2.45cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -102,10 +144,10 @@ András Réka
 
 \begin_layout Abstract
 A demokratikus államformák fő célja a választópolgárok érdekeinek a képviselete
- kellene legyen, de a valóságban azt tapasztaljuk, hogy az egyéni ambiciók
+ kellene legyen, de a valóságban azt tapasztaljuk, hogy az egyéni ambíciók
  gyakran előtérbe helyeződnek a politikum részéről.
- Azonban úgy gondolom - ahogyan Esterházy Péter is írta - ``A legrosszabb
- demokrácia is jobb, mint az, ami eddig volt.'', és akkor ennek a kevésbé
+ Azonban úgy gondolom – ahogyan Esterházy Péter is írta: ``a legrosszabb
+ demokrácia is jobb, mint az, ami eddig volt'' – és akkor ennek a kevésbé
  rossznak a jobbá tételére kell törekednünk.
  Ennek a törekvésnek a kinyilatkoztatása a szakdolgozatban bemutatásra kerülő
  QGIS modul, amelyet a szavazókörzetek objektív és átlátható újraosztásának
@@ -384,15 +426,7 @@ Különböző demográfiai változások következtében a választási körzetek
  Ez a választói rendszeren belüli aránytalanságokhoz vezet, ami azt eredményezi,
  hogy a sűrűbben lakott körzetek polgárainak szavazata kevesebbet ér, mint
  a gyérebben lakott körzetekben élő polgároké.
- Ez ellentmond a demokrácia 
-\begin_inset Quotes pld
-\end_inset
-
-egy ember egy szavazat
-\begin_inset Quotes prd
-\end_inset
-
- elvével.
+ Ez ellentmond a demokrácia ``egy ember egy szavazat'' elvével.
  Ennek elkerülése érdekében a választási körzeteket szükség szerint újraoszthatj
 ák.
  Ezenkívül törvényi követelmény is lehet, hogy a körzeteket újra kell osztani
@@ -1018,10 +1052,12 @@ inline false
 status open
 
 \begin_layout Plain Layout
+
 from qgis.core import *
 \end_layout
 
 \begin_layout Plain Layout
+
 import qgis.utils
 \end_layout
 
@@ -2582,7 +2618,7 @@ lstset{numbers=left,stepnumber=1,firstnumber=1,numberfirstline}
 
 
 \backslash
-begin{lstlisting}[frame=single,title=config.yaml]
+begin{lstlisting}[frame=single,title=config.yaml,language=yaml,escapechar=|]
 \end_layout
 
 \begin_layout Plain Layout
@@ -2592,72 +2628,72 @@ parameters:
 
 \begin_layout Plain Layout
 
-	nr_of_districts : 120   	*@
+	|
 \backslash
-label{nr_of_districts}@*
+label{nr_of_districts}|nr_of_districts : 120
 \end_layout
 
 \begin_layout Plain Layout
 
-	cooling_schedule: 0.99   *@
+	|
 \backslash
-label{schedule}@*
+label{schedule}|cooling_schedule: 0.99 
 \end_layout
 
 \begin_layout Plain Layout
 
-	initial_temperature: 5   *@
+	|
 \backslash
-label{initial_temperature}@*
+label{initial_temperature}|initial_temperature: 5
 \end_layout
 
 \begin_layout Plain Layout
 
-	final_temperature: 0.001   *@
+	|
 \backslash
-label{final_temperature}@*
+label{final_temperature}|final_temperature: 0.001 
 \end_layout
 
 \begin_layout Plain Layout
 
-	iterations: 1800 	*@
+	|
 \backslash
-label{iter}@*
+label{iter}|iterations: 1800 
 \end_layout
 
 \begin_layout Plain Layout
 
-	iterations_increment : 0  *@
+	|
 \backslash
-label{iterations_inc}@* 
+label{iterations_inc}|iterations_increment : 0  
 \end_layout
 
 \begin_layout Plain Layout
 
-	neighbourhood: [-1] 	*@
+	|
 \backslash
-label{neigh}@*  
+label{neigh}|neighbourhood: [-1]  
 \end_layout
 
 \begin_layout Plain Layout
 
-	weight_vectors : [[0.8,0.2]]   *@
+	|
 \backslash
-label{weights}@*
+label{weights}|weight_vectors : [[0.8,0.2]]  
 \end_layout
 
 \begin_layout Plain Layout
 
-	minnr_of_unit : 2   *@
+	|
 \backslash
-label{min_unit}@*
+label{min_unit}|minnr_of_unit : 2 
 \end_layout
 
 \begin_layout Plain Layout
 
-	max_size_pareto: 100	*@
+	|
 \backslash
-label{max_pareto}@*
+label{max_pareto}|max_size_pareto: 100
 \end_layout
 
 \begin_layout Plain Layout
@@ -2818,7 +2854,7 @@ Unități administrativ-teritoriale
 .
  A felosztást a 8 zónán, majd a 42 megyén belül is elvégeztük.
  A körzetek szétosztása a következő:
-\begin_inset Float figure
+\begin_inset Float table
 wide false
 sideways false
 status open
@@ -2831,7 +2867,7 @@ status open
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="5cm">
+<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
@@ -2856,16 +2892,23 @@ Populáció
 \begin_inset Text
 
 \begin_layout Plain Layout
-Egész Körzet
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thead{Egész
+\backslash
+
+\backslash
+ körzet}
 \end_layout
 
 \end_inset
-</cell>
-<cell multirow="3" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
-Direkt Hozzarendelés
+
 \end_layout
 
 \end_inset
@@ -2874,7 +2917,48 @@ Direkt Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-Legnagyobb Törtrész Szerinti Hozzarendelés
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thead{Direkt
+\backslash
+
+\backslash
+ hozzárendelés}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thead{Törtrész szerinti
+\backslash
+
+\backslash
+  hozzárendelés}
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \end_inset
@@ -5263,7 +5347,7 @@ Körzetek szétosztása a megyék között
 \end_inset
 
 
-\begin_inset Float figure
+\begin_inset Float table
 wide false
 sideways false
 status open
@@ -5275,7 +5359,7 @@ status open
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
-<column alignment="center" valignment="top" width="6cm">
+<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
@@ -5309,7 +5393,23 @@ Egész Körzet
 \begin_inset Text
 
 \begin_layout Plain Layout
-Legnagyobb Törtrész Szerinti Hozzarendelés
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thead{Törtrész szerinti
+\backslash
+
+\backslash
+  hozzárendelés}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
