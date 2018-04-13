@@ -14,7 +14,7 @@
 \use_default_options true
 \maintain_unincluded_children false
 \language magyar
-\language_package auto
+\language_package default
 \inputencoding utf8
 \fontencoding global
 \font_roman "default" "default"
@@ -100,6 +100,18 @@ Szavazókörzetek újraosztása
 András Réka
 \end_layout
 
+\begin_layout Abstract
+A demokratikus államformák fő célja a választópolgárok érdekeinek a képviselete
+ kellene legyen, de a valóságban azt tapasztaljuk, hogy az egyéni ambiciók
+ gyakran előtérbe helyeződnek a politikum részéről.
+ Azonban úgy gondolom - ahogyan Esterházy Péter is írta - ``A legrosszabb
+ demokrácia is jobb, mint az, ami eddig volt.'', és akkor ennek a kevésbé
+ rossznak a jobbá tételére kell törekednünk.
+ Ennek a törekvésnek a kinyilatkoztatása a szakdolgozatban bemutatásra kerülő
+ QGIS modul, amelyet a szavazókörzetek objektív és átlátható újraosztásának
+ céljából írtunk.
+\end_layout
+
 \begin_layout Chapter
 Bevezetés
 \end_layout
@@ -119,7 +131,7 @@ A modern demokráciák működésének elengedhetetlen alapfeltétele (többek k
 \emph on
 redistricting
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 A választási körzetek újraosztása
@@ -187,15 +199,7 @@ simulated annealing
  is megszűnne.
  Ez remélhetőleg csökkentené a kételyeket a többségi elven működő demokratikus
  rendszerek legitimitását illetően, és megszüntetné a történelem során oly
- sokszor előforduló, önkényes 
-\begin_inset Quotes pld
-\end_inset
-
-határvonalakat
-\begin_inset Quotes prd
-\end_inset
-
-.
+ sokszor előforduló, önkényes ``határvonalakat''.
  
 \begin_inset Float figure
 wide false
@@ -284,8 +288,8 @@ reference "chap:Romania"
 \end_inset
 
 .
- fejezetben – a módszer alkalmazásaként – generáljuk Románia megyéinek lehetsége
-s felosztásait.
+ fejezetben – a módszer alkalmazásaként – generáljuk Románia megyéinek,
+ majd körzeteinek lehetséges felosztásait.
 \end_layout
 
 \begin_layout Chapter
@@ -414,7 +418,7 @@ Korábban az újraosztást a törvényhozó hatalom végezte el különösebb me
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1014,12 +1018,10 @@ inline false
 status open
 
 \begin_layout Plain Layout
-
 from qgis.core import *
 \end_layout
 
 \begin_layout Plain Layout
-
 import qgis.utils
 \end_layout
 
@@ -1246,10 +1248,8 @@ A szimulált hűtés módszere
 \end_layout
 
 \begin_layout Standard
-A szimulált hűtés módszere egy metaheurisztikus algoritmus, amelyet kombinatorik
-us optimalizációs problémák megoldására használnak.
- A kombinatorikus optimalizálás olyan optimalizációs problémákat old meg,
- ahol a megoldástér véges.
+A szimulált hűtés módszere egy metaheurisztikus algoritmus, amely alkalmas
+ globális optimumok megközelítésére nagy megoldásterek esetén.
  A szimulált hűtésnek több változata is van: 
 \emph on
 párhuzamos szimulált hűtés
@@ -2894,18 +2894,6 @@ Legnagyobb Törtrész Szerinti Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Alba
 \end_layout
 
@@ -2915,18 +2903,6 @@ Alba
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 382537
 \end_layout
 
@@ -2936,18 +2912,6 @@ Alba
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -2975,18 +2939,6 @@ Alba
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -2998,18 +2950,6 @@ Alba
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Arad
 \end_layout
 
@@ -3019,18 +2959,6 @@ Arad
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 475216
 \end_layout
 
@@ -3040,18 +2968,6 @@ Arad
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -3070,18 +2986,6 @@ Arad
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -3091,18 +2995,6 @@ Arad
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -3114,18 +3006,6 @@ Arad
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Arges
 \end_layout
 
@@ -3135,18 +3015,6 @@ Arges
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 649014
 \end_layout
 
@@ -3156,18 +3024,6 @@ Arges
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -3186,18 +3042,6 @@ Arges
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -3207,18 +3051,6 @@ Arges
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -3230,18 +3062,6 @@ Arges
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Bacau
 \end_layout
 
@@ -3251,18 +3071,6 @@ Bacau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 748043
 \end_layout
 
@@ -3272,18 +3080,6 @@ Bacau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -3302,18 +3098,6 @@ Bacau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -3323,18 +3107,6 @@ Bacau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 5
 \end_layout
 
@@ -3346,18 +3118,6 @@ Bacau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Bihor
 \end_layout
 
@@ -3367,18 +3127,6 @@ Bihor
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 620531
 \end_layout
 
@@ -3388,18 +3136,6 @@ Bihor
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -3418,18 +3154,6 @@ Bihor
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -3439,18 +3163,6 @@ Bihor
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -3462,18 +3174,6 @@ Bihor
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Bistrita-Nasaud
 \end_layout
 
@@ -3483,18 +3183,6 @@ Bistrita-Nasaud
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 329471
 \end_layout
 
@@ -3504,18 +3192,6 @@ Bistrita-Nasaud
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -3543,18 +3219,6 @@ Bistrita-Nasaud
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -3566,18 +3230,6 @@ Bistrita-Nasaud
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Botosani
 \end_layout
 
@@ -3587,18 +3239,6 @@ Botosani
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 458620
 \end_layout
 
@@ -3608,18 +3248,6 @@ Botosani
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -3638,18 +3266,6 @@ Botosani
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -3659,18 +3275,6 @@ Botosani
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -3682,18 +3286,6 @@ Botosani
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Brasov
 \end_layout
 
@@ -3703,18 +3295,6 @@ Brasov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 630151
 \end_layout
 
@@ -3724,18 +3304,6 @@ Brasov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -3754,18 +3322,6 @@ Brasov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -3775,18 +3331,6 @@ Brasov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -3798,18 +3342,6 @@ Brasov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Braila
 \end_layout
 
@@ -3819,18 +3351,6 @@ Braila
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 359721
 \end_layout
 
@@ -3840,18 +3360,6 @@ Braila
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -3879,18 +3387,6 @@ Braila
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -3902,18 +3398,6 @@ Braila
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Buzau
 \end_layout
 
@@ -3923,18 +3407,6 @@ Buzau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 482716
 \end_layout
 
@@ -3944,18 +3416,6 @@ Buzau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -3974,18 +3434,6 @@ Buzau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -3995,18 +3443,6 @@ Buzau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -4018,18 +3454,6 @@ Buzau
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Caras-Severin
 \end_layout
 
@@ -4039,18 +3463,6 @@ Caras-Severin
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 331092
 \end_layout
 
@@ -4060,18 +3472,6 @@ Caras-Severin
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -4099,18 +3499,6 @@ Caras-Severin
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -4122,18 +3510,6 @@ Caras-Severin
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Cluj
 \end_layout
 
@@ -4143,18 +3519,6 @@ Cluj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 720722
 \end_layout
 
@@ -4164,18 +3528,6 @@ Cluj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -4194,18 +3546,6 @@ Cluj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -4215,18 +3555,6 @@ Cluj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 5
 \end_layout
 
@@ -4238,18 +3566,6 @@ Cluj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Constanta
 \end_layout
 
@@ -4259,18 +3575,6 @@ Constanta
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 770465
 \end_layout
 
@@ -4280,18 +3584,6 @@ Constanta
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -4310,18 +3602,6 @@ Constanta
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -4331,18 +3611,6 @@ Constanta
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 5
 \end_layout
 
@@ -4354,18 +3622,6 @@ Constanta
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Covasna
 \end_layout
 
@@ -4375,18 +3631,6 @@ Covasna
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 229319
 \end_layout
 
@@ -4396,18 +3640,6 @@ Covasna
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -4417,18 +3649,6 @@ Covasna
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -4447,18 +3667,6 @@ Covasna
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -4470,18 +3678,6 @@ Covasna
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Dambovita
 \end_layout
 
@@ -4491,18 +3687,6 @@ Dambovita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 530745
 \end_layout
 
@@ -4512,18 +3696,6 @@ Dambovita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -4551,18 +3723,6 @@ Dambovita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -4574,18 +3734,6 @@ Dambovita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Dolj
 \end_layout
 
@@ -4595,18 +3743,6 @@ Dolj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 704097
 \end_layout
 
@@ -4616,18 +3752,6 @@ Dolj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -4655,18 +3779,6 @@ Dolj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -4678,18 +3790,6 @@ Dolj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Galati
 \end_layout
 
@@ -4699,18 +3799,6 @@ Galati
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 634412
 \end_layout
 
@@ -4720,18 +3808,6 @@ Galati
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -4750,18 +3826,6 @@ Galati
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -4771,18 +3835,6 @@ Galati
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -4794,18 +3846,6 @@ Galati
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Gorj
 \end_layout
 
@@ -4815,18 +3855,6 @@ Gorj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 368786
 \end_layout
 
@@ -4836,18 +3864,6 @@ Gorj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -4875,18 +3891,6 @@ Gorj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -4898,18 +3902,6 @@ Gorj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Harghita
 \end_layout
 
@@ -4919,18 +3911,6 @@ Harghita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 334481
 \end_layout
 
@@ -4940,18 +3920,6 @@ Harghita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -4979,18 +3947,6 @@ Harghita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -5002,18 +3958,6 @@ Harghita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Hunedoara
 \end_layout
 
@@ -5023,18 +3967,6 @@ Hunedoara
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 473635
 \end_layout
 
@@ -5044,18 +3976,6 @@ Hunedoara
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -5074,18 +3994,6 @@ Hunedoara
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5095,18 +4003,6 @@ Hunedoara
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -5118,18 +4014,6 @@ Hunedoara
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Ialomita
 \end_layout
 
@@ -5139,18 +4023,6 @@ Ialomita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 295481
 \end_layout
 
@@ -5160,18 +4032,6 @@ Ialomita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5181,18 +4041,6 @@ Ialomita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5211,18 +4059,6 @@ Ialomita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -5234,18 +4070,6 @@ Ialomita
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Iasi
 \end_layout
 
@@ -5255,18 +4079,6 @@ Iasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 907979
 \end_layout
 
@@ -5276,18 +4088,6 @@ Iasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 5
 \end_layout
 
@@ -5306,18 +4106,6 @@ Iasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5327,18 +4115,6 @@ Iasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 6
 \end_layout
 
@@ -5350,18 +4126,6 @@ Iasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Ilfov
 \end_layout
 
@@ -5371,18 +4135,6 @@ Ilfov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 376536
 \end_layout
 
@@ -5392,18 +4144,6 @@ Ilfov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -5431,18 +4171,6 @@ Ilfov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -5454,18 +4182,6 @@ Ilfov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Maramures
 \end_layout
 
@@ -5475,18 +4191,6 @@ Maramures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 526952
 \end_layout
 
@@ -5496,18 +4200,6 @@ Maramures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -5535,18 +4227,6 @@ Maramures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -5558,18 +4238,6 @@ Maramures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Mehedinti
 \end_layout
 
@@ -5579,18 +4247,6 @@ Mehedinti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 289080
 \end_layout
 
@@ -5600,18 +4256,6 @@ Mehedinti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5621,18 +4265,6 @@ Mehedinti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5651,18 +4283,6 @@ Mehedinti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -5674,18 +4294,6 @@ Mehedinti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Mures
 \end_layout
 
@@ -5695,18 +4303,6 @@ Mures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 597386
 \end_layout
 
@@ -5716,18 +4312,6 @@ Mures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -5746,18 +4330,6 @@ Mures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5767,18 +4339,6 @@ Mures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -5790,18 +4350,6 @@ Mures
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Neamt
 \end_layout
 
@@ -5811,18 +4359,6 @@ Neamt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 579948
 \end_layout
 
@@ -5832,18 +4368,6 @@ Neamt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -5862,18 +4386,6 @@ Neamt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5883,18 +4395,6 @@ Neamt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -5906,18 +4406,6 @@ Neamt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Olt
 \end_layout
 
@@ -5927,18 +4415,6 @@ Olt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 454686
 \end_layout
 
@@ -5948,18 +4424,6 @@ Olt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -5978,18 +4442,6 @@ Olt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -5999,18 +4451,6 @@ Olt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -6022,18 +4462,6 @@ Olt
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Prahova
 \end_layout
 
@@ -6043,18 +4471,6 @@ Prahova
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 813759
 \end_layout
 
@@ -6064,18 +4480,6 @@ Prahova
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -6094,18 +4498,6 @@ Prahova
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6115,18 +4507,6 @@ Prahova
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 5
 \end_layout
 
@@ -6138,18 +4518,6 @@ Prahova
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Satu Mare
 \end_layout
 
@@ -6159,18 +4527,6 @@ Satu Mare
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 391840
 \end_layout
 
@@ -6180,18 +4536,6 @@ Satu Mare
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -6219,18 +4563,6 @@ Satu Mare
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -6242,18 +4574,6 @@ Satu Mare
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Salaj
 \end_layout
 
@@ -6263,18 +4583,6 @@ Salaj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 248431
 \end_layout
 
@@ -6284,18 +4592,6 @@ Salaj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6305,18 +4601,6 @@ Salaj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6335,18 +4619,6 @@ Salaj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -6358,18 +4630,6 @@ Salaj
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Sibiu
 \end_layout
 
@@ -6379,18 +4639,6 @@ Sibiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 463598
 \end_layout
 
@@ -6400,18 +4648,6 @@ Sibiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -6430,18 +4666,6 @@ Sibiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6451,18 +4675,6 @@ Sibiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -6474,18 +4686,6 @@ Sibiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Suceava
 \end_layout
 
@@ -6495,18 +4695,6 @@ Suceava
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 741749
 \end_layout
 
@@ -6516,18 +4704,6 @@ Suceava
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -6546,18 +4722,6 @@ Suceava
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6567,18 +4731,6 @@ Suceava
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 5
 \end_layout
 
@@ -6590,18 +4742,6 @@ Suceava
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Teleorman
 \end_layout
 
@@ -6611,18 +4751,6 @@ Teleorman
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 394499
 \end_layout
 
@@ -6632,18 +4760,6 @@ Teleorman
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -6662,18 +4778,6 @@ Teleorman
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6683,18 +4787,6 @@ Teleorman
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -6706,18 +4798,6 @@ Teleorman
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Timis
 \end_layout
 
@@ -6727,18 +4807,6 @@ Timis
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 740288
 \end_layout
 
@@ -6748,18 +4816,6 @@ Timis
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 4
 \end_layout
 
@@ -6778,18 +4834,6 @@ Timis
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6799,18 +4843,6 @@ Timis
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 5
 \end_layout
 
@@ -6822,18 +4854,6 @@ Timis
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Tulcea
 \end_layout
 
@@ -6843,18 +4863,6 @@ Tulcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 246309
 \end_layout
 
@@ -6864,18 +4872,6 @@ Tulcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6885,18 +4881,6 @@ Tulcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -6915,18 +4899,6 @@ Tulcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -6938,18 +4910,6 @@ Tulcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Vaslui
 \end_layout
 
@@ -6959,18 +4919,6 @@ Vaslui
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 478179
 \end_layout
 
@@ -6980,18 +4928,6 @@ Vaslui
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -7010,18 +4946,6 @@ Vaslui
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7031,18 +4955,6 @@ Vaslui
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -7054,18 +4966,6 @@ Vaslui
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Valcea
 \end_layout
 
@@ -7075,18 +4975,6 @@ Valcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 405431
 \end_layout
 
@@ -7096,18 +4984,6 @@ Valcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -7126,18 +5002,6 @@ Valcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7147,18 +5011,6 @@ Valcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -7170,18 +5022,6 @@ Valcea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Vrancea
 \end_layout
 
@@ -7191,18 +5031,6 @@ Vrancea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 392591
 \end_layout
 
@@ -7212,18 +5040,6 @@ Vrancea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -7242,18 +5058,6 @@ Vrancea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7263,18 +5067,6 @@ Vrancea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3
 \end_layout
 
@@ -7286,18 +5078,6 @@ Vrancea
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Bucuresti
 \end_layout
 
@@ -7307,18 +5087,6 @@ Bucuresti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2103346
 \end_layout
 
@@ -7328,18 +5096,6 @@ Bucuresti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 12
 \end_layout
 
@@ -7349,18 +5105,6 @@ Bucuresti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 -6
 \end_layout
 
@@ -7379,18 +5123,6 @@ Bucuresti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 6
 \end_layout
 
@@ -7402,18 +5134,6 @@ Bucuresti
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Calarasi
 \end_layout
 
@@ -7423,18 +5143,6 @@ Calarasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 319381
 \end_layout
 
@@ -7444,18 +5152,6 @@ Calarasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7465,18 +5161,6 @@ Calarasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7495,18 +5179,6 @@ Calarasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -7518,18 +5190,6 @@ Calarasi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Giurgiu
 \end_layout
 
@@ -7539,18 +5199,6 @@ Giurgiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 277960
 \end_layout
 
@@ -7560,18 +5208,6 @@ Giurgiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7581,18 +5217,6 @@ Giurgiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7611,18 +5235,6 @@ Giurgiu
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2
 \end_layout
 
@@ -7717,18 +5329,6 @@ Legnagyobb Törtrész Szerinti Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Észak-Kelet
 \end_layout
 
@@ -7738,18 +5338,6 @@ Legnagyobb Törtrész Szerinti Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3914518
 \end_layout
 
@@ -7759,18 +5347,6 @@ Legnagyobb Törtrész Szerinti Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 23
 \end_layout
 
@@ -7780,18 +5356,6 @@ Legnagyobb Törtrész Szerinti Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7801,18 +5365,6 @@ Legnagyobb Törtrész Szerinti Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 24
 \end_layout
 
@@ -7824,18 +5376,6 @@ Legnagyobb Törtrész Szerinti Hozzarendelés
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Dél-Kelet
 \end_layout
 
@@ -7845,18 +5385,6 @@ Dél-Kelet
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2886214
 \end_layout
 
@@ -7866,18 +5394,6 @@ Dél-Kelet
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 17
 \end_layout
 
@@ -7887,18 +5403,6 @@ Dél-Kelet
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -7908,18 +5412,6 @@ Dél-Kelet
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 18
 \end_layout
 
@@ -7931,18 +5423,6 @@ Dél-Kelet
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Dél
 \end_layout
 
@@ -7952,18 +5432,6 @@ Dél
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 3280839
 \end_layout
 
@@ -7973,18 +5441,6 @@ Dél
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 20
 \end_layout
 
@@ -8003,18 +5459,6 @@ Dél
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 20
 \end_layout
 
@@ -8026,18 +5470,6 @@ Dél
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Dél-Nyugat
 \end_layout
 
@@ -8047,18 +5479,6 @@ Dél-Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2222080
 \end_layout
 
@@ -8068,18 +5488,6 @@ Dél-Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 13
 \end_layout
 
@@ -8089,18 +5497,6 @@ Dél-Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 1
 \end_layout
 
@@ -8110,18 +5506,6 @@ Dél-Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 14
 \end_layout
 
@@ -8133,18 +5517,6 @@ Dél-Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Nyugat
 \end_layout
 
@@ -8154,18 +5526,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2020231
 \end_layout
 
@@ -8175,18 +5535,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 12
 \end_layout
 
@@ -8205,18 +5553,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 12
 \end_layout
 
@@ -8228,18 +5564,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Észak-Nyugat
 \end_layout
 
@@ -8249,18 +5573,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2837947
 \end_layout
 
@@ -8270,18 +5582,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 17
 \end_layout
 
@@ -8300,18 +5600,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 17
 \end_layout
 
@@ -8323,18 +5611,6 @@ Nyugat
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Központi
 \end_layout
 
@@ -8344,18 +5620,6 @@ Központi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2637472
 \end_layout
 
@@ -8365,18 +5629,6 @@ Központi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 16
 \end_layout
 
@@ -8395,18 +5647,6 @@ Központi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 16
 \end_layout
 
@@ -8418,18 +5658,6 @@ Központi
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 Bukarest-Ilfov
 \end_layout
 
@@ -8439,18 +5667,6 @@ Bukarest-Ilfov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 2479882
 \end_layout
 
@@ -8460,18 +5676,6 @@ Bukarest-Ilfov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 15
 \end_layout
 
@@ -8490,18 +5694,6 @@ Bukarest-Ilfov
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 15
 \end_layout
 
@@ -8538,7 +5730,23 @@ key "Coate"
 
 S.
  Coate, B.
- Knight, Socially Optimal Districting: 
+ Knight, Socially Optkét fő stratégiája a 
+\begin_inset Quotes pld
+\end_inset
+
+cracking
+\begin_inset Quotes prd
+\end_inset
+
+ (szétosztás) és a 
+\begin_inset Quotes pld
+\end_inset
+
+packing
+\begin_inset Quotes prd
+\end_inset
+
+ imal Districting: 
 \emph on
 A Theoretical and Empirical Exploration
 \emph default
