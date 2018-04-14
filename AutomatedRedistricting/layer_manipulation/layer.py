@@ -9,11 +9,11 @@ class LayerManipulation:
         self.layer = layer
         self.feature_dict = {f['natcode']: f for f in layer.getFeatures()}
 
-    def AddStringField(self,layer,fieldname):
+    def AddStringField(self,fieldname):
         #add field to layer
-        layer.startEditing()
-        layer.dataProvider().addAttributes([QgsField(fieldname, QVariant.String)])
-        layer.updateFields()
+        self.layer.startEditing()
+        self.layer.dataProvider().addAttributes([QgsField(fieldname, QVariant.String)])
+        self.layer.updateFields()
 
 #JoinPolilineToPoligon
     def Join(self,poliline,poligon):
@@ -69,7 +69,8 @@ class LayerManipulation:
 
 
     def ColorDistricts(self,counties,attribute):
-        logging.debug   ("Coloring has been started")
+        logging.info("Coloring %s",attribute)
+        self.AddStringField(attribute)
         provider=self.layer.dataProvider()
         updateMap={}
         fieldIdx = provider.fields().indexFromName(attribute)
@@ -86,6 +87,7 @@ class LayerManipulation:
                 updateMap[feature.id()] = { fieldIdx:color_dict[feature['natcode']] }
 
         provider.changeAttributeValues( updateMap )
+        logging.info("Coloring %s done",attribute)
 
     def ChangeColor(self):
         renderer = QgsCategorizedSymbolRendererV2("natcode")

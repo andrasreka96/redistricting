@@ -1,3 +1,6 @@
+from __future__ import division
+
+
 import logging
 import yaml
 import os.path
@@ -52,6 +55,8 @@ class PreProcessing:
         dict_assigned = {i: (self.dict_pop[i]//self.national_mean,self.dict_pop[i]/self.national_mean - self.dict_pop[i]//self.national_mean) for i in range(1,self.nr_of_regions + 1)}
         logging.info("Floors and Remainders:")
         logging.info(dict_assigned)
+        for key,value in dict_assigned.iteritems():
+            print(value[0])
 
         assigned = 0
         for key, value in dict_assigned.iteritems():
@@ -66,10 +71,6 @@ class PreProcessing:
                 assigned-=(value[0]-units)
                 dict_assigned[key] = (units,0)
         #min and max district restrictions were set
-
-        #romania specific
-        #assigned-=(dict_assigned[40][0]-6)
-        #dict_assigned[40]=(6,0)
 
 
         unassigned = self.nr_of_districts-assigned

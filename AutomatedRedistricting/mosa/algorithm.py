@@ -17,6 +17,8 @@ from AutomatedRedistricting.model.unit_build import UnitBuilder
 from AutomatedRedistricting.layer_manipulation.layer import LayerManipulation
 from AutomatedRedistricting.util.util import *
 from AutomatedRedistricting.processing.pre_proc import PreProcessing
+from AutomatedRedistricting.processing.post_proc import PostProcessing
+
 
 import objectives
 
@@ -25,8 +27,6 @@ from PyQt4.QtGui import QColor
 class MOSA:
 
     def __init__(self,layer_poligon,layer_poliline ):
-        self.layer_poligon = layer_poligon
-
         pre_processing = PreProcessing(layer_poligon,layer_poliline)
         pre_processing.BuildRegion()
 
@@ -64,6 +64,7 @@ class MOSA:
 
         #for logging
         self.log =  Log(ObjFunc(self.national_mean))
+        self.layer_manipulation = LayerManipulation(layer_poligon)
 
     def DistrictNear(self,units,solution):
         for unit in units:
@@ -177,15 +178,8 @@ class MOSA:
             county = County(countyid,countyid,district,deviation)
             counties.append(county)
 
-
-
-        objectives = self.objf.EvaluateObjectives(counties)
-        LayerManipulation(self.layer_poligon).ColorDistricts(counties,'color')
-
-        solution = Solution(counties,objectives)
-        self.log.LogSolution(solution,"Initial Solution")
-        self.log.LogObj(solution)
-        return solution
+        #return the solution created by counties
+        return Solution(counties,self.objf.EvaluateObjectives(counties))
 
     def BFS(self,district):
     #Decide if the given district is connected
@@ -241,10 +235,6 @@ class MOSA:
                 acc = d1
                 d1 = d2
                 d2 = acc
-
-            print("d1")
-            print(d1.population)
-            print(d2.population)
 
             for unit in d2.borders:
                 units_to_move |= unit.neighbours & d1.borders
@@ -304,55 +294,7 @@ class MOSA:
             ans = math.exp(diff/t)
         except OverflowError:
             ans = 0
-
         return ans
-
-    def patchSolution(self,pareto,w):
-    #it splits the solutions, selects between them, than creates the best solution from the pieces
-        counties = []
-
-        for i in range(0,self.nr_of_regions):
-            bestcounty = next(iter(pareto)).counties[i]
-            #determine the objectibe value for the given weights
-            bestval = self.dot(self.objf.EvaluateObjectives([bestcounty]),w)
-
-            #look for the best redistricting plan of the county
-            for s in pareto:
-                val = self.dot(self.objf.EvaluateObjectives([s.counties[i]]),w)
-                if bestval > val:
-                    bestcounty = s.counties[i]
-                    bestval = val
-            counties.append(bestcounty)
-
-        return Solution(counties,self.objf.EvaluateObjectives(counties))
-
-    def showResults(self,pareto):
-        minims = random.sample(pareto,1)[0]
-        minimff = minims
-        min_weighted_obj = self.dot(minimff.objective_values,minimff.weight_vectors)
-        for s in pareto:
-            self.log.LogSolution(s)
-            if minims.weighted_obj>s.weighted_obj:
-                minims = s
-            if s.weight_vectors[0] == s.weight_vectors[1] and min_weighted_obj>s.weighted_obj:
-                minimff = s
-                min_weighted_obj = s.weighted_obj
-
-        self.log.LogSolution(minims,"Best Solution")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minims.counties,'color1')
-        self.log.LogObj(minims)
-
-        self.log.LogSolution(minimff,"Best Solution(5-5)")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color2')
-        self.log.LogObj(minimff)
-
-        self.log.LogSolution(self.patchSolution(pareto,[0.5,0.5]),"Patch Solution 5-5")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color3')
-        self.log.LogObj(minimff)
-
-        self.log.LogSolution(self.patchSolution(pareto,[0.8,0.2]),"Patch Solution")
-        LayerManipulation(self.layer_poligon).ColorDistricts(minimff.counties,'color4')
-        self.log.LogObj(minimff)
 
     def dominates(self,regions1,regions2):
         dominates = True
@@ -420,7 +362,7 @@ class MOSA:
     #1,2
         pareto = set()
         U = self.CreateInitialSolution()
-        LayerManipulation(self.layer_poligon).ColorDistricts(U.counties,'color')
+        self.layer_manipulation.ColorDistricts(U.counties,'color')
 
         #save the initial solution into the archive
         pareto.add(U)
@@ -466,8 +408,6 @@ class MOSA:
                             U=V
                     else:
                         if len(pareto)>self.max_size_pareto:
-                            self.log.LogSolution(U,"s1")
-                            self.log.LogSolution(V,"s2")
                             self.merge(U,V)
                             U.temperature = t
                             U.iter = i+1
@@ -485,4 +425,4 @@ class MOSA:
             U = random.sample(pareto,1)[0]
 
         logging.info('Temperature is frozen')
-        #self.showResults(pareto)
+        PostProcessing(pareto,self.objf,self.log).showResults(self.layer_manipulation,[[0.5,0.5],[0.8,0.2]])
