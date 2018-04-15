@@ -466,7 +466,7 @@ status open
 \begin_inset Graphics
 	filename gerrymandering.png
 	lyxscale 20
-	scale 20
+	scale 30
 
 \end_inset
 
@@ -637,7 +637,7 @@ status open
 \begin_inset Graphics
 	filename seat-vote_curve.png
 	lyxscale 50
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -770,14 +770,14 @@ layer
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename ATTRIBTABLE.png
 	lyxscale 15
-	scale 25
+	scale 33
 
 \end_inset
 
@@ -837,7 +837,7 @@ A második adatmodell a vektoros adatmodell, amely az ábrázolandó területet
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1023,14 +1023,14 @@ A szoftver indítása után az első feladat az objektumokat tartalmazó layer-e
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename console.png
 	lyxscale 20
-	scale 30
+	scale 33
 
 \end_inset
 
@@ -1167,14 +1167,14 @@ QGIS-ben létrehozhatunk saját modulokat, illetve letölthetünk mások által
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename pluginbuilder.png
 	lyxscale 20
-	scale 25
+	scale 33
 
 \end_inset
 
@@ -1203,14 +1203,14 @@ A Plugin Builder az alábbi könyvtárstruktúrával rendelkező Python modult
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename tree.png
 	lyxscale 20
-	scale 25
+	scale 33
 
 \end_inset
 
@@ -6041,7 +6041,7 @@ http://zeus.nyf.hu/~foldrajz/geo/files/elmeleti_jegyzet.pdf
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Bibliography
@@ -6066,7 +6066,7 @@ http://www.agt.bme.hu/gis/qgis/regesz_segedlet_qgis.pdf
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Bibliography
@@ -6082,8 +6082,7 @@ G.
 \emph on
 Quantum GIS Felhasználói kézikönyv, 
 \emph default
-2010.
- október 7 
+2010, 
 \begin_inset Flex URL
 status open
 
@@ -6094,7 +6093,7 @@ http://mek.oszk.hu/09200/09238/09238.pdf
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Bibliography
@@ -6121,7 +6120,7 @@ http://oktatas.epito.bme.hu/local/coursepublicity/mod/resource/view.php?id=37215
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Bibliography
@@ -6200,11 +6199,8 @@ E.L.
 MOSA Method: A Tool for Solving Multiobjective Combinatorial Optimization
  Problems
 \emph default
-, Service de Mathematique & 
-\emph on
-Recherche Opérationnelle
-\emph default
-, FacultéPolytechnique de Mons, Mons, Belgium.
+, Service de Mathématique & Recherche Opérationnelle, Faculté Polytechnique
+ de Mons, Mons, Belgium.
 \end_layout
 
 \begin_layout Bibliography
@@ -6221,7 +6217,7 @@ literal "true"
 Methodologies For Solving Multiobjective Combinatorial Optimization Problems,
  
 \emph default
-Faculte Poly technique de Mons, Belgium.
+Faculté Polytechnique de Mons, Belgium.
 \end_layout
 
 \begin_layout Bibliography
@@ -6310,8 +6306,11 @@ literal "true"
 \end_inset
 
 S.
- Velasquez, Pàgina de l'assignatura ALE 'Cartografia i Noves Tecnologies
- Cartogràfiques', 
+ Velasquez,
+\emph on
+ Pàgina de l'assignatura ALE 'Cartografia i Noves Tecnologies Cartogràfiques'
+\emph default
+, 
 \begin_inset Flex URL
 status collapsed
 
