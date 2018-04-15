@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -69,6 +69,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -108,6 +110,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -120,7 +123,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language polish
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style polish
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -303,6 +309,7 @@ atikai szoftvercsomagot (
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Elek,Bel,Pad,Szabó,Siki"
+literal "true"
 
 \end_inset
 
@@ -474,6 +481,7 @@ Három különböző kimenetelt eredményező felosztás (
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Nass,Ing"
+literal "true"
 
 \end_inset
 
@@ -588,6 +596,7 @@ seat-vote curve
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Coate"
+literal "true"
 
 \end_inset
 
@@ -850,6 +859,7 @@ Vektoros és raszteres adatok tárolása közti alapvető különbségek (
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Vel"
+literal "true"
 
 \end_inset
 
@@ -1304,6 +1314,7 @@ adaptív szimulált hűtés
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kirk"
+literal "true"
 
 \end_inset
 
@@ -1437,6 +1448,7 @@ Ezek általában nagyobb adminisztrációs egységek.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McLe"
+literal "true"
 
 \end_inset
 
@@ -1529,6 +1541,7 @@ ek, vagy konfliktusban állnak egymással.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Yoo"
+literal "true"
 
 \end_inset
 
@@ -1635,6 +1648,7 @@ ref{eqn:prob}
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Ulu,Teg"
+literal "true"
 
 \end_inset
 
@@ -1677,6 +1691,7 @@ Tehát amikor, olyan megoldást találunk, amely nem dominál és nem dominált
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Ring"
+literal "true"
 
 \end_inset
 
@@ -2827,6 +2842,10 @@ name "chap:Romania"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Eredmények
 \end_layout
 
 \begin_layout Standard
@@ -5821,10 +5840,120 @@ Körzetek szétosztása a zónák között
 Az algoritmus a következő körzeteket generálta:
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename generated_districts_region.png
+	lyxscale 50
+	scale 35
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Régiónként generált körzetek
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename generated_districts_county.png
+	lyxscale 50
+	scale 35
+	clip
+
+\end_inset
+
+s
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Megyénként generált körzetek
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A piros vonalak a régió, illetve megye határokat mutatják.
+ A határokon belül minden körzet különböző színárnyalatban látható.
+ Az algoritmus 1700 iterációt végzett hőmérsékletenként.
+ A populáció egyenletes eloszlását értékelő függvény súlya 0.8, míg a kompaktságo
+t értékelőé 0.2.
+ Az optimalizációt egy véletlenszerűen generált megoldással kezdtük, ahol
+ a populáció eloszlásának szórása 30%-os volt.
+ Ez az optimalizáció után 10%-ra csökkent.
+\end_layout
+
+\begin_layout Section
+Továbbfejlesztési lehetőségek
+\end_layout
+
+\begin_layout Standard
+Az elkövetkezendőekben szeretnénk az algoritmus olyan paramétereit megtalálni,
+ amelyekkel a népesség szórása tovább csökkenthető.
+ Ugyanakkor újabb célfüggvények behozatala is lehetséges.
+ Például figyelembe lehetne venni a kissebségek eloszlását, vagyis olyan
+ körzeteket generálni ahol többségben vannak
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+positive gerrymandering
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Coate"
+literal "true"
 
 \end_inset
 
@@ -5858,6 +5987,7 @@ A Theoretical and Empirical Exploration
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Elek"
+literal "true"
 
 \end_inset
 
@@ -5873,6 +6003,7 @@ Bevezetés a geoinformatikába
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Bel"
+literal "true"
 
 \end_inset
 
@@ -5888,6 +6019,7 @@ Térinformatika Elméleti Jegyzet
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Pad"
+literal "true"
 
 \end_inset
 
@@ -5901,6 +6033,7 @@ G.
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Szabó"
+literal "true"
 
 \end_inset
 
@@ -5917,6 +6050,7 @@ Quantum GIS Felhasználói kézikönyv,
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Siki"
+literal "true"
 
 \end_inset
 
@@ -5932,6 +6066,7 @@ BME Geodézia
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Kirk"
+literal "true"
 
 \end_inset
 
@@ -5955,6 +6090,7 @@ Optimization by Simulated Annealing
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "McLe"
+literal "true"
 
 \end_inset
 
@@ -5971,6 +6107,7 @@ Electoral Studies, Volume 11, Issue 4, December 1992, Pages 293-309
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Yoo"
+literal "true"
 
 \end_inset
 
@@ -5987,6 +6124,7 @@ ISSTA ’07, July 9-12, London, U.K.
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Ulu"
+literal "true"
 
 \end_inset
 
@@ -6007,6 +6145,7 @@ MOSA Method: A Tool for Solving Multiobjective Combinatorial Optimization
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Teg"
+literal "true"
 
 \end_inset
 
@@ -6023,6 +6162,7 @@ Faculte Poly technique de Mons, Belgium
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Ing"
+literal "true"
 
 \end_inset
 
@@ -6050,6 +6190,7 @@ n-of-gerrymandering-you-will-ever-see/
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Nass"
+literal "true"
 
 \end_inset
 
@@ -6077,6 +6218,7 @@ vg
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Ring"
+literal "true"
 
 \end_inset
 
@@ -6097,6 +6239,7 @@ A Multiobjective Algorithm for Redistricting
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "Vel"
+literal "true"
 
 \end_inset
 
