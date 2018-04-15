@@ -444,7 +444,7 @@ Különböző demográfiai változások következtében a választási körzetek
 \begin_layout Standard
 Korábban az újraosztást a törvényhozó hatalom végezte el különösebb megkötések
  nélkül.
- Az így bekövetkezett folyamatos visszaélések eredményeként, az országok
+ Az így bekövetkezett folyamatos visszaélések eredményeként az országok
  elkezdtek törvényeket hozni az újraosztási tervekre vonatkozólag, például:
  a körzeteknek folytonosnak és kompaktaknak kell lenniük, a körzetek között
  a populációnak egyenletes eloszlást kell követnie, meg kell őrizniük az
@@ -571,7 +571,7 @@ A probléma megértéséhez vegyünk például egy 100 szavazóból álló egyma
  gyűjtjük (packing) és akkor is, ha megosztjuk őket (cracking), úgy hogy
  a lehető legkevesebb helyen érjék el a szavazati többséget.
  Így megtörténhet az, hogy egy párt sokkal több parlamenti helyre tesz szert,
- mint amennyit a választok közötti támogatottsága alapján érdemelne.
+ mint amennyit a választók közötti támogatottsága alapján érdemelne.
  A gerrymandering mérésének egyik módja a parlamentben elfoglalt helyek
  és a szavazók közötti támogatottság kapcsolatának az elemzése.
  Ezen kapcsolat ábrázolására vezették be a hely-szavazat görbét 
@@ -903,11 +903,11 @@ Vetületi rendszerek
 
 \begin_layout Standard
 A térképvetítés olyan matematikai transzformációk sorozata, amelyek során
- a Föld felszínén található pontok a síkkoordináta-rendszerben vetítődnek.
+ a Föld felszínén található pontok a síkkoordináta-rendszerbe vetítődnek.
  Bizonyos torzulások, mint szög-, távolság-, vetületi irány-, vonalas aránymérté
 k- és terület-torzulás mindig nemkívánatos eredményei a folyamatnak.
  Néhány leképezés ezen tulajdonságok valamelyikének torzulását minimálisra
- csökkenti más, maximálisan kihasználható hibák rovására.
+ csökkenti más, jelentős méretű torzulást okozva valamely más paraméterben.
  Némely vetület pedig csak mérsékelten igyekszik torzítani ezen tulajdonságok
  mindegyikét.
  
@@ -915,7 +915,7 @@ k- és terület-torzulás mindig nemkívánatos eredményei a folyamatnak.
 
 \begin_layout Standard
 A Föld felszíne kitüremkedésekkel és mélyedésekkel teli, ezért ezt a szabálytala
-n idomot, helyettesíteni kell egy matematikailag jól meghatározható, a Föld
+n idomot helyettesíteni kell egy matematikailag jól meghatározható, a Föld
  formáját nagy mértékben megközelítő felülettel.
  Az így megválasztott felületet nevezik alapfelületnek.
  A leggyakrabban használt alapfelület a forgási ellipszoid (szferoid).
@@ -1008,7 +1008,7 @@ a.
 \begin_layout Standard
 A szoftver indítása után az első feladat az objektumokat tartalmazó layer-ek
  betöltése.
- Amint betöltünk egy layer-t az láthatóvá válik a QGIS térképnézegetőjében.
+ Amint betöltünk egy layer-t, az láthatóvá válik a QGIS térképnézegetőjében.
  A térképen történő navigálást legegyszerűbben a Térkép navigáció eszközsor
  elemeivel tehetjük meg.
  Betöltéskor a QGIS felépíti a térképen látható geometriai formáknak megfelelő
@@ -1367,10 +1367,6 @@ re.
  mint a jelenlegi megoldás.
  Amennyiben nem alacsonyabb az új megoldásunk célfüggvényének az értéke,
  akkor a jelenlegi megoldást az úgynevezett Metropolis-kritérium alapján
-\end_layout
-
-\begin_layout Standard
-\align center
 \begin_inset ERT
 status open
 
@@ -1390,7 +1386,9 @@ label{eqn:prob}
 
 \begin_layout Plain Layout
 
-p=exp((E-E_{0})/T)
+p=
+\backslash
+exp((E-E_{0})/T)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1402,10 +1400,6 @@ end{equation}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 valószínűséggel cseréljük le, ahol 
 \begin_inset Formula $E$
 \end_inset
@@ -1428,7 +1422,7 @@ A körzetek újraosztása, többszörös célfüggvényt használó optimalizác
 
 \begin_layout Standard
 A körzetek újraosztása két feladatot foglal magában.
- Először a meghatározott parlamenti helyeket (jel:
+ Először a meghatározott parlamenti helyeket (jelölés: 
 \begin_inset Formula $m$
 \end_inset
 
@@ -1452,7 +1446,11 @@ literal "true"
 
 \end_inset
 
-, mi a legnagyobb maradék módszert
+, mi a 
+\emph on
+legnagyobb maradék módszer
+\emph default
+ét
 \begin_inset Foot
 status open
 
@@ -1472,7 +1470,7 @@ largest remainder method
 
  alkalmazzuk.
  Először kiszámítjuk a nemzeti átlagot: 
-\begin_inset Formula $NM=p_{ország}/m$
+\begin_inset Formula $N_{m}=p_{ország}/m$
 \end_inset
 
 , ahol 
@@ -1481,7 +1479,7 @@ largest remainder method
 
  az ország népességét jelöli.
  Kezdetben minden egységhez rendelünk 
-\begin_inset Formula $\lfloor p_{e}/NM\rfloor$
+\begin_inset Formula $\lfloor p_{e}/N_{m}\rfloor$
 \end_inset
 
  darab körzetet, ahol 
@@ -1490,17 +1488,17 @@ largest remainder method
 
  az adott egység népességét jelöli.
  A megmaradt körzeteket szétosztjuk a legnagyobb 
-\begin_inset Formula $frac(p_{e}/NM)$
+\begin_inset Formula $frac(p_{e}/N_{m})$
 \end_inset
 
  értékkel rendelkező egységek között, azaz mindegyikhez egy újabb körzetet
  adunk.
- A körzetek szétosztása után az ujraosztási probléma felfogható úgy, mint
+ A körzetek szétosztása után az újraosztási probléma felfogható úgy, mint
  egy egység, 
 \begin_inset Formula $n$
 \end_inset
 
- darab alterültre, vagyis körzetre való felosztásának ismételt feladata.
+ darab alterületre, vagyis körzetre való felosztásának ismételt feladata.
  Egy érvényes felosztási terv alapfeltétele, hogy a körzetek folytonosak,
  és figyelembe veszik a már meglévő adminisztrációs határokat.
  Ezen feltételek a legegyszerűbben úgy biztosíthatóak, ha egy körzetet,
@@ -1510,7 +1508,7 @@ largest remainder method
 \begin_inset Formula $(Z,U)$
 \end_inset
 
- párokat, ahol 
+ párokat egy érvényes felosztásnak nevezünk, ahol 
 \begin_inset Formula $Z$
 \end_inset
 
@@ -1522,7 +1520,7 @@ largest remainder method
 \begin_inset Formula $Z$
 \end_inset
 
- körzethez tartozó unitok halmazát jelöli, nevezünk egy érvényes felosztásnak.
+ körzethez tartozó unitok halmazát jelöli.
  
 \end_layout
 
@@ -1534,8 +1532,8 @@ Az olyan kritériumok, mint a körzetek folytonossága vagy a nagyobb adminisztr
  amelyeket függvényekkel mérhetünk.
  Gyakran előfordul, hogy ezek a kritériumok nem egyszerre teljesülnek, versengen
 ek, vagy konfliktusban állnak egymással.
- Ilyenkor az optimalizációt nem végezhetjük egy célfüggvény alapján, tehát
- nem is beszélhetünk egy optimális megoldásról.
+ Ilyenkor az optimalizációt nem végezhetjük egyetlen célfüggvény alapján,
+ tehát nem is beszélhetünk egy optimális megoldásról.
  A többszörös célfüggvényt használó optimalizáció során a Pareto-hatékony
  megoldásokat 
 \begin_inset CommandInset citation
@@ -1559,14 +1557,22 @@ literal "true"
 \end_inset
 
 , úgy hogy 
-\begin_inset Formula $f_{p}(P')<f_{p}(P)\;p\epsilon\{1,..,k\}$
+\begin_inset Formula $f_{p}(P')<f_{p}(P)$
+\end_inset
+
+, 
+\begin_inset Formula $p\in\{1,..,k\}$
 \end_inset
 
  és 
-\begin_inset Formula $f_{p}(P')<=f_{n}(P)\;\forall p\epsilon\{1,..,k\}$
+\begin_inset Formula $f_{p}(P')\leq f_{n}(P)$
 \end_inset
 
+, 
+\begin_inset Formula $\forall p\in\{1,..,k\}$
+\end_inset
 
+.
 \end_layout
 
 \begin_layout Standard
@@ -1591,7 +1597,7 @@ Amikor több célfüggvény szerint optimalizálunk, egy megoldásról nem mindi
 \begin_inset Formula $U$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
@@ -1602,7 +1608,7 @@ Amikor több célfüggvény szerint optimalizálunk, egy megoldásról nem mindi
 \begin_inset Formula $U$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
@@ -1615,7 +1621,7 @@ Amikor több célfüggvény szerint optimalizálunk, egy megoldásról nem mindi
 
  (az 1.
  és 2.
- eset nem teljesül)
+ eset nem teljesül).
 \end_layout
 
 \begin_layout Standard
@@ -1624,7 +1630,7 @@ Az első két eset a hagyományos optimalizáció eseteinek felel meg.
 \begin_inset Formula $V$
 \end_inset
 
- jobbnak bizonyul 
+ jobbnak bizonyul, akkor 
 \begin_inset Formula $U$
 \end_inset
 
@@ -1679,15 +1685,15 @@ literal "true"
 \begin_inset Formula 
 \begin{equation}
 C_{i}=\begin{cases}
-B_{i} & f_{p}(B_{i})<=f_{p}(A_{i})\;\forall p\epsilon\{1,..,k\}\\
-A_{i} & otherwise
-\end{cases}\label{eq:merge}
+B_{i} & \text{ha }f_{p}(B_{i})\leq f_{p}(A_{i})\;\forall p\epsilon\{1,..,k\}\\
+A_{i} & \text{különben}
+\end{cases}.\label{eq:merge}
 \end{equation}
 
 \end_inset
 
-Tehát amikor, olyan megoldást találunk, amely nem dominál és nem dominált
- más megoldások által, a Pareto halmazhoz adjuk 
+Tehát, amikor olyan megoldást találunk, amely nem dominál és nem dominált
+ más megoldások által, a Pareto-halmazhoz adjuk 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Ring"
@@ -1703,8 +1709,43 @@ reference "eq:merge"
 
 \end_inset
 
- formula által kapott megoldás felváltja az aktuális megoldást.A fent felsorolt
- három eset elkülönítésére egy lehetséges algoritmus:
+ formula által kapott megoldás felváltja az aktuális megoldást.
+ A fent felsorolt három eset elkülönítésére egy lehetséges algoritmus a
+ következő oldalon leírt 
+\emph on
+pareto()
+\emph default
+ algoritmus, amit körzetek generálására alkalmazott több célfüggvényt használó
+ szimulált hűtés módszerének algoritmusa követ (
+\emph on
+SimulatedAnnealing()
+\emph default
+ néven).
+ A második algoritmusban az 
+\begin_inset Formula $U$
+\end_inset
+
+ bemeneti változó egy véletlenszerűen generált első megoldás, 
+\begin_inset Formula $T$
+\end_inset
+
+ a kezdeti hőmérséklet, 
+\begin_inset Formula $coolingschedule\in(0,1)$
+\end_inset
+
+, 
+\begin_inset Formula $k$
+\end_inset
+
+ a célfüggvények száma, 
+\begin_inset Formula $maxsize$
+\end_inset
+
+ pedig a Pareto-halmaz maximális mérete.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1775,7 +1816,7 @@ SetKwInOut{Output}{output}
 
 
 \backslash
-Input{V,pareto,k, where $k 
+Input{$V$, $pareto$, $k$, where $k 
 \backslash
 geq 1$ }
 \end_layout
@@ -1784,7 +1825,7 @@ geq 1$ }
 
 
 \backslash
-Output{$dominated$,$dominates$}
+Output{$dominated$, $dominates$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1815,9 +1856,7 @@ emptyset $
 \backslash
 For{$S
 \backslash
-in
-\backslash
-mathcal Pareto $} {
+in pareto $} {
 \end_layout
 
 \begin_layout Plain Layout
@@ -1927,7 +1966,7 @@ right
 
 
 \backslash
-caption{dominance($V$,$pareto$,$k$)}
+caption{dominance()}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1939,8 +1978,14 @@ end{algorithm}
 
 \end_inset
 
-A körzetek generálására alkalmazott több célfüggvényt használó szimulált
- hűtés módszere:
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1987,12 +2032,7 @@ SetKwInOut{Output}{output}
 
 
 \backslash
-Input{$U$,$T$,$maxiter$,$coolingschedule$,$k$,$maxsize$ where $U$ is a randomly
- generated initial solution, $T$ is the initial temperature, $coolingschedule
- 
-\backslash
-in (0,1)$, $k$ is the number of the objective functions, $maxsize$ is the
- maximum size of the pareto set}
+Input{$U$, $T$, $maxiter$, $coolingschedule$, $k$, $maxsize$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2054,7 +2094,7 @@ uIf{V dominates}
 
 \begin_layout Plain Layout
 
-			pareto.update(V)
+			$pareto.update(V)$
 \backslash
 ;		
 \end_layout
@@ -2101,7 +2141,11 @@ uIf{V is dominated}
 
 				
 \backslash
-If{$random(0,1) <= exp((obj(U)-obj(V))/T)$}
+If{$random(0,1) 
+\backslash
+leq 
+\backslash
+exp((obj(U)-obj(V))/T)$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2143,7 +2187,9 @@ uIf{length(pareto)>maxsize}
 
 \begin_layout Plain Layout
 
-					merge(U,V)
+					$merge(U,V)$
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
@@ -2238,7 +2284,7 @@ leftarrow pareto.random() $
 
 
 \backslash
-caption{Simulated Annealing()}
+caption{SimulatedAnnealing()}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2267,7 +2313,7 @@ Az implementáció részletei, a célfüggvények
 
 \begin_layout Standard
 A dolgozatban bemutatott program bemeneti adatai a következők: a generálandó
- körzetek száma 
+ körzetek száma (
 \begin_inset ERT
 status open
 
@@ -2280,8 +2326,8 @@ ref{nr_of_districts}
 
 \end_inset
 
-, a felosztandó ország legkisebb adminisztrációs területeit tartalmazó shapefájl
-, a kulcsmező
+), a felosztandó ország legkisebb adminisztrációs területeit tartalmazó
+ shapefájl, a kulcsmező
 \begin_inset Foot
 status open
 
@@ -2292,7 +2338,7 @@ ezen értékek alapján csoportosíthatjuk a unitokat nagyobb adminisztrációs
 
 \end_inset
 
- neve 
+ neve (
 \begin_inset ERT
 status open
 
@@ -2305,7 +2351,7 @@ ref{joinid}
 
 \end_inset
 
-, a unitokat
+), a unitokat (
 \begin_inset ERT
 status open
 
@@ -2318,7 +2364,7 @@ ref{name}
 
 \end_inset
 
-, az azonosítót 
+), az azonosítót (
 \begin_inset ERT
 status open
 
@@ -2331,7 +2377,7 @@ ref{natcode}
 
 \end_inset
 
-, a terület népességét 
+), a terület népességét (
 \begin_inset ERT
 status open
 
@@ -2344,7 +2390,7 @@ ref{pop}
 
 \end_inset
 
-, a szomszédos unitokat 
+), a szomszédos unitokat (
 \begin_inset ERT
 status open
 
@@ -2357,7 +2403,7 @@ ref{neighbours}
 
 \end_inset
 
-, valamint a poligonokhoz tartozó vonalakat 
+), valamint a poligonokhoz tartozó vonalakat (
 \begin_inset ERT
 status open
 
@@ -2370,8 +2416,9 @@ ref{lines}
 
 \end_inset
 
- tároló mezők nevei, a területekhez tartozó határvonalakat tartalmazó shapefájl
- és a mező neve amely alapján a vonalakat a unitokhoz kapcsolhatjuk 
+) tároló mezők nevei, illetve a területekhez tartozó határvonalakat tartalmazó
+ shapefájl és a mező neve amely alapján a vonalakat a unitokhoz kapcsolhatjuk
+ (
 \begin_inset ERT
 status open
 
@@ -2384,7 +2431,7 @@ ref{unitid}
 
 \end_inset
 
-.
+).
  A felsorolt adatok megadása a modulban található 
 \begin_inset Quotes pld
 \end_inset
@@ -2393,7 +2440,7 @@ config.yaml
 \begin_inset Quotes prd
 \end_inset
 
- elnevezésű fájlban tehető meg.
+ elnevezésű fájlban tehető meg:
 \end_layout
 
 \begin_layout Standard
@@ -2492,10 +2539,10 @@ neighbours.py
 
  elnevezésű script lefuttatása is szükséges.
  A script meghatározza az egymással szomszédos unitokat.
- Az így kapott azonosítok tárolása sok futási időt nyer majd az új felosztások
+ Az így kapott azonosítok tárolása sok futási időt spórol majd az új felosztások
  meghatározása közben.
  A további paraméterek beállításával az optimalizáló algoritmus viselkedését
- változtathatjuk: a kezdeti 
+ változtathatjuk: a kezdeti (
 \begin_inset ERT
 status open
 
@@ -2508,7 +2555,7 @@ ref{initial_temperature}
 
 \end_inset
 
- és végső hőmérséklet 
+) és végső hőmérséklet (
 \begin_inset ERT
 status open
 
@@ -2521,7 +2568,7 @@ ref{final_temperature}
 
 \end_inset
 
-, a hűtés mértéke 
+), a hűtés mértéke (
 \begin_inset ERT
 status open
 
@@ -2534,7 +2581,7 @@ ref{schedule}
 
 \end_inset
 
-, a hőmérsékletenkénti iteráció 
+), a hőmérsékletenkénti iteráció (
 \begin_inset ERT
 status open
 
@@ -2547,7 +2594,7 @@ ref{iter}
 
 \end_inset
 
-, valamint a hőmérsékletenkénti iterációk számának a növekedése 
+), valamint a hőmérsékletenkénti iterációk számának a növekedése (
 \begin_inset ERT
 status open
 
@@ -2560,8 +2607,8 @@ ref{iterations_inc}
 
 \end_inset
 
-.
- Továbbá megadható a megoldás halmaz maximális mérete 
+).
+ Továbbá megadható a megoldáshalmaz maximális mérete (
 \begin_inset ERT
 status open
 
@@ -2574,7 +2621,7 @@ ref{max_pareto}
 
 \end_inset
 
-, a költségfüggvényekhez rendelhető lehetséges súlyok listája 
+), a költségfüggvényekhez rendelhető lehetséges súlyok listája (
 \begin_inset ERT
 status open
 
@@ -2587,7 +2634,7 @@ ref{weights}
 
 \end_inset
 
-, és az egy körzeten belüli minimális unitszám 
+), és az egy körzeten belüli minimális unitszám (
 \begin_inset ERT
 status open
 
@@ -2600,9 +2647,9 @@ ref{min_unit}
 
 \end_inset
 
-.
+).
  Valamit az új felosztást kereső algoritmus cseréinek a száma is változtatható
- 
+ (
 \begin_inset ERT
 status open
 
@@ -2615,7 +2662,7 @@ ref{neigh}
 
 \end_inset
 
-.
+).
 \end_layout
 
 \begin_layout Standard
@@ -2732,9 +2779,9 @@ objectives.py
 \begin_inset Quotes prd
 \end_inset
 
- elnevezésű fájl tartalmazza, ezek bővítés nem adható meg a konfigurációs
+ elnevezésű fájl tartalmazza, ezek bővítése nem adható meg a konfigurációs
  fájlban.
- Amennyiben újabb függvényt szeretnénk egy megoldás kiértékeléséhez adni
+ Amennyiben újabb függvényt szeretnénk egy megoldás kiértékeléséhez adni,
  azt implementálnunk kell a függvényeket tartalmazó fájlban.
  
 \end_layout
@@ -2754,17 +2801,17 @@ A dolgozatban bemutatott program, a mexikói újraosztási folyamatok mintájár
 \begin_layout Standard
 \begin_inset Formula 
 \[
-C_{1}(P)=\sum_{e\epsilon E}(\frac{P_{e}}{d_{e}*NM})^{2}\sum_{s\epsilon S}(\frac{P_{s}}{P_{e}}-\frac{1}{n_{e}})^{2}
+C_{1}(P)=\sum_{e\in E}\left(\frac{P_{e}}{d_{e}\cdot N_{m}}\right)^{2}\sum_{s\in S}\left(\frac{P_{s}}{P_{e}}-\frac{1}{n_{e}}\right)^{2},
 \]
 
 \end_inset
 
-Ahol 
+ahol 
 \begin_inset Formula $P=\{Z_{1},Z_{2},...,Z_{n}\}$
 \end_inset
 
  egy felosztási terv, 
-\begin_inset Formula $NM$
+\begin_inset Formula $N_{m}$
 \end_inset
 
  a nemzeti átlagot jelöli, 
@@ -2794,7 +2841,7 @@ z egységen belül megengedett szórást
  
 \emph default
 az egységhez rendelt körzetek száma.
- Az hogy egy egységben megengedett szórás értéke mekkora, annak a függvényében
+ Az, hogy egy egységben megengedett szórás értéke mekkora, annak a függvényében
  változik, hogy az egység átlaga mennyire tér el a nemzeti átlagtól.
  Amikor egy egységen belül a körzetek populációja megegyezik, a szorzat
  második tagja zéróval egyenlő.
@@ -2809,10 +2856,10 @@ az egységhez rendelt körzetek száma.
 \begin_layout Standard
 A második célfüggvény a körzetek formájának a kompaktságát méri.
  A legkompaktabb geometriai alakzat a kör.
- A függvény azt méri mennyire hasonlít a körzetek formája egy kör formájához:
+ A függvény azt méri, mennyire hasonlít a körzetek formája egy kör formájához:
 \begin_inset Formula 
 \[
-C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}(\frac{PE_{s}}{4\sqrt{A_{s}}}-1)
+C_{2}(P)=\ensuremath{\sum_{s\epsilon S}}\left(\frac{PE_{s}}{4\sqrt{A_{s}}}-1\right)
 \]
 
 \end_inset
@@ -2873,16 +2920,10 @@ Unități administrativ-teritoriale
 .
  A felosztást a 8 zónán, majd a 42 megyén belül is elvégeztük.
  A körzetek szétosztása a következő:
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
 \begin_inset Tabular
 <lyxtabular version="3" rows="43" columns="6">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
+<features islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="0pt">
@@ -5351,27 +5392,12 @@ Giurgiu
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Körzetek szétosztása a megyék között
+\begin_layout Standard
+Körzetek zónák közötti szétosztására a következő eredményt kaptuk:
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
+\begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="9" columns="5">
 <features tabularvalignment="middle">
@@ -5824,19 +5850,16 @@ Bukarest-Ilfov
 \end_inset
 
 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Körzetek szétosztása a zónák között
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
 \end_layout
 
-\end_inset
-
+\begin_layout Standard
 Az algoritmus a következő körzeteket generálta:
 \end_layout
 
@@ -5851,7 +5874,7 @@ status open
 \begin_inset Graphics
 	filename generated_districts_region.png
 	lyxscale 50
-	scale 35
+	scale 48
 	clip
 
 \end_inset
@@ -5891,7 +5914,7 @@ status open
 \begin_inset Graphics
 	filename generated_districts_county.png
 	lyxscale 50
-	scale 35
+	scale 48
 	clip
 
 \end_inset
@@ -5917,11 +5940,18 @@ Megyénként generált körzetek
 \end_layout
 
 \begin_layout Standard
-A piros vonalak a régió, illetve megye határokat mutatják.
+A piros vonalak a régió-, illetve megyehatárokat mutatják.
  A határokon belül minden körzet különböző színárnyalatban látható.
  Az algoritmus 1700 iterációt végzett hőmérsékletenként.
- A populáció egyenletes eloszlását értékelő függvény súlya 0.8, míg a kompaktságo
-t értékelőé 0.2.
+ A populáció egyenletes eloszlását értékelő függvény súlya 
+\begin_inset Formula $0.8$
+\end_inset
+
+, míg a kompaktságot értékelőé 
+\begin_inset Formula $0.2$
+\end_inset
+
+.
  Az optimalizációt egy véletlenszerűen generált megoldással kezdtük, ahol
  a populáció eloszlásának szórása 30%-os volt.
  Ez az optimalizáció után 10%-ra csökkent.
@@ -5935,7 +5965,7 @@ Továbbfejlesztési lehetőségek
 Az elkövetkezendőekben szeretnénk az algoritmus olyan paramétereit megtalálni,
  amelyekkel a népesség szórása tovább csökkenthető.
  Ugyanakkor újabb célfüggvények behozatala is lehetséges.
- Például figyelembe lehetne venni a kissebségek eloszlását, vagyis olyan
+ Például figyelembe lehetne venni a kisebbségek eloszlását, vagyis olyan
  körzeteket generálni ahol többségben vannak
 \begin_inset Foot
 status open
@@ -5959,28 +5989,12 @@ literal "true"
 
 S.
  Coate, B.
- Knight, Socially Optkét fő stratégiája a 
-\begin_inset Quotes pld
-\end_inset
-
-cracking
-\begin_inset Quotes prd
-\end_inset
-
- (szétosztás) és a 
-\begin_inset Quotes pld
-\end_inset
-
-packing
-\begin_inset Quotes prd
-\end_inset
-
- imal Districting: 
+ Knight,
 \emph on
-A Theoretical and Empirical Exploration
+ Socially Optimal Districting: A Theoretical and Empirical Exploration
 \emph default
 , The Quarterly Journal of Economics, Vol.
- 122, Issue 4
+ 122, Issue 4.
 \end_layout
 
 \begin_layout Bibliography
@@ -6012,7 +6026,7 @@ M.
  Kristóf, J.
  Magyari, 
 \emph on
-Térinformatika Elméleti Jegyzet
+Térinformatika Elméleti Jegyzet.
 \end_layout
 
 \begin_layout Bibliography
@@ -6100,7 +6114,8 @@ I.
 \emph on
  Apportionment and the Boundary Commission for England, 
 \emph default
-Electoral Studies, Volume 11, Issue 4, December 1992, Pages 293-309 
+Electoral Studies, Volume 11, Issue 4, December 1992, pp.
+ 293-309.
 \end_layout
 
 \begin_layout Bibliography
@@ -6137,8 +6152,11 @@ E.L.
 MOSA Method: A Tool for Solving Multiobjective Combinatorial Optimization
  Problems
 \emph default
-, Service de Mathematique & Recherche Ope ́rationnelle, Faculte ́ Polytechnique
- de Mons 9, Rue de Houdain, B -7000 Mons, Belgium
+, Service de Mathematique & 
+\emph on
+Recherche Opérationnelle
+\emph default
+, FacultéPolytechnique de Mons, Mons, Belgium.
 \end_layout
 
 \begin_layout Bibliography
@@ -6155,7 +6173,7 @@ literal "true"
 Methodologies For Solving Multiobjective Combinatorial Optimization Problems,
  
 \emph default
-Faculte Poly technique de Mons, Belgium
+Faculte Poly technique de Mons, Belgium.
 \end_layout
 
 \begin_layout Bibliography
