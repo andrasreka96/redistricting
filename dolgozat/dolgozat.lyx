@@ -2234,7 +2234,8 @@ right
 \backslash
 leftarrow V $
 \backslash
-;
+;layer-ek betöltése.
+ Amint betöltünk egy layer-t, az láthatóvá válik 
 \end_layout
 
 \begin_layout Plain Layout
@@ -6026,7 +6027,21 @@ M.
  Kristóf, J.
  Magyari, 
 \emph on
-Térinformatika Elméleti Jegyzet.
+Térinformatika Elméleti Jegyzet., 
+\emph default
+Szent István Egyetem, Mezőgazdaság- és Környezettudományi Kar, Gödöllő,
+ 2008, 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://zeus.nyf.hu/~foldrajz/geo/files/elmeleti_jegyzet.pdf
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Bibliography
@@ -6040,7 +6055,18 @@ literal "true"
 G.
  Padányi-Gulyás,
 \emph on
- Segédlet a Quantum GIS régészeti célú felhasználásához
+ Segédlet a Quantum GIS régészeti célú felhasználásához, 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.agt.bme.hu/gis/qgis/regesz_segedlet_qgis.pdf
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Bibliography
@@ -6057,7 +6083,18 @@ G.
 Quantum GIS Felhasználói kézikönyv, 
 \emph default
 2010.
- október 7
+ október 7 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://mek.oszk.hu/09200/09238/09238.pdf
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Bibliography
@@ -6073,7 +6110,18 @@ Z.
 \emph on
 QGIS Python programozás, 
 \emph default
-BME Geodézia
+BME Geodézia, 2009, 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://oktatas.epito.bme.hu/local/coursepublicity/mod/resource/view.php?id=37215
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Bibliography
@@ -6191,7 +6239,7 @@ How to steal an election: a visual guide
 \emph default
 , 
 \begin_inset Flex URL
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
